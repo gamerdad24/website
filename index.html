@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Important for mobile responsiveness -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>My Website</title>
+  <title>Swibby</title>
 
   <style>
-    /* ------------------------------
+
+    /* ========================================
        BASIC RESET
-    ------------------------------ */
+    ======================================== */
+
     * {
       margin: 0;
       padding: 0;
@@ -22,7 +22,7 @@
     body {
       width: 100%;
       min-height: 100%;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Verdana, Geneva, sans-serif;
     }
 
     body {
@@ -32,9 +32,10 @@
     }
 
 
-    /* ------------------------------
+    /* ========================================
        FULLSCREEN VIDEO BACKGROUND
-    ------------------------------ */
+    ======================================== */
+
     .background-video {
       position: fixed;
       top: 0;
@@ -49,23 +50,24 @@
     }
 
 
-    /* ------------------------------
-       DIM OVERLAY
-    ------------------------------ */
+    /* ========================================
+       80% DIM BACKGROUND
+    ======================================== */
+
     .video-overlay {
       position: fixed;
       inset: 0;
 
-      /* Change 0.35 to make it darker/lighter */
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.80);
 
       z-index: -2;
     }
 
 
-    /* ------------------------------
+    /* ========================================
        MAIN PAGE
-    ------------------------------ */
+    ======================================== */
+
     .page {
       min-height: 100vh;
 
@@ -74,11 +76,12 @@
       align-items: center;
 
       padding: 30px;
-
-      /* Entrance animation */
-      animation: pageEnter 0.9s ease forwards;
     }
 
+
+    /* ========================================
+       CONTENT
+    ======================================== */
 
     .content {
       display: flex;
@@ -87,62 +90,67 @@
 
       width: 100%;
       max-width: 900px;
+
+      position: relative;
+      top: -20vh;
+
+      animation: pageEnter 0.9s ease forwards;
     }
 
 
-    /* ------------------------------
+    /* ========================================
        LOGO
-    ------------------------------ */
+    ======================================== */
+
     .logo {
       display: block;
 
       width: min(420px, 80vw);
       height: auto;
 
-      margin-bottom: 20px;
+      margin-bottom: 22px;
 
-      /* Optional */
-      filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.35));
+      filter: drop-shadow(
+        0 4px 18px rgba(0, 0, 0, 0.35)
+      );
     }
 
 
-    /* ------------------------------
+    /* ========================================
        NAVIGATION
-    ------------------------------ */
+    ======================================== */
+
     .nav {
       display: flex;
       align-items: flex-start;
       justify-content: center;
 
-      gap: 26px;
+      gap: 42px;
 
       font-size: 18px;
     }
 
 
-    .nav a,
     .dropdown-button {
-      color: #d8ff00;
+      color: #ffffff;
+
       text-decoration: none;
 
       cursor: pointer;
 
-      transition:
-        color 0.2s ease,
-        opacity 0.2s ease,
-        transform 0.2s ease;
+      transition: color 0.2s ease;
     }
 
 
-    .nav a:hover,
     .dropdown-button:hover {
-      color: white;
+      color: #cccccc;
     }
 
 
-    /* ------------------------------
-       DROPDOWN
-    ------------------------------ */
+    /* ========================================
+       DROPDOWNS
+    ======================================== */
+
     .dropdown {
       position: relative;
     }
@@ -150,54 +158,177 @@
 
     .dropdown-button {
       display: block;
+
+      text-align: center;
     }
 
+
+    /* ========================================
+       ANIMATED DROPDOWN MENU
+    ======================================== */
 
     .dropdown-menu {
       position: absolute;
 
       top: 100%;
-      left: 0;
+      left: 50%;
 
-      min-width: 150px;
+      min-width: 190px;
 
       padding-top: 10px;
 
       opacity: 0;
       visibility: hidden;
 
-      transform: translateY(-6px);
+      transform:
+        translate(-50%, -10px)
+        scale(0.96);
+
+      transform-origin: top center;
 
       transition:
-        opacity 0.2s ease,
-        transform 0.2s ease,
-        visibility 0.2s ease;
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
     }
 
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+
+      transform:
+        translate(-50%, 0)
+        scale(1);
+    }
+
+
+    /* ========================================
+       DROPDOWN LINKS
+    ======================================== */
 
     .dropdown-menu a {
       display: block;
 
-      padding: 5px 10px;
+      padding: 6px 10px;
 
-      color: #00ffb3;
+      color: #aaaaaa;
+
+      text-decoration: none;
+
+      text-align: center;
+
+      font-size: 12px;
 
       white-space: nowrap;
+
+      transition: color 0.2s ease;
     }
 
 
-    /* Show dropdown when hovering */
-    .dropdown:hover .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+    .dropdown-menu a:hover {
+      color: #ffffff;
     }
 
 
-    /* ------------------------------
-       ENTRANCE ANIMATION
-    ------------------------------ */
+    /* ========================================
+       STEAM LEVEL TEXT
+    ======================================== */
+
+    .steam-account small {
+      display: block;
+
+      margin-top: 2px;
+
+      font-size: 8px;
+      font-weight: normal;
+
+      color: #666666;
+    }
+
+
+    /* ========================================
+       SPECS DROPDOWN
+    ======================================== */
+
+    .specs-menu {
+      min-width: 430px;
+
+      padding-top: 14px;
+
+      text-align: left;
+    }
+
+
+    .specs-section {
+      margin-bottom: 14px;
+    }
+
+
+    .specs-section:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .specs-title {
+      margin-bottom: 5px;
+      padding: 0 10px;
+
+      color: #ffffff;
+
+      font-size: 11px;
+      font-weight: bold;
+
+      text-align: left;
+    }
+
+
+    .specs-line {
+      padding: 2px 10px;
+
+      color: #888888;
+
+      font-size: 9px;
+      line-height: 1.5;
+
+      white-space: nowrap;
+
+      text-align: left;
+    }
+
+
+    .specs-line strong {
+      color: #aaaaaa;
+    }
+
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+
+    .footer {
+      position: fixed;
+
+      bottom: 24px;
+      left: 0;
+
+      width: 100%;
+
+      text-align: center;
+
+      font-size: 8.5px;
+      color: #777777;
+
+      user-select: none;
+    }
+
+
+    /* ========================================
+       PAGE ENTRANCE ANIMATION
+    ======================================== */
+
     @keyframes pageEnter {
+
       from {
         opacity: 0;
         transform: translateY(15px);
@@ -207,24 +338,31 @@
         opacity: 1;
         transform: translateY(0);
       }
+
     }
 
 
-    /* Respect accessibility settings */
+    /* ========================================
+       ACCESSIBILITY
+    ======================================== */
+
     @media (prefers-reduced-motion: reduce) {
-      .page {
+
+      .content {
         animation: none;
       }
 
       * {
         transition: none !important;
       }
+
     }
 
 
-    /* ------------------------------
+    /* ========================================
        MOBILE
-    ------------------------------ */
+    ======================================== */
+
     @media (max-width: 650px) {
 
       .page {
@@ -232,37 +370,56 @@
       }
 
 
+      .content {
+        top: -20vh;
+      }
+
+
       .logo {
         width: min(320px, 85vw);
+
         margin-bottom: 25px;
       }
 
 
       .nav {
         flex-wrap: wrap;
-        gap: 14px 20px;
+
+        gap: 18px 28px;
 
         font-size: 16px;
       }
 
 
-      /*
-        On phones there isn't really "hover",
-        so tapping the dropdown area will usually
-        trigger it in modern browsers.
-      */
-
       .dropdown-menu {
-        min-width: 130px;
+        min-width: 180px;
       }
+
+
+      .specs-menu {
+        min-width: min(390px, 94vw);
+      }
+
+
+      .specs-line {
+        font-size: 8px;
+
+        white-space: normal;
+      }
+
     }
+
   </style>
 </head>
 
 
 <body>
 
-  <!-- VIDEO BACKGROUND -->
+
+  <!-- ========================================
+       BACKGROUND VIDEO
+  ======================================== -->
+
   <video
     class="background-video"
     autoplay
@@ -270,49 +427,146 @@
     loop
     playsinline
   >
-    <source src="background.mp4" type="video/mp4" />
+
+    <source
+      src="background.mp4"
+      type="video/mp4"
+    >
+
   </video>
 
 
-  <!-- DARK/DIM LAYER -->
+  <!-- ========================================
+       80% DARK OVERLAY
+  ======================================== -->
+
   <div class="video-overlay"></div>
 
 
-  <!-- WEBSITE CONTENT -->
+  <!-- ========================================
+       WEBSITE
+  ======================================== -->
+
   <main class="page">
 
     <div class="content">
 
-      <!-- HEADER LOGO -->
+
+      <!-- ====================================
+           LOGO
+      ===================================== -->
+
       <img
         src="logo.png"
         alt="Website Logo"
         class="logo"
-      />
+      >
 
 
-      <!-- NAVIGATION -->
+      <!-- ====================================
+           NAVIGATION
+      ===================================== -->
+
       <nav class="nav">
 
-        <!-- DROPDOWN -->
+
+        <!-- ==================================
+             STEAM
+        =================================== -->
+
         <div class="dropdown">
 
           <span class="dropdown-button">
-            Dropdown
+            Steam
           </span>
+
 
           <div class="dropdown-menu">
 
-            <a href="page1.html">
-              Link 1
+
+            <!-- MAIN STEAM ACCOUNT -->
+
+            <a
+              href="https://steamcommunity.com/id/Swibby/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="steam-account"
+            >
+              <span>/id/Swibby (Main)</span>
+              <small>lvl 750</small>
             </a>
 
-            <a href="page2.html">
-              Link 2
+
+            <!-- ALT STEAM ACCOUNT -->
+
+            <a
+              href="https://steamcommunity.com/id/suffer"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="steam-account"
+            >
+              <span>/id/suffer (alt)</span>
+              <small>lvl 200</small>
             </a>
 
-            <a href="page3.html">
-              Link 3
+
+            <!-- CUT GROUP -->
+
+            <a
+              href="https://steamcommunity.com/groups/cut"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              /groups/cut
+            </a>
+
+
+            <!-- BROKEN GROUP -->
+
+            <a
+              href="https://steamcommunity.com/groups/broken"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              /groups/broken
+            </a>
+
+
+            <!-- BONJOUR GROUP -->
+
+            <a
+              href="https://steamcommunity.com/groups/bonjour"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              /groups/bonjour
+            </a>
+
+
+          </div>
+
+        </div>
+
+
+        <!-- ==================================
+             TELEGRAM
+        =================================== -->
+
+        <div class="dropdown">
+
+          <span class="dropdown-button">
+            Telegram
+          </span>
+
+
+          <div class="dropdown-menu">
+
+            <a
+              href="https://t.me/swibby"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              t.me/swibby
             </a>
 
           </div>
@@ -320,24 +574,326 @@
         </div>
 
 
-        <!-- NORMAL LINKS -->
-        <a href="about.html">
-          Link
-        </a>
+        <!-- ==================================
+             DISCORD
+        =================================== -->
 
-        <a href="projects.html">
-          Link
-        </a>
+        <div class="dropdown">
 
-        <a href="contact.html">
-          Link
-        </a>
+          <span class="dropdown-button">
+            Discord
+          </span>
+
+
+          <div class="dropdown-menu">
+
+            <a
+              href="https://discordapp.com/users/190497345509523456"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @swibby
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- ==================================
+             VRCHAT
+        =================================== -->
+
+        <div class="dropdown">
+
+          <span class="dropdown-button">
+            VRChat
+          </span>
+
+
+          <div class="dropdown-menu">
+
+
+            <!-- VRCHAT PROFILE -->
+
+            <a
+              href="https://vrchat.com/home/user/usr_da0651cd-965e-41aa-abf4-5fbb28cbdb94"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Profile
+            </a>
+
+
+            <!-- DOPE CAT AVATAR -->
+
+            <a
+              href="https://vrchat.com/home/avatar/avtr_5e141822-004a-4dae-be8a-5ea70dbb43fa"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              DOPE CAT avi
+            </a>
+
+
+            <!-- VRCHAT GROUP -->
+
+            <a
+              href="https://vrc.group/111.1111"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              vrc.group/111.1111
+            </a>
+
+
+          </div>
+
+        </div>
+
+
+        <!-- ==================================
+             SPECS
+        =================================== -->
+
+        <div class="dropdown">
+
+          <span class="dropdown-button">
+            Specs
+          </span>
+
+
+          <div class="dropdown-menu specs-menu">
+
+
+            <!-- ==============================
+                 PC
+            =============================== -->
+
+            <div class="specs-section">
+
+              <div class="specs-title">
+                PC
+              </div>
+
+
+              <div class="specs-line">
+                <strong>GPU:</strong>
+                GeForce RTX 4080 SUPER OC
+              </div>
+
+
+              <div class="specs-line">
+                <strong>CPU:</strong>
+                Intel Core i7-14700K - 3.40GHz
+              </div>
+
+
+              <div class="specs-line">
+                <strong>RAM:</strong>
+                Corsair Vengeance RGB - 32GB (DDR5@6000MHz)
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Motherboard:</strong>
+                ASUS ROG STRIX Z790-F GAMING WIFI II
+              </div>
+
+
+              <div class="specs-line">
+                <strong>CPU Cooler:</strong>
+                NZXT Kraken Elite
+              </div>
+
+
+              <div class="specs-line">
+                <strong>PSU:</strong>
+                Corsair RM850x - 850W
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Case:</strong>
+                HYTE Y70 - Black
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Storage 1:</strong>
+                Samsung 990 PRO w/ Heatsink - 2TB
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Storage 2:</strong>
+                Kingston FURY Renegade M.2 NVMe - 2TB
+              </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 PERIPHERALS
+            =============================== -->
+
+            <div class="specs-section">
+
+              <div class="specs-title">
+                Peripherals
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Keyboard:</strong>
+                Corsair K55
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Mouse:</strong>
+                Logitech G PRO Wireless
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Headset:</strong>
+                SteelSeries Arctis Nova Pro Wireless
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Mouse Pad:</strong>
+                SteelSeries QcK+
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Chair:</strong>
+                Herman Miller Aeron Remastered Onyx
+              </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 MONITORS
+            =============================== -->
+
+            <div class="specs-section">
+
+              <div class="specs-title">
+                Monitors
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Main Monitor:</strong>
+                OMEN 27i - 27" IPS, 1440p, 165Hz
+              </div>
+
+
+              <div class="specs-line">
+                <strong>2nd Monitor:</strong>
+                AOC C24G1 - 24", 1080p, 144Hz
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
 
       </nav>
 
     </div>
 
   </main>
+
+
+  <!-- ========================================
+       FOOTER
+  ======================================== -->
+
+  <footer class="footer">
+    Copyright © <strong>swib.by</strong> <em>All Rights Reserved</em>
+  </footer>
+
+
+  <!-- ========================================
+       BROWSER TAB TITLE ANIMATION
+  ======================================== -->
+
+  <script>
+
+    const titleText = "Swibby";
+
+    let titleIndex = 0;
+    let deleting = false;
+
+
+    function animateTitle() {
+
+      if (!deleting) {
+
+        document.title =
+          titleText.substring(0, titleIndex + 1);
+
+        titleIndex++;
+
+
+        /* Pause when "Swibby" is complete */
+
+        if (titleIndex === titleText.length) {
+
+          deleting = true;
+
+          setTimeout(animateTitle, 1800);
+
+          return;
+        }
+
+      }
+
+
+      else {
+
+        document.title =
+          titleText.substring(0, titleIndex - 1);
+
+        titleIndex--;
+
+
+        /* Pause before typing again */
+
+        if (titleIndex === 0) {
+
+          deleting = false;
+
+          setTimeout(animateTitle, 500);
+
+          return;
+        }
+
+      }
+
+
+      /* Animation speed */
+
+      setTimeout(
+        animateTitle,
+        deleting ? 120 : 180
+      );
+
+    }
+
+
+    animateTitle();
+
+  </script>
+
 
 </body>
 </html>
