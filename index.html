@@ -21,14 +21,15 @@
     html,
     body {
       width: 100%;
-      min-height: 100%;
+      height: 100%;
       font-family: Verdana, Geneva, sans-serif;
+      overflow: hidden;
     }
 
     body {
       color: white;
       background: black;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
 
@@ -69,13 +70,16 @@
     ======================================== */
 
     .page {
-      min-height: 100vh;
+      width: 100%;
+      height: 100vh;
 
       display: flex;
       justify-content: center;
       align-items: center;
 
       padding: 30px;
+
+      overflow: hidden;
     }
 
 
@@ -117,6 +121,29 @@
 
 
     /* ========================================
+       SHORT INFO
+    ======================================== */
+
+    .short-info {
+      margin-bottom: 22px;
+
+      color: #888888;
+
+      font-size: 10px;
+      line-height: 1.7;
+
+      text-align: center;
+    }
+
+
+    .short-info-name {
+      color: #aaaaaa;
+
+      font-size: 11px;
+    }
+
+
+    /* ========================================
        NAVIGATION
     ======================================== */
 
@@ -132,9 +159,12 @@
 
 
     .dropdown-button {
+      display: block;
+
       color: #ffffff;
 
       text-decoration: none;
+      text-align: center;
 
       cursor: pointer;
 
@@ -155,17 +185,6 @@
       position: relative;
     }
 
-
-    .dropdown-button {
-      display: block;
-
-      text-align: center;
-    }
-
-
-    /* ========================================
-       ANIMATED DROPDOWN MENU
-    ======================================== */
 
     .dropdown-menu {
       position: absolute;
@@ -215,7 +234,6 @@
       color: #aaaaaa;
 
       text-decoration: none;
-
       text-align: center;
 
       font-size: 12px;
@@ -248,17 +266,77 @@
 
 
     /* ========================================
-       SPECS DROPDOWN
+       APB INFO DROPDOWN
     ======================================== */
 
-    .specs-menu {
+    .info-menu {
       min-width: 430px;
 
-      padding-top: 14px;
+      /*
+         Pull the APB information slightly
+         closer to the "APB Info" label.
+      */
 
-      text-align: left;
+      top: calc(100% - 3px);
+      left: 50%;
+
+      padding-top: 0;
+
+      text-align: center;
+
+      transform:
+        translate(-50%, -10px)
+        scale(0.96);
+
+      transform-origin: top center;
     }
 
+
+    .dropdown:hover .info-menu {
+      transform:
+        translate(-50%, 0)
+        scale(1);
+    }
+
+
+    .info-menu .specs-section {
+      width: 100%;
+
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+
+    .info-menu .specs-title,
+    .info-menu .specs-line {
+      padding-left: 0;
+      padding-right: 0;
+
+      text-align: center;
+    }
+
+
+    .apb-retired {
+      width: 100%;
+
+      margin: 0;
+
+      padding: 0 0 10px;
+
+      color: #888888;
+
+      font-size: 9px;
+      line-height: 1.5;
+
+      text-align: center;
+
+      white-space: nowrap;
+    }
+
+
+    /* ========================================
+       SPECS / INFO SECTIONS
+    ======================================== */
 
     .specs-section {
       margin-bottom: 14px;
@@ -279,7 +357,7 @@
       font-size: 11px;
       font-weight: bold;
 
-      text-align: left;
+      text-align: center;
     }
 
 
@@ -293,12 +371,41 @@
 
       white-space: nowrap;
 
-      text-align: left;
+      text-align: center;
     }
 
 
     .specs-line strong {
       color: #aaaaaa;
+    }
+
+
+    /* ========================================
+       SPECS DROPDOWN - TWO COLUMNS
+    ======================================== */
+
+    .specs-menu {
+      min-width: 760px;
+
+      padding-top: 14px;
+
+      text-align: center;
+    }
+
+
+    .specs-columns {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 32px;
+    }
+
+
+    .specs-column {
+      min-width: 0;
+
+      text-align: center;
     }
 
 
@@ -320,6 +427,14 @@
       color: #777777;
 
       user-select: none;
+    }
+
+
+    .artist-credit {
+      margin-top: 4px;
+
+      font-size: 9px;
+      color: #555555;
     }
 
 
@@ -382,6 +497,18 @@
       }
 
 
+      .short-info {
+        margin-bottom: 20px;
+
+        font-size: 9px;
+      }
+
+
+      .short-info-name {
+        font-size: 10px;
+      }
+
+
       .nav {
         flex-wrap: wrap;
 
@@ -396,12 +523,31 @@
       }
 
 
+      .info-menu {
+        min-width: min(390px, 94vw);
+      }
+
+
       .specs-menu {
         min-width: min(390px, 94vw);
       }
 
 
+      .specs-columns {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+      }
+
+
       .specs-line {
+        font-size: 8px;
+
+        white-space: normal;
+      }
+
+
+      .apb-retired {
         font-size: 8px;
 
         white-space: normal;
@@ -464,6 +610,27 @@
 
 
       <!-- ====================================
+           SHORT INFO
+      ===================================== -->
+
+      <div class="short-info">
+
+        <div class="short-info-name">
+          hi I'm swib
+        </div>
+
+        <div>
+          Male / 20's / Sweden
+        </div>
+
+        <div>
+          Art, music and fashion enjoyer
+        </div>
+
+      </div>
+
+
+      <!-- ====================================
            NAVIGATION
       ===================================== -->
 
@@ -483,9 +650,6 @@
 
           <div class="dropdown-menu">
 
-
-            <!-- MAIN STEAM ACCOUNT -->
-
             <a
               href="https://steamcommunity.com/id/Swibby/"
               target="_blank"
@@ -496,8 +660,6 @@
               <small>lvl 750</small>
             </a>
 
-
-            <!-- ALT STEAM ACCOUNT -->
 
             <a
               href="https://steamcommunity.com/id/suffer"
@@ -510,8 +672,6 @@
             </a>
 
 
-            <!-- CUT GROUP -->
-
             <a
               href="https://steamcommunity.com/groups/cut"
               target="_blank"
@@ -520,8 +680,6 @@
               /groups/cut
             </a>
 
-
-            <!-- BROKEN GROUP -->
 
             <a
               href="https://steamcommunity.com/groups/broken"
@@ -532,8 +690,6 @@
             </a>
 
 
-            <!-- BONJOUR GROUP -->
-
             <a
               href="https://steamcommunity.com/groups/bonjour"
               target="_blank"
@@ -541,7 +697,6 @@
             >
               /groups/bonjour
             </a>
-
 
           </div>
 
@@ -613,9 +768,6 @@
 
           <div class="dropdown-menu">
 
-
-            <!-- VRCHAT PROFILE -->
-
             <a
               href="https://vrchat.com/home/user/usr_da0651cd-965e-41aa-abf4-5fbb28cbdb94"
               target="_blank"
@@ -624,8 +776,6 @@
               Profile
             </a>
 
-
-            <!-- DOPE CAT AVATAR -->
 
             <a
               href="https://vrchat.com/home/avatar/avtr_5e141822-004a-4dae-be8a-5ea70dbb43fa"
@@ -636,8 +786,6 @@
             </a>
 
 
-            <!-- VRCHAT GROUP -->
-
             <a
               href="https://vrc.group/111.1111"
               target="_blank"
@@ -645,6 +793,145 @@
             >
               vrc.group/111.1111
             </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- ==================================
+             APB INFO
+        =================================== -->
+
+        <div class="dropdown">
+
+          <span class="dropdown-button">
+            APB Info
+          </span>
+
+
+          <div class="dropdown-menu info-menu">
+
+
+            <!-- ==============================
+                 RETIRED
+            =============================== -->
+
+            <div class="apb-retired">
+              (Retired)
+            </div>
+
+
+            <!-- ==============================
+                 MAIN CHARACTERS
+            =============================== -->
+
+            <div class="specs-section">
+
+              <div class="specs-title">
+                Main characters
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Name:</strong>
+                Swibbiz (R255)
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Faction:</strong>
+                Enforcer
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Clan:</strong>
+                1337
+              </div>
+
+
+              <br>
+
+
+              <div class="specs-line">
+                <strong>Name:</strong>
+                Lie (R255)
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Faction:</strong>
+                Criminal
+              </div>
+
+
+              <div class="specs-line">
+                <strong>Clan:</strong>
+                (no clan)
+              </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 OTHER CHARACTERS
+            =============================== -->
+
+            <div class="specs-section">
+
+              <div class="specs-title">
+                Other characters
+              </div>
+
+
+              <div class="specs-line">
+                Swibbex R255,
+                rate R255,
+                Swibby R255
+              </div>
+
+
+              <div class="specs-line">
+                suffer R255,
+                slurs R100+,
+                OwO R100+
+              </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 OTHER
+            =============================== -->
+
+            <div class="specs-section">
+
+              <div class="specs-title">
+                Other
+              </div>
+
+
+              <div class="specs-line">
+                Clothing, Car &amp; Symbol Designer
+              </div>
+
+
+              <div class="specs-line">
+                6.6K Hours on Record
+              </div>
+
+
+              <div class="specs-line">
+                RTW Veteran 2010 (Patriot EU2)
+              </div>
+
+
+              <div class="specs-line">
+                Leader of &lt;1337&gt; on EU &amp; NA
+              </div>
+
+            </div>
 
 
           </div>
@@ -665,141 +952,214 @@
 
           <div class="dropdown-menu specs-menu">
 
+            <div class="specs-columns">
 
-            <!-- ==============================
-                 PC
-            =============================== -->
 
-            <div class="specs-section">
+              <!-- ============================
+                   LEFT COLUMN
+              ============================= -->
 
-              <div class="specs-title">
-                PC
+              <div class="specs-column">
+
+
+                <!-- ==========================
+                     PC
+                =========================== -->
+
+                <div class="specs-section">
+
+                  <div class="specs-title">
+                    PC
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>GPU:</strong>
+                    GeForce RTX 4080 SUPER OC
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>CPU:</strong>
+                    Intel Core i7-14700K - 3.40GHz
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>RAM:</strong>
+                    Corsair Vengeance RGB - 32GB (DDR5@6000MHz)
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Motherboard:</strong>
+                    ASUS ROG STRIX Z790-F GAMING WIFI II
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>CPU Cooler:</strong>
+                    NZXT Kraken Elite
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>PSU:</strong>
+                    Corsair RM850x - 850W
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Case:</strong>
+                    HYTE Y70 - Black
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Storage 1:</strong>
+                    Samsung 990 PRO w/ Heatsink - 2TB
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Storage 2:</strong>
+                    Kingston FURY Renegade M.2 NVMe - 2TB
+                  </div>
+
+                </div>
+
+
+                <!-- ==========================
+                     PERIPHERALS
+                =========================== -->
+
+                <div class="specs-section">
+
+                  <div class="specs-title">
+                    Peripherals
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Keyboard:</strong>
+                    Corsair K55
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Mouse:</strong>
+                    Logitech G PRO Wireless
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Headset:</strong>
+                    SteelSeries Arctis Nova Pro Wireless
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Mouse Pad:</strong>
+                    SteelSeries QcK+
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Chair:</strong>
+                    Herman Miller Aeron Remastered Onyx
+                  </div>
+
+                </div>
+
+
               </div>
 
 
-              <div class="specs-line">
-                <strong>GPU:</strong>
-                GeForce RTX 4080 SUPER OC
+              <!-- ============================
+                   RIGHT COLUMN
+              ============================= -->
+
+              <div class="specs-column">
+
+
+                <!-- ==========================
+                     MONITORS
+                =========================== -->
+
+                <div class="specs-section">
+
+                  <div class="specs-title">
+                    Monitors
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Main Monitor:</strong>
+                    OMEN 27i - 27" IPS, 1440p, 165Hz
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>2nd Monitor:</strong>
+                    AOC C24G1 - 24", 1080p, 144Hz
+                  </div>
+
+                </div>
+
+
+                <!-- ==========================
+                     VR EQUIPMENT
+                =========================== -->
+
+                <div class="specs-section">
+
+                  <div class="specs-title">
+                    VR Equipment
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Primary Headset:</strong>
+                    HTC VIVE Pro Eye
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Secondary Headset:</strong>
+                    Valve Index
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Controllers:</strong>
+                    Valve Index Controllers
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Base Stations:</strong>
+                    SteamVR Base Station 2.0 x2
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Trackers:</strong>
+                    HTC VIVE Tracker (3rd Generation) x3
+                  </div>
+
+
+                  <div class="specs-line">
+                    <strong>Straps:</strong>
+                    EOZ Premium Straps
+                  </div>
+
+                </div>
+
+
               </div>
 
-
-              <div class="specs-line">
-                <strong>CPU:</strong>
-                Intel Core i7-14700K - 3.40GHz
-              </div>
-
-
-              <div class="specs-line">
-                <strong>RAM:</strong>
-                Corsair Vengeance RGB - 32GB (DDR5@6000MHz)
-              </div>
-
-
-              <div class="specs-line">
-                <strong>Motherboard:</strong>
-                ASUS ROG STRIX Z790-F GAMING WIFI II
-              </div>
-
-
-              <div class="specs-line">
-                <strong>CPU Cooler:</strong>
-                NZXT Kraken Elite
-              </div>
-
-
-              <div class="specs-line">
-                <strong>PSU:</strong>
-                Corsair RM850x - 850W
-              </div>
-
-
-              <div class="specs-line">
-                <strong>Case:</strong>
-                HYTE Y70 - Black
-              </div>
-
-
-              <div class="specs-line">
-                <strong>Storage 1:</strong>
-                Samsung 990 PRO w/ Heatsink - 2TB
-              </div>
-
-
-              <div class="specs-line">
-                <strong>Storage 2:</strong>
-                Kingston FURY Renegade M.2 NVMe - 2TB
-              </div>
 
             </div>
-
-
-            <!-- ==============================
-                 PERIPHERALS
-            =============================== -->
-
-            <div class="specs-section">
-
-              <div class="specs-title">
-                Peripherals
-              </div>
-
-
-              <div class="specs-line">
-                <strong>Keyboard:</strong>
-                Corsair K55
-              </div>
-
-
-              <div class="specs-line">
-                <strong>Mouse:</strong>
-                Logitech G PRO Wireless
-              </div>
-
-
-              <div class="specs-line">
-                <strong>Headset:</strong>
-                SteelSeries Arctis Nova Pro Wireless
-              </div>
-
-
-              <div class="specs-line">
-                <strong>Mouse Pad:</strong>
-                SteelSeries QcK+
-              </div>
-
-
-              <div class="specs-line">
-                <strong>Chair:</strong>
-                Herman Miller Aeron Remastered Onyx
-              </div>
-
-            </div>
-
-
-            <!-- ==============================
-                 MONITORS
-            =============================== -->
-
-            <div class="specs-section">
-
-              <div class="specs-title">
-                Monitors
-              </div>
-
-
-              <div class="specs-line">
-                <strong>Main Monitor:</strong>
-                OMEN 27i - 27" IPS, 1440p, 165Hz
-              </div>
-
-
-              <div class="specs-line">
-                <strong>2nd Monitor:</strong>
-                AOC C24G1 - 24", 1080p, 144Hz
-              </div>
-
-            </div>
-
 
           </div>
 
@@ -818,7 +1178,13 @@
   ======================================== -->
 
   <footer class="footer">
+
     Copyright © <strong>swib.by</strong> <em>All Rights Reserved</em>
+
+    <div class="artist-credit">
+      Banner by Kratzy ©
+    </div>
+
   </footer>
 
 
