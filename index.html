@@ -1,28 +1,343 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
 
-<link rel="apple-touch-icon" sizes="180x180" href="">
-<link rel="icon" type="image/png" sizes="32x32" href="">
-<link rel="icon" type="image/png" sizes="16x16" href="">
-<link rel="manifest" href="http://swib.by/">
-<title>Swibby</title>
+  <!-- Important for mobile responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>My Website</title>
+
+  <style>
+    /* ------------------------------
+       BASIC RESET
+    ------------------------------ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      color: white;
+      background: black;
+      overflow-x: hidden;
+    }
+
+
+    /* ------------------------------
+       FULLSCREEN VIDEO BACKGROUND
+    ------------------------------ */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      z-index: -3;
+    }
+
+
+    /* ------------------------------
+       DIM OVERLAY
+    ------------------------------ */
+    .video-overlay {
+      position: fixed;
+      inset: 0;
+
+      /* Change 0.35 to make it darker/lighter */
+      background: rgba(0, 0, 0, 0.35);
+
+      z-index: -2;
+    }
+
+
+    /* ------------------------------
+       MAIN PAGE
+    ------------------------------ */
+    .page {
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 30px;
+
+      /* Entrance animation */
+      animation: pageEnter 0.9s ease forwards;
+    }
+
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      width: 100%;
+      max-width: 900px;
+    }
+
+
+    /* ------------------------------
+       LOGO
+    ------------------------------ */
+    .logo {
+      display: block;
+
+      width: min(420px, 80vw);
+      height: auto;
+
+      margin-bottom: 20px;
+
+      /* Optional */
+      filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.35));
+    }
+
+
+    /* ------------------------------
+       NAVIGATION
+    ------------------------------ */
+    .nav {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+
+      gap: 26px;
+
+      font-size: 18px;
+    }
+
+
+    .nav a,
+    .dropdown-button {
+      color: #d8ff00;
+      text-decoration: none;
+
+      cursor: pointer;
+
+      transition:
+        color 0.2s ease,
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    }
+
+
+    .nav a:hover,
+    .dropdown-button:hover {
+      color: white;
+    }
+
+
+    /* ------------------------------
+       DROPDOWN
+    ------------------------------ */
+    .dropdown {
+      position: relative;
+    }
+
+
+    .dropdown-button {
+      display: block;
+    }
+
+
+    .dropdown-menu {
+      position: absolute;
+
+      top: 100%;
+      left: 0;
+
+      min-width: 150px;
+
+      padding-top: 10px;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transform: translateY(-6px);
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+
+    .dropdown-menu a {
+      display: block;
+
+      padding: 5px 10px;
+
+      color: #00ffb3;
+
+      white-space: nowrap;
+    }
+
+
+    /* Show dropdown when hovering */
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+
+    /* ------------------------------
+       ENTRANCE ANIMATION
+    ------------------------------ */
+    @keyframes pageEnter {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    /* Respect accessibility settings */
+    @media (prefers-reduced-motion: reduce) {
+      .page {
+        animation: none;
+      }
+
+      * {
+        transition: none !important;
+      }
+    }
+
+
+    /* ------------------------------
+       MOBILE
+    ------------------------------ */
+    @media (max-width: 650px) {
+
+      .page {
+        padding: 20px;
+      }
+
+
+      .logo {
+        width: min(320px, 85vw);
+        margin-bottom: 25px;
+      }
+
+
+      .nav {
+        flex-wrap: wrap;
+        gap: 14px 20px;
+
+        font-size: 16px;
+      }
+
+
+      /*
+        On phones there isn't really "hover",
+        so tapping the dropdown area will usually
+        trigger it in modern browsers.
+      */
+
+      .dropdown-menu {
+        min-width: 130px;
+      }
+    }
+  </style>
 </head>
-<body bgcolor="#000000" text="#D7D7D7" link="#BBBBBB" vlink="#9F9F9F" data-darkreader-inline-bgcolor="" style="--darkreader-inline-bgcolor: #000000;">
-<table width="99%" border="0" cellpadding="1" height="430" align="center">
-  <tbody><tr>
-    <td height="432"> 
-      <p>&nbsp;</p>
-      <div align="center"> 
-        <p><img src="https://raw.githubusercontent.com/gamerdad24/website/main/swib.by_files/3.png" width="468" height="260" id="markbode"></p>
-        <p><font face="verdana" size="1">Work in progress.</font></p>
-        <p><font face="verdana" size="1">10/24/2023</font></p>
-		<p>&nbsp;</p>
-      </div>
-    </td>
-  </tr>
-</tbody></table>
-<div align="center"> 
-  <p><font face="verdana" size="1"><a href="mailto:x@swib.by">contact</a></font></p>
-  <p><font face="verdana" size="1">Copyright © <b>swib.by</b> <i>All Rights Reserved</i><br></font></p>
-</div>
-<div style="padding-top: 25px" align="center">
-</div>
+
+
+<body>
+
+  <!-- VIDEO BACKGROUND -->
+  <video
+    class="background-video"
+    autoplay
+    muted
+    loop
+    playsinline
+  >
+    <source src="background.mp4" type="video/mp4" />
+  </video>
+
+
+  <!-- DARK/DIM LAYER -->
+  <div class="video-overlay"></div>
+
+
+  <!-- WEBSITE CONTENT -->
+  <main class="page">
+
+    <div class="content">
+
+      <!-- HEADER LOGO -->
+      <img
+        src="logo.png"
+        alt="Website Logo"
+        class="logo"
+      />
+
+
+      <!-- NAVIGATION -->
+      <nav class="nav">
+
+        <!-- DROPDOWN -->
+        <div class="dropdown">
+
+          <span class="dropdown-button">
+            Dropdown
+          </span>
+
+          <div class="dropdown-menu">
+
+            <a href="page1.html">
+              Link 1
+            </a>
+
+            <a href="page2.html">
+              Link 2
+            </a>
+
+            <a href="page3.html">
+              Link 3
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- NORMAL LINKS -->
+        <a href="about.html">
+          Link
+        </a>
+
+        <a href="projects.html">
+          Link
+        </a>
+
+        <a href="contact.html">
+          Link
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
