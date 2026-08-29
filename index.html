@@ -129,6 +129,7 @@
 
       color: #888888;
 
+      font-family: Verdana, Geneva, sans-serif;
       font-size: 10px;
       line-height: 1.7;
 
@@ -154,6 +155,7 @@
 
       gap: 42px;
 
+      font-family: Verdana, Geneva, sans-serif;
       font-size: 18px;
     }
 
@@ -168,12 +170,18 @@
 
       cursor: pointer;
 
-      transition: color 0.2s ease;
+      transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
     }
 
 
     .dropdown-button:hover {
-      color: #cccccc;
+      color: #ffffff;
+
+      text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.65),
+        0 0 10px rgba(255, 255, 255, 0.25);
     }
 
 
@@ -240,17 +248,23 @@
 
       white-space: nowrap;
 
-      transition: color 0.2s ease;
+      transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
     }
 
 
     .dropdown-menu a:hover {
       color: #ffffff;
+
+      text-shadow:
+        0 0 4px rgba(255, 255, 255, 0.65),
+        0 0 8px rgba(255, 255, 255, 0.25);
     }
 
 
     /* ========================================
-       STEAM LEVEL TEXT
+       STEAM SMALL TEXT
     ======================================== */
 
     .steam-account small {
@@ -272,15 +286,10 @@
     .info-menu {
       min-width: 430px;
 
-      /*
-         Pull the APB information slightly
-         closer to the "APB Info" label.
-      */
-
       top: calc(100% - 3px);
       left: 50%;
 
-      padding-top: 0;
+      padding-top: 6px;
 
       text-align: center;
 
@@ -676,8 +685,10 @@
               href="https://steamcommunity.com/groups/cut"
               target="_blank"
               rel="noopener noreferrer"
+              class="steam-account"
             >
-              /groups/cut
+              <span>/groups/cut</span>
+              <small>All matching</small>
             </a>
 
 
@@ -685,8 +696,10 @@
               href="https://steamcommunity.com/groups/broken"
               target="_blank"
               rel="noopener noreferrer"
+              class="steam-account"
             >
-              /groups/broken
+              <span>/groups/broken</span>
+              <small>All matching</small>
             </a>
 
 
@@ -694,8 +707,10 @@
               href="https://steamcommunity.com/groups/bonjour"
               target="_blank"
               rel="noopener noreferrer"
+              class="steam-account"
             >
-              /groups/bonjour
+              <span>/groups/bonjour</span>
+              <small>All matching</small>
             </a>
 
           </div>
@@ -849,9 +864,6 @@
                 <strong>Clan:</strong>
                 1337
               </div>
-
-
-              <br>
 
 
               <div class="specs-line">
