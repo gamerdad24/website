@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Commission Gallery</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-height: 100%;
+      background: #0d0d0d;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100%;
+
+      font-family: Arial, Helvetica, sans-serif;
+      color: #ffffff;
+
+      background:
+        linear-gradient(
+          180deg,
+          #171717 0%,
+          #141414 25%,
+          #111111 50%,
+          #0f0f0f 75%,
+          #0d0d0d 100%
+        );
+
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      text-shadow:
+        0 2px 3px rgba(0, 0, 0, 0.85),
+        0 0 6px rgba(0, 0, 0, 0.55);
+    }
+
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    .subtitle,
+    .description,
+    .artist-block,
+    .description-block,
+    .other-character-block {
+      text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.9),
+        0 0 5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* =====================================================
+       GALLERY
+    ====================================================== */
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+
+      width: 100%;
+      padding-top: 30px;
+
+      background: transparent;
+    }
+
+    .gallery-group {
+      display: contents;
+    }
+
+    .gallery-item {
+      display: grid;
+      grid-template-columns: 50% 25% 25%;
+      align-items: stretch;
+
+      width: 100%;
+      height: auto;
+      min-height: 0;
+
+      background: transparent;
+    }
+
+    /* =====================================================
+       INFO
+    ====================================================== */
+
+    .info {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      width: 100%;
+
+      background: transparent;
+    }
+
+    .info-content {
+      width: 260px;
+      margin-right: 70px;
+    }
+
+    /* =====================================================
+       TOP LEFT NOTICE
+    ====================================================== */
+
+    .gallery-note {
+      position: absolute;
+      top: 35px;
+      left: 35px;
+
+      width: auto;
+      max-width: 340px;
+
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.55;
+      letter-spacing: 0.1px;
+
+      color: #9a9a9a;
+      text-align: left;
+
+      text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.8),
+        0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .gallery-intro {
+      color: #a8a8a8;
+    }
+
+    .content-warning {
+      margin-top: 14px;
+
+      color: #777777;
+
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+
+    .credit-notice {
+      margin-top: 14px;
+
+      color: #777777;
+
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+
+    /* =====================================================
+       YEAR
+    ====================================================== */
+
+    .subtitle {
+      width: 100%;
+      margin-bottom: 20px;
+
+      color: #9a9a9a;
+
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.2;
+
+      text-align: right;
+    }
+
+    /* =====================================================
+       ARTIST / LABELS
+    ====================================================== */
+
+    .artist-block {
+      width: 100%;
+      margin: 0;
+      text-align: right;
+    }
+
+    .artist-label,
+    .description-label,
+    .other-character-label {
+      display: block;
+
+      margin-bottom: 2px;
+
+      color: #ffffff;
+
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .artist-name,
+    .other-character-name {
+      display: block;
+
+      color: #9a9a9a;
+
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    /* =====================================================
+       DESCRIPTION / INFO
+    ====================================================== */
+
+    .description-block {
+      width: 100%;
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .description {
+      width: 100%;
+      margin: 0;
+
+      color: #bdbdbd;
+
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.2;
+
+      text-align: right;
+    }
+
+    /* =====================================================
+       OTHER CHARACTER
+    ====================================================== */
+
+    .other-character-block {
+      width: 100%;
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    /* =====================================================
+       ARTWORK
+    ====================================================== */
+
+    .artwork {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+
+      background: transparent;
+      overflow: visible;
+    }
+
+    .artwork img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      max-width: none;
+      max-height: none;
+
+      object-fit: contain;
+      object-position: center;
+
+      margin: 0;
+
+      cursor: zoom-in;
+
+      background-color: #181818;
+
+      background-image:
+        linear-gradient(45deg, #202020 25%, transparent 25%),
+        linear-gradient(-45deg, #202020 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #202020 75%),
+        linear-gradient(-45deg, transparent 75%, #202020 75%);
+
+      background-size: 20px 20px;
+
+      background-position:
+        0 0,
+        0 10px,
+        10px -10px,
+        -10px 0;
+    }
+
+    .gallery-space {
+      width: 100%;
+      background: transparent;
+    }
+
+    /* =====================================================
+       LIGHTBOX
+    ====================================================== */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+
+      z-index: 9999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 40px;
+
+      background: rgba(0, 0, 0, 0.92);
+
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+
+      cursor: zoom-out;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox img {
+      display: block;
+
+      width: auto;
+      height: auto;
+
+      max-width: 90vw;
+      max-height: 90vh;
+
+      object-fit: contain;
+
+      cursor: default;
+
+      box-shadow:
+        0 10px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 900px) {
+
+      .gallery {
+        gap: 50px;
+        padding-top: 20px;
+      }
+
+      .gallery-item {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        height: auto;
+        min-height: 0;
+
+        margin: 0;
+      }
+
+      .gallery-space {
+        display: none;
+      }
+
+      .artwork {
+        order: 1;
+
+        width: 100%;
+        height: auto;
+
+        padding: 20px;
+
+        align-items: center;
+        justify-content: center;
+
+        background: transparent;
+      }
+
+      .artwork img {
+        display: block;
+
+        width: 100%;
+        height: auto;
+
+        max-width: none;
+        max-height: none;
+
+        object-fit: contain;
+        object-position: center;
+
+        margin: 0;
+      }
+
+      .info {
+        order: 2;
+
+        width: 100%;
+        height: auto;
+        min-height: 250px;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        padding: 65px 28px 40px;
+
+        background: transparent;
+      }
+
+      .gallery-note {
+        top: 25px;
+        left: 28px;
+
+        max-width: calc(100% - 56px);
+
+        font-size: 9px;
+      }
+
+      .content-warning,
+      .credit-notice {
+        font-size: 9px;
+      }
+
+      .info-content {
+        width: min(260px, 100%);
+        margin-right: 0;
+      }
+
+      .lightbox {
+        padding: 20px;
+      }
+
+      .lightbox img {
+        max-width: 95vw;
+        max-height: 90vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="gallery">
+
+    <!-- =====================================================
+         GROUP 1
+    ====================================================== -->
+
+    <div class="gallery-group" data-sort-transparent="true">
+
+      <!-- WOLFE -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+
+          <div class="gallery-note" id="gallery-note">
+
+            <div class="gallery-intro">
+              A curated gallery of artwork I've commissioned.<br>
+              Not every piece is shown here.
+            </div>
+
+            <div class="content-warning">
+              Some pieces may contain NSFW content.<br>
+              Browse at your own discretion.
+            </div>
+
+            <div class="credit-notice">
+              All artwork is credited to its respective artist.<br>
+              The character Swibby belongs to me.
+            </div>
+
+          </div>
+
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Wolfe</span>
+            </div>
+
+          </div>
+
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Wolfe%20(1).png"
+            alt="Wolfe commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- KITAKETTU -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">KitaKettu</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/KitaKettu.PNG"
+            alt="KitaKettu commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- FALVIE -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Falvie</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Falvie.png"
+            alt="Falvie commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- FLEET-FOOT -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Fleet-Foot</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Fleet-foot%20NSFW.png"
+            alt="Fleet-Foot commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- ABS33NCE -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">abs33nce</span>
+            </div>
+
+            <div class="description-block">
+              <span class="description-label">Info</span>
+              <p class="description">Gift from Choconut</p>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/abs33nce%20(Gift%20from%20Choco).jpg"
+            alt="abs33nce commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- PRESUK -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2024</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Presuk</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Presuk.png"
+            alt="Presuk commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- WETDOG2003 2024 -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2024</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">wetdog2003</span>
+            </div>
+
+            <div class="description-block">
+              <span class="description-label">Info</span>
+              <p class="description">Gift from Mocha</p>
+            </div>
+
+            <div class="other-character-block">
+              <span class="other-character-label">Other Character</span>
+              <span class="other-character-name">Mocha</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/wetdog2003%20(1).png"
+            alt="wetdog2003 commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- WETDOG2003 2025 -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">wetdog2003</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/wetdog2003%20(6).png"
+            alt="wetdog2003 commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- AILENSOLID -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">AilenSolid</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/AilenSolid%20(Transparent).png"
+            alt="AilenSolid commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+    </div>
+
+
+    <!-- =====================================================
+         GROUP 2
+    ====================================================== -->
+
+    <div class="gallery-group" data-sort-transparent="true">
+
+
+      <!-- ROSEPUPPIES -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Rosepuppies</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Rosepuppies%20(2).png"
+            alt="Rosepuppies commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- HAMGIRL -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Hamgirl</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Hamgirl.png"
+            alt="Hamgirl commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- AUZUTEA 1 -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">auzutea</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/auzutea%20(1).png"
+            alt="auzutea commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- AUZUTEA 2 -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">auzutea</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/auzutea%20(2).png"
+            alt="auzutea commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- F0XLETT -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">f0xlett</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/f0xlett%20(2).png"
+            alt="f0xlett commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- KRATZY -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Kratzy</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Kratzy%20(1).png"
+            alt="Kratzy commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- SYLFEANNE -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2024</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Sylfeanne</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Sylfeanne.png"
+            alt="Sylfeanne commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+    </div>
+
+
+    <!-- =====================================================
+         GROUP 3
+    ====================================================== -->
+
+    <div class="gallery-group">
+
+
+      <!-- KIRO -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Kiro</span>
+            </div>
+
+            <div class="description-block">
+              <span class="description-label">Info</span>
+              <p class="description">Ref sheet for my second fursuit</p>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Kiro.png"
+            alt="Kiro commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- EZMODE REFERENCE SHEET -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">EZmode</span>
+            </div>
+
+            <div class="description-block">
+              <span class="description-label">Info</span>
+              <p class="description">Current reference sheet</p>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/EZmode%20(1)%20(Ref%20Sheet).png"
+            alt="EZmode reference sheet"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+    </div>
+
+
+    <!-- =====================================================
+         GROUP 4
+    ====================================================== -->
+
+    <div class="gallery-group" data-sort-transparent="true">
+
+
+      <!-- WOLFIEMOONSCAR -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">WolfieMoonScar</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/WolfieMoonScar.png"
+            alt="WolfieMoonScar commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- SOYATU -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Soyatu</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Soyatu.png"
+            alt="Soyatu commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- FEVE -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Feve</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Feve.png"
+            alt="Feve commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- COUGHINGFISH -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">CoughingFish</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Coughingfish.png"
+            alt="CoughingFish commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- OGGYTHEFOX PNG -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">OggyTheFox</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Oggy123%20(1).png"
+            alt="OggyTheFox commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- OGGYTHEFOX ANIMATED -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">OggyTheFox</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Oggy123%20(2).gif"
+            alt="OggyTheFox animated commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- SHIINEJI -->
+
+      <article class="gallery-item" data-pair="shiineji-ezmode">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">shiineji</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/shiineji.png"
+            alt="shiineji commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- EZMODE 2 -->
+
+      <article class="gallery-item" data-pair="shiineji-ezmode">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">EZmode</span>
+            </div>
+
+            <div class="other-character-block">
+              <span class="other-character-label">Other Character</span>
+              <span class="other-character-name">Choconut</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/EZMode%20(2).png"
+            alt="EZmode commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+    </div>
+
+
+    <!-- =====================================================
+         GROUP 5
+         RREZE → RREZE → WOJAK → SNOS
+    ====================================================== -->
+
+    <div class="gallery-group">
+
+
+      <!-- RREZE — LEAD NEVER FOLLOW -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Rreze</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Rreze%20(1).png"
+            alt="Rreze commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- RREZE — EVERSINCE -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Rreze</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Rreze%20(2)%20alt.png"
+            alt="Rreze commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- WOJAK -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2025</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Me</span>
+            </div>
+
+            <div class="other-character-block">
+              <span class="other-character-label">Other Character</span>
+              <span class="other-character-name">Snos</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Swib%20Wojak%20%2B%20Snus.jpg"
+            alt="Wojak artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+
+      <!-- SNOS -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2024</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Snos</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Snus.png"
+            alt="Snos commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+    </div>
+
+
+    <!-- =====================================================
+         GROUP 6
+    ====================================================== -->
+
+    <div class="gallery-group">
+
+
+      <!-- MYONIIS -->
+
+      <article class="gallery-item">
+
+        <section class="info">
+          <div class="info-content">
+
+            <div class="subtitle">2022</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Myoniis</span>
+            </div>
+
+            <div class="description-block">
+              <span class="description-label">Info</span>
+              <p class="description">First portrait commission</p>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Myoniis%20(1).jpg"
+            alt="Myoniis commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       LIGHTBOX
+  ====================================================== -->
+
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-image" src="" alt="">
+  </div>
+
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const artworkImages = document.querySelectorAll(".artwork img");
+
+
+    /* =====================================================
+       LIGHTBOX
+    ====================================================== */
+
+    artworkImages.forEach((image) => {
+
+      image.addEventListener("click", () => {
+
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+
+        lightbox.classList.add("active");
+        document.body.classList.add("lightbox-open");
+
+      });
+
+    });
+
+
+    function closeLightbox() {
+
+      lightbox.classList.remove("active");
+      document.body.classList.remove("lightbox-open");
+
+      setTimeout(() => {
+
+        if (!lightbox.classList.contains("active")) {
+
+          lightboxImage.src = "";
+          lightboxImage.alt = "";
+
+        }
+
+      }, 200);
+
+    }
+
+
+    lightbox.addEventListener("click", (event) => {
+
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+
+    });
+
+
+    document.addEventListener("keydown", (event) => {
+
+      if (
+        event.key === "Escape" &&
+        lightbox.classList.contains("active")
+      ) {
+        closeLightbox();
+      }
+
+    });
+
+
+    /* =====================================================
+       TRANSPARENCY DETECTION
+    ====================================================== */
+
+    async function imageHasTransparency(image) {
+
+      try {
+
+        if (!image.complete) {
+
+          await new Promise((resolve) => {
+
+            image.addEventListener(
+              "load",
+              resolve,
+              { once: true }
+            );
+
+            image.addEventListener(
+              "error",
+              resolve,
+              { once: true }
+            );
+
+          });
+
+        }
+
+
+        if (
+          !image.naturalWidth ||
+          !image.naturalHeight
+        ) {
+          return false;
+        }
+
+
+        const maxSize = 160;
+
+        let width = image.naturalWidth;
+        let height = image.naturalHeight;
+
+
+        const scale = Math.min(
+          1,
+          maxSize / width,
+          maxSize / height
+        );
+
+
+        width = Math.max(
+          1,
+          Math.round(width * scale)
+        );
+
+        height = Math.max(
+          1,
+          Math.round(height * scale)
+        );
+
+
+        const canvas =
+          document.createElement("canvas");
+
+
+        canvas.width = width;
+        canvas.height = height;
+
+
+        const context =
+          canvas.getContext(
+            "2d",
+            { willReadFrequently: true }
+          );
+
+
+        context.clearRect(
+          0,
+          0,
+          width,
+          height
+        );
+
+
+        context.drawImage(
+          image,
+          0,
+          0,
+          width,
+          height
+        );
+
+
+        const pixels =
+          context.getImageData(
+            0,
+            0,
+            width,
+            height
+          ).data;
+
+
+        for (
+          let i = 3;
+          i < pixels.length;
+          i += 4
+        ) {
+
+          if (pixels[i] < 250) {
+            return true;
+          }
+
+        }
+
+
+        return false;
+
+      } catch (error) {
+
+        return false;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       MOVE TRANSPARENT IMAGES TO BOTTOM OF EACH GROUP
+    ====================================================== */
+
+    async function sortTransparentArtwork() {
+
+      const groups =
+        document.querySelectorAll(
+          '.gallery-group[data-sort-transparent="true"]'
+        );
+
+
+      for (const group of groups) {
+
+        const items =
+          Array.from(
+            group.querySelectorAll(
+              ":scope > .gallery-item"
+            )
+          );
+
+
+        const opaque = [];
+        const transparent = [];
+
+        const handled = new Set();
+
+
+        for (const item of items) {
+
+          if (handled.has(item)) {
+            continue;
+          }
+
+
+          const pairName =
+            item.dataset.pair;
+
+
+          /*
+            Keeps shiineji + EZmode directly
+            beside each other with shiineji first.
+          */
+
+          if (pairName) {
+
+            const pair =
+              items.filter(
+                (candidate) =>
+                  candidate.dataset.pair === pairName
+              );
+
+
+            pair.forEach(
+              (candidate) => {
+                handled.add(candidate);
+              }
+            );
+
+
+            let pairIsTransparent = false;
+
+
+            for (const pairItem of pair) {
+
+              const pairImage =
+                pairItem.querySelector(
+                  ".artwork img"
+                );
+
+
+              if (
+                pairImage &&
+                await imageHasTransparency(
+                  pairImage
+                )
+              ) {
+                pairIsTransparent = true;
+              }
+
+            }
+
+
+            if (pairIsTransparent) {
+              transparent.push(...pair);
+            } else {
+              opaque.push(...pair);
+            }
+
+
+            continue;
+
+          }
+
+
+          handled.add(item);
+
+
+          const image =
+            item.querySelector(
+              ".artwork img"
+            );
+
+
+          const isTransparent =
+            image &&
+            await imageHasTransparency(
+              image
+            );
+
+
+          if (isTransparent) {
+            transparent.push(item);
+          } else {
+            opaque.push(item);
+          }
+
+        }
+
+
+        [
+          ...opaque,
+          ...transparent
+        ].forEach((item) => {
+
+          group.appendChild(item);
+
+        });
+
+      }
+
+
+      /*
+        Keep the top-left notice attached
+        to the first visible gallery entry.
+      */
+
+      const notice =
+        document.getElementById(
+          "gallery-note"
+        );
+
+
+      const firstInfo =
+        document.querySelector(
+          ".gallery .gallery-item .info"
+        );
+
+
+      if (
+        notice &&
+        firstInfo &&
+        notice.parentElement !== firstInfo
+      ) {
+
+        firstInfo.prepend(notice);
+
+      }
+
+    }
+
+
+    window.addEventListener(
+      "load",
+      () => {
+
+        sortTransparentArtwork();
+
+      }
+    );
+  </script>
+
+</body>
+
+</html>
