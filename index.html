@@ -343,8 +343,6 @@
     }
 
 
-    /* Small separation between APB characters */
-
     .apb-character-gap {
       margin-top: 5px;
     }
@@ -640,7 +638,7 @@
         </div>
 
         <div>
-          Art, music and fashion enjoyer
+          Art, music &amp; fashion enjoyer
         </div>
 
       </div>
@@ -804,7 +802,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              DOPE CAT avi
+              Dope Cat
             </a>
 
 
@@ -1185,6 +1183,22 @@
         </div>
 
 
+        <!-- ==================================
+             GALLERY
+        =================================== -->
+
+        <div class="dropdown">
+
+          <a
+            href="https://swib.by/gallery"
+            class="dropdown-button"
+          >
+            Gallery
+          </a>
+
+        </div>
+
+
       </nav>
 
     </div>
@@ -1205,79 +1219,6 @@
     </div>
 
   </footer>
-
-
-  <!-- ========================================
-       BROWSER TAB TITLE ANIMATION
-  ======================================== -->
-
-  <script>
-
-    const titleText = "Swibby";
-
-    let titleIndex = 0;
-    let deleting = false;
-
-
-    function animateTitle() {
-
-      if (!deleting) {
-
-        document.title =
-          titleText.substring(0, titleIndex + 1);
-
-        titleIndex++;
-
-
-        /* Pause when "Swibby" is complete */
-
-        if (titleIndex === titleText.length) {
-
-          deleting = true;
-
-          setTimeout(animateTitle, 1800);
-
-          return;
-        }
-
-      }
-
-
-      else {
-
-        document.title =
-          titleText.substring(0, titleIndex - 1);
-
-        titleIndex--;
-
-
-        /* Pause before typing again */
-
-        if (titleIndex === 0) {
-
-          deleting = false;
-
-          setTimeout(animateTitle, 500);
-
-          return;
-        }
-
-      }
-
-
-      /* Animation speed */
-
-      setTimeout(
-        animateTitle,
-        deleting ? 120 : 180
-      );
-
-    }
-
-
-    animateTitle();
-
-  </script>
 
 
 </body>
