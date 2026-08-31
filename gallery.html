@@ -23,7 +23,6 @@
     body {
       width: 100%;
       min-height: 100%;
-
       font-family: Arial, Helvetica, sans-serif;
       color: #ffffff;
 
@@ -60,7 +59,6 @@
         0 0 5px rgba(0, 0, 0, 0.4);
     }
 
-
     /* =====================================================
        GALLERY
     ====================================================== */
@@ -68,12 +66,9 @@
     .gallery {
       display: flex;
       flex-direction: column;
-
       gap: 80px;
-
       width: 100%;
       padding-top: 30px;
-
       background: transparent;
     }
 
@@ -85,14 +80,11 @@
       display: grid;
       grid-template-columns: 50% 25% 25%;
       align-items: stretch;
-
       width: 100%;
       height: auto;
       min-height: 0;
-
       background: transparent;
     }
-
 
     /* =====================================================
        INFO
@@ -100,13 +92,10 @@
 
     .info {
       position: relative;
-
       display: flex;
       align-items: center;
       justify-content: flex-end;
-
       width: 100%;
-
       background: transparent;
     }
 
@@ -115,30 +104,24 @@
       margin-right: 70px;
     }
 
-
     /* =====================================================
        TOP LEFT NOTICE
     ====================================================== */
 
     .gallery-note {
       position: absolute;
-
       top: 35px;
       left: 35px;
-
       width: auto;
       max-width: 340px;
 
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
       font-size: 10px;
       font-weight: 400;
       line-height: 1.55;
-
       letter-spacing: 0.1px;
 
-      color: #9a9a9a;
-
+      color: #b0b0b0;
       text-align: left;
 
       text-shadow:
@@ -147,14 +130,12 @@
     }
 
     .gallery-intro {
-      color: #a8a8a8;
+      color: #bcbcbc;
     }
 
     .content-warning {
       margin-top: 14px;
-
-      color: #777777;
-
+      color: #8f8f8f;
       font-size: 10px;
       font-weight: 400;
       line-height: 1.55;
@@ -162,14 +143,11 @@
 
     .credit-notice {
       margin-top: 14px;
-
-      color: #777777;
-
+      color: #8f8f8f;
       font-size: 10px;
       font-weight: 400;
       line-height: 1.55;
     }
-
 
     /* =====================================================
        METADATA
@@ -177,22 +155,17 @@
 
     .subtitle {
       width: 100%;
-
       margin-bottom: 20px;
-
       color: #9a9a9a;
-
       font-size: 13px;
       font-weight: 400;
       line-height: 1.2;
-
       text-align: right;
     }
 
     .artist-block {
       width: 100%;
       margin: 0;
-
       text-align: right;
     }
 
@@ -200,11 +173,8 @@
     .description-label,
     .other-character-label {
       display: block;
-
       margin-bottom: 2px;
-
       color: #ffffff;
-
       font-size: 11px;
       font-weight: 500;
       line-height: 1.2;
@@ -213,9 +183,7 @@
     .artist-name,
     .other-character-name {
       display: block;
-
       color: #9a9a9a;
-
       font-size: 11px;
       font-weight: 400;
       line-height: 1.2;
@@ -223,34 +191,25 @@
 
     .description-block {
       width: 100%;
-
       margin-top: 20px;
-
       text-align: right;
     }
 
     .description {
       width: 100%;
-
       margin: 0;
-
       color: #9a9a9a;
-
       font-size: 11px;
       font-weight: 400;
       line-height: 1.2;
-
       text-align: right;
     }
 
     .other-character-block {
       width: 100%;
-
       margin-top: 20px;
-
       text-align: right;
     }
-
 
     /* =====================================================
        ARTWORK
@@ -260,28 +219,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
       width: 100%;
-
       background: transparent;
-
       overflow: visible;
     }
 
     .artwork img {
       display: block;
-
       width: 100%;
       height: auto;
-
       max-width: none;
       max-height: none;
-
       object-fit: contain;
       object-position: center;
-
       margin: 0;
-
       cursor: zoom-in;
 
       background-color: #181818;
@@ -303,10 +254,8 @@
 
     .gallery-space {
       width: 100%;
-
       background: transparent;
     }
-
 
     /* =====================================================
        SPOILERS
@@ -314,7 +263,6 @@
 
     .artwork.spoiler {
       position: relative;
-
       overflow: hidden;
     }
 
@@ -328,27 +276,21 @@
 
     .spoiler-warning {
       position: absolute;
-
       inset: 0;
-
       z-index: 2;
 
       display: flex;
-      flex-direction: column;
-
       align-items: center;
       justify-content: center;
 
       color: #ffffff;
-
       font-size: 11px;
       font-weight: 500;
       line-height: 1.3;
-
       letter-spacing: 0.2px;
 
+      white-space: nowrap;
       background: transparent;
-
       cursor: pointer;
 
       text-shadow:
@@ -360,19 +302,11 @@
         visibility 0.2s ease;
     }
 
-    .spoiler-label,
-    .spoiler-text {
-      display: block;
-    }
-
     .artwork.spoiler.revealed .spoiler-warning {
       opacity: 0;
-
       visibility: hidden;
-
       pointer-events: none;
     }
-
 
     /* =====================================================
        LIGHTBOX
@@ -380,18 +314,14 @@
 
     .lightbox {
       position: fixed;
-
       inset: 0;
-
       z-index: 10000;
 
       display: flex;
-
       align-items: center;
       justify-content: center;
 
       padding: 40px;
-
       background: rgba(0, 0, 0, 0.92);
 
       backdrop-filter: blur(6px);
@@ -414,43 +344,31 @@
 
     .lightbox img {
       display: block;
-
       width: auto;
       height: auto;
-
       max-width: 90vw;
       max-height: 90vh;
-
       object-fit: contain;
-
       cursor: default;
-
-      box-shadow:
-        0 10px 50px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
     }
-
 
     /* =====================================================
        MOBILE
     ====================================================== */
 
     @media (max-width: 900px) {
-
       .gallery {
         gap: 50px;
-
         padding-top: 20px;
       }
 
       .gallery-item {
         display: flex;
         flex-direction: column;
-
         width: 100%;
-
         height: auto;
         min-height: 0;
-
         margin: 0;
       }
 
@@ -460,60 +378,43 @@
 
       .artwork {
         order: 1;
-
         width: 100%;
         height: auto;
-
         padding: 20px;
-
         align-items: center;
         justify-content: center;
-
         background: transparent;
       }
 
       .artwork img {
         display: block;
-
         width: 100%;
         height: auto;
-
         max-width: none;
         max-height: none;
-
         object-fit: contain;
         object-position: center;
-
         margin: 0;
       }
 
       .info {
         order: 2;
-
         width: 100%;
         height: auto;
-
         min-height: 250px;
 
         display: flex;
-
         align-items: center;
         justify-content: flex-end;
 
-        padding:
-          65px
-          28px
-          40px;
-
+        padding: 65px 28px 40px;
         background: transparent;
       }
 
       .gallery-note {
         top: 25px;
         left: 28px;
-
         max-width: calc(100% - 56px);
-
         font-size: 9px;
       }
 
@@ -524,7 +425,6 @@
 
       .info-content {
         width: min(260px, 100%);
-
         margin-right: 0;
       }
 
@@ -540,33 +440,21 @@
   </style>
 </head>
 
-
 <body>
 
   <main class="gallery">
-
 
     <!-- =====================================================
          GROUP 1
     ====================================================== -->
 
-    <div
-      class="gallery-group"
-      data-sort-transparent="true"
-    >
-
+    <div class="gallery-group" data-sort-transparent="true">
 
       <!-- WOLFE -->
-
       <article class="gallery-item">
-
         <section class="info">
 
-          <div
-            class="gallery-note"
-            id="gallery-note"
-          >
-
+          <div class="gallery-note" id="gallery-note">
             <div class="gallery-intro">
               A curated gallery of artwork I've commissioned.<br>
               Not every piece is shown here.
@@ -580,173 +468,94 @@
             <div class="credit-notice">
               All artwork is credited to its respective artist.
             </div>
-
           </div>
-
 
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Wolfe
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Wolfe</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Wolfe%20(1).png"
             alt="Wolfe commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- KITAKETTU -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                KitaKettu
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">KitaKettu</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/KitaKettu.PNG"
             alt="KitaKettu commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- FALVIE -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Falvie
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Falvie</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Falvie.png"
             alt="Falvie commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- FLEET-FOOT -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Fleet-Foot
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Fleet-Foot</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork spoiler">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Fleet-foot%20NSFW.png"
@@ -754,233 +563,118 @@
           >
 
           <div class="spoiler-warning">
-
-            <span class="spoiler-label">
-              Contains:
-            </span>
-
-            <span class="spoiler-text">
-              NSFW
-            </span>
-
+            Contains: NSFW
           </div>
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- ABS33NCE -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                abs33nce
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">abs33nce</span>
             </div>
 
             <div class="description-block">
-
-              <span class="description-label">
-                Info
-              </span>
-
-              <p class="description">
-                Gift from Choconut
-              </p>
-
+              <span class="description-label">Info</span>
+              <p class="description">Gift from Choconut</p>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/abs33nce%20(Gift%20from%20Choco).jpg"
             alt="abs33nce commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- PRESUK -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2024
-            </div>
+            <div class="subtitle">2024</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Presuk
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Presuk</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Presuk.png"
             alt="Presuk commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
-      <!-- WETDOG 2024 -->
-
+      <!-- WETDOG2003 2024 -->
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2024
-            </div>
+            <div class="subtitle">2024</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                wetdog2003
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">wetdog2003</span>
             </div>
-
 
             <div class="description-block">
-
-              <span class="description-label">
-                Info
-              </span>
-
-              <p class="description">
-                Gift from Mocha
-              </p>
-
+              <span class="description-label">Info</span>
+              <p class="description">Gift from Mocha</p>
             </div>
-
 
             <div class="other-character-block">
-
-              <span class="other-character-label">
-                Other Character
-              </span>
-
-              <span class="other-character-name">
-                Mocha
-              </span>
-
+              <span class="other-character-label">Other Character</span>
+              <span class="other-character-name">Mocha</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/wetdog2003%20(1).png"
             alt="wetdog2003 commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
-      <!-- WETDOG 2025 -->
-
+      <!-- WETDOG2003 2025 -->
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                wetdog2003
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">wetdog2003</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork spoiler">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/wetdog2003%20(6).png"
@@ -988,406 +682,222 @@
           >
 
           <div class="spoiler-warning">
-
-            <span class="spoiler-label">
-              Contains:
-            </span>
-
-            <span class="spoiler-text">
-              Blood, Drugs, SH
-            </span>
-
+            Contains: Blood, Drugs, SH
           </div>
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- AILENSOLID -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                AilenSolid
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">AilenSolid</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/AilenSolid%20(Transparent).png"
             alt="AilenSolid commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
     </div>
-
 
 
     <!-- =====================================================
          GROUP 2
     ====================================================== -->
 
-    <div
-      class="gallery-group"
-      data-sort-transparent="true"
-    >
-
+    <div class="gallery-group" data-sort-transparent="true">
 
       <!-- ROSEPUPPIES -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Rosepuppies
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Rosepuppies</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Rosepuppies%20(2).png"
             alt="Rosepuppies commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- HAMGIRL -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Hamgirl
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Hamgirl</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Hamgirl.png"
             alt="Hamgirl commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- AUZUTEA 1 -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                auzutea
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">auzutea</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/auzutea%20(1).png"
             alt="auzutea commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- AUZUTEA 2 -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                auzutea
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">auzutea</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/auzutea%20(2).png"
             alt="auzutea commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- KRATZY -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Kratzy
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Kratzy</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Kratzy%20(1).png"
             alt="Kratzy commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- F0XLETT -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                f0xlett
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">f0xlett</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/f0xlett%20(2).png"
             alt="f0xlett commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- SYLFEANNE -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2024
-            </div>
+            <div class="subtitle">2024</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Sylfeanne
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Sylfeanne</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Sylfeanne.png"
             alt="Sylfeanne commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
     </div>
-
 
 
     <!-- =====================================================
@@ -1396,968 +906,515 @@
 
     <div class="gallery-group">
 
-
       <!-- KIRO -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Kiro
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Kiro</span>
             </div>
-
 
             <div class="description-block">
-
-              <span class="description-label">
-                Info
-              </span>
-
-              <p class="description">
-                Ref sheet for my second fursuit
-              </p>
-
+              <span class="description-label">Info</span>
+              <p class="description">Ref sheet for my second fursuit</p>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Kiro.png"
             alt="Kiro commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- EZMODE REFERENCE -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                EZmode
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">EZmode</span>
             </div>
-
 
             <div class="description-block">
-
-              <span class="description-label">
-                Info
-              </span>
-
-              <p class="description">
-                Current reference sheet
-              </p>
-
+              <span class="description-label">Info</span>
+              <p class="description">Current reference sheet</p>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/EZmode%20(1)%20(Ref%20Sheet).png"
             alt="EZmode reference sheet"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
     </div>
-
 
 
     <!-- =====================================================
          GROUP 4
     ====================================================== -->
 
-    <div
-      class="gallery-group"
-      data-sort-transparent="true"
-    >
-
+    <div class="gallery-group" data-sort-transparent="true">
 
       <!-- COYRIN -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Coyrin
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Coyrin</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Coyrin.png"
             alt="Coyrin commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- PAWKISSER44 -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Pawkisser44
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Pawkisser44</span>
             </div>
-
 
             <div class="description-block">
-
-              <span class="description-label">
-                Info
-              </span>
-
-              <p class="description">
-                Gift from Choconut
-              </p>
-
+              <span class="description-label">Info</span>
+              <p class="description">Gift from Choconut</p>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Pawkisser44%20(Gift%20from%20Choco).png"
             alt="Pawkisser44 commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- COUGHINGFISH -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                CoughingFish
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">CoughingFish</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Coughingfish.png"
             alt="CoughingFish commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- OGGY GIF -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                OggyTheFox
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">OggyTheFox</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Oggy123%20(2).gif"
             alt="OggyTheFox animated commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- UNKNOWN -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2024
-            </div>
+            <div class="subtitle">2024</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Unknown
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Unknown</span>
             </div>
-
 
             <div class="description-block">
-
-              <span class="description-label">
-                Info
-              </span>
-
-              <p class="description">
-                Gift from Mocha
-              </p>
-
+              <span class="description-label">Info</span>
+              <p class="description">Gift from Mocha</p>
             </div>
-
 
             <div class="other-character-block">
-
-              <span class="other-character-label">
-                Other Character
-              </span>
-
-              <span class="other-character-name">
-                Mocha
-              </span>
-
+              <span class="other-character-label">Other Character</span>
+              <span class="other-character-name">Mocha</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/IMG_20240109_191841_202.png"
             alt="Unknown artist commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- WOLFIEMOONSCAR -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                WolfieMoonScar
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">WolfieMoonScar</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/WolfieMoonScar.png"
             alt="WolfieMoonScar commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- OGGY PNG -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                OggyTheFox
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">OggyTheFox</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Oggy123%20(1).png"
             alt="OggyTheFox commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- SHIINEJI -->
-
-      <article
-        class="gallery-item"
-        data-pair="shiineji-ezmode"
-      >
-
+      <article class="gallery-item" data-pair="shiineji-ezmode">
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                shiineji
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">shiineji</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/shiineji.png"
             alt="shiineji commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- EZMODE NON-REF -->
-
-      <article
-        class="gallery-item"
-        data-pair="shiineji-ezmode"
-      >
-
+      <article class="gallery-item" data-pair="shiineji-ezmode">
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                EZmode
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">EZmode</span>
             </div>
-
 
             <div class="other-character-block">
-
-              <span class="other-character-label">
-                Other Character
-              </span>
-
-              <span class="other-character-name">
-                Choconut
-              </span>
-
+              <span class="other-character-label">Other Character</span>
+              <span class="other-character-name">Choconut</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/EZMode%20(2).png"
             alt="EZmode commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
     </div>
 
 
-
     <!-- =====================================================
          GROUP 5
-         FEVE → PLUSH → RREZE → RREZE → SOYATU → WOJAK → SNOS
     ====================================================== -->
 
     <div class="gallery-group">
 
-
       <!-- FEVE -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Feve
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Feve</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Feve.png"
             alt="Feve commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
-      <!-- CROCHETED PLUSH -->
-
+      <!-- PLUSH -->
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2024
-            </div>
+            <div class="subtitle">2024</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Zack's partner
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Zack's partner</span>
             </div>
 
-
             <div class="description-block">
-
-              <span class="description-label">
-                Info
-              </span>
-
+              <span class="description-label">Info</span>
               <p class="description">
                 Crocheted plush<br>
                 Gift from my friend Zack's partner
               </p>
-
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/plush.jpg"
             alt="Crocheted plush gift"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- RREZE 1 -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Rreze
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Rreze</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Rreze%20(1).png"
             alt="Rreze commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- RREZE 2 -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Rreze
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Rreze</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Rreze%20(2)%20alt.png"
             alt="Rreze commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- SOYATU -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2026
-            </div>
+            <div class="subtitle">2026</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Soyatu
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Soyatu</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Soyatu.png"
             alt="Soyatu commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- WOJAK -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2025
-            </div>
+            <div class="subtitle">2025</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Me
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Me</span>
             </div>
-
 
             <div class="other-character-block">
-
-              <span class="other-character-label">
-                Other Character
-              </span>
-
-              <span class="other-character-name">
-                Snos
-              </span>
-
+              <span class="other-character-label">Other Character</span>
+              <span class="other-character-name">Snos</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Swib%20Wojak%20%2B%20Snus.jpg"
             alt="Wojak artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
 
-
       <!-- SNOS -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2024
-            </div>
+            <div class="subtitle">2024</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Snos
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Snos</span>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Snus.png"
             alt="Snos commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
     </div>
-
 
 
     <!-- =====================================================
@@ -2366,62 +1423,33 @@
 
     <div class="gallery-group">
 
-
       <!-- MYONIIS -->
-
       <article class="gallery-item">
-
         <section class="info">
-
           <div class="info-content">
-
-            <div class="subtitle">
-              2022
-            </div>
+            <div class="subtitle">2022</div>
 
             <div class="artist-block">
-
-              <span class="artist-label">
-                Artist
-              </span>
-
-              <span class="artist-name">
-                Myoniis
-              </span>
-
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Myoniis</span>
             </div>
-
 
             <div class="description-block">
-
-              <span class="description-label">
-                Info
-              </span>
-
-              <p class="description">
-                First portrait commission
-              </p>
-
+              <span class="description-label">Info</span>
+              <p class="description">First portrait commission</p>
             </div>
-
           </div>
-
         </section>
 
-
         <section class="artwork">
-
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Myoniis%20(1).jpg"
             alt="Myoniis commission artwork"
           >
-
         </section>
 
-
         <div class="gallery-space"></div>
-
       </article>
 
     </div>
@@ -2429,76 +1457,42 @@
   </main>
 
 
-
   <!-- =====================================================
        LIGHTBOX
   ====================================================== -->
 
-  <div
-    class="lightbox"
-    id="lightbox"
-  >
-
-    <img
-      id="lightbox-image"
-      src=""
-      alt=""
-    >
-
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-image" src="" alt="">
   </div>
 
 
-
   <!-- =====================================================
-       GALLERY JAVASCRIPT
+       GALLERY / LIGHTBOX / SORTING
   ====================================================== -->
 
   <script>
-    const lightbox =
-      document.getElementById("lightbox");
-
-    const lightboxImage =
-      document.getElementById("lightbox-image");
-
-    const artworkImages =
-      document.querySelectorAll(".artwork img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const artworkImages = document.querySelectorAll(".artwork img");
 
 
-    /* =====================================================
-       SPOILERS
-    ====================================================== */
+    /* SPOILERS */
 
-    document
-      .querySelectorAll(".artwork.spoiler")
-      .forEach((spoiler) => {
+    document.querySelectorAll(".artwork.spoiler").forEach((spoiler) => {
+      const warning = spoiler.querySelector(".spoiler-warning");
 
-        const warning =
-          spoiler.querySelector(".spoiler-warning");
-
-        warning.addEventListener(
-          "click",
-          (event) => {
-
-            event.stopPropagation();
-
-            spoiler.classList.add("revealed");
-
-          }
-        );
-
+      warning.addEventListener("click", (event) => {
+        event.stopPropagation();
+        spoiler.classList.add("revealed");
       });
+    });
 
 
-    /* =====================================================
-       LIGHTBOX
-    ====================================================== */
+    /* LIGHTBOX */
 
     artworkImages.forEach((image) => {
-
       image.addEventListener("click", () => {
-
-        const spoiler =
-          image.closest(".artwork.spoiler");
+        const spoiler = image.closest(".artwork.spoiler");
 
         if (
           spoiler &&
@@ -2507,158 +1501,90 @@
           return;
         }
 
-        lightboxImage.src =
-          image.src;
-
-        lightboxImage.alt =
-          image.alt;
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
 
         lightbox.classList.add("active");
-
-        document.body.classList.add(
-          "lightbox-open"
-        );
-
+        document.body.classList.add("lightbox-open");
       });
-
     });
 
 
     function closeLightbox() {
-
       lightbox.classList.remove("active");
-
-      document.body.classList.remove(
-        "lightbox-open"
-      );
+      document.body.classList.remove("lightbox-open");
 
       setTimeout(() => {
-
-        if (
-          !lightbox.classList.contains("active")
-        ) {
-
+        if (!lightbox.classList.contains("active")) {
           lightboxImage.src = "";
           lightboxImage.alt = "";
-
         }
-
       }, 200);
-
     }
 
 
-    lightbox.addEventListener(
-      "click",
-      (event) => {
-
-        if (event.target === lightbox) {
-          closeLightbox();
-        }
-
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
       }
-    );
+    });
 
 
-    document.addEventListener(
-      "keydown",
-      (event) => {
-
-        if (
-          event.key === "Escape" &&
-          lightbox.classList.contains("active")
-        ) {
-
-          closeLightbox();
-
-        }
-
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Escape" &&
+        lightbox.classList.contains("active")
+      ) {
+        closeLightbox();
       }
-    );
+    });
 
 
-    /* =====================================================
-       TRANSPARENCY DETECTION
-    ====================================================== */
+    /* TRANSPARENCY DETECTION */
 
     async function imageHasTransparency(image) {
-
       try {
-
         if (!image.complete) {
-
           await new Promise((resolve) => {
-
-            image.addEventListener(
-              "load",
-              resolve,
-              { once: true }
-            );
-
-            image.addEventListener(
-              "error",
-              resolve,
-              { once: true }
-            );
-
+            image.addEventListener("load", resolve, { once: true });
+            image.addEventListener("error", resolve, { once: true });
           });
-
         }
 
-
-        if (
-          !image.naturalWidth ||
-          !image.naturalHeight
-        ) {
+        if (!image.naturalWidth || !image.naturalHeight) {
           return false;
         }
 
-
         const maxSize = 160;
 
-        let width =
-          image.naturalWidth;
+        let width = image.naturalWidth;
+        let height = image.naturalHeight;
 
-        let height =
-          image.naturalHeight;
+        const scale = Math.min(
+          1,
+          maxSize / width,
+          maxSize / height
+        );
 
+        width = Math.max(
+          1,
+          Math.round(width * scale)
+        );
 
-        const scale =
-          Math.min(
-            1,
-            maxSize / width,
-            maxSize / height
-          );
+        height = Math.max(
+          1,
+          Math.round(height * scale)
+        );
 
-
-        width =
-          Math.max(
-            1,
-            Math.round(width * scale)
-          );
-
-        height =
-          Math.max(
-            1,
-            Math.round(height * scale)
-          );
-
-
-        const canvas =
-          document.createElement("canvas");
+        const canvas = document.createElement("canvas");
 
         canvas.width = width;
         canvas.height = height;
 
-
-        const context =
-          canvas.getContext(
-            "2d",
-            {
-              willReadFrequently: true
-            }
-          );
-
+        const context = canvas.getContext(
+          "2d",
+          { willReadFrequently: true }
+        );
 
         context.clearRect(
           0,
@@ -2666,7 +1592,6 @@
           width,
           height
         );
-
 
         context.drawImage(
           image,
@@ -2676,222 +1601,128 @@
           height
         );
 
+        const pixels = context.getImageData(
+          0,
+          0,
+          width,
+          height
+        ).data;
 
-        const pixels =
-          context.getImageData(
-            0,
-            0,
-            width,
-            height
-          ).data;
-
-
-        for (
-          let i = 3;
-          i < pixels.length;
-          i += 4
-        ) {
-
+        for (let i = 3; i < pixels.length; i += 4) {
           if (pixels[i] < 250) {
             return true;
           }
-
         }
 
-
         return false;
 
-      }
-
-      catch (error) {
-
+      } catch (error) {
         return false;
-
       }
-
     }
 
 
-    /* =====================================================
-       TRANSPARENT IMAGES TO BOTTOM
-    ====================================================== */
+    /* TRANSPARENT IMAGES TO BOTTOM */
 
     async function sortTransparentArtwork() {
-
-      const groups =
-        document.querySelectorAll(
-          '.gallery-group[data-sort-transparent="true"]'
-        );
-
+      const groups = document.querySelectorAll(
+        '.gallery-group[data-sort-transparent="true"]'
+      );
 
       for (const group of groups) {
-
-        const items =
-          Array.from(
-            group.querySelectorAll(
-              ":scope > .gallery-item"
-            )
-          );
-
+        const items = Array.from(
+          group.querySelectorAll(":scope > .gallery-item")
+        );
 
         const opaque = [];
         const transparent = [];
         const handled = new Set();
 
-
         for (const item of items) {
-
           if (handled.has(item)) {
             continue;
           }
 
-
-          const pairName =
-            item.dataset.pair;
-
+          const pairName = item.dataset.pair;
 
           if (pairName) {
-
-            const pair =
-              items.filter(
-                (candidate) =>
-                  candidate.dataset.pair === pairName
-              );
-
-
-            pair.forEach(
-              (candidate) => {
-
-                handled.add(candidate);
-
-              }
+            const pair = items.filter(
+              (candidate) =>
+                candidate.dataset.pair === pairName
             );
 
+            pair.forEach((candidate) => {
+              handled.add(candidate);
+            });
 
             let pairIsTransparent = false;
 
-
             for (const pairItem of pair) {
-
-              const pairImage =
-                pairItem.querySelector(
-                  ".artwork img"
-                );
-
+              const pairImage = pairItem.querySelector(".artwork img");
 
               if (
                 pairImage &&
-                await imageHasTransparency(
-                  pairImage
-                )
+                await imageHasTransparency(pairImage)
               ) {
-
                 pairIsTransparent = true;
-
               }
-
             }
-
 
             if (pairIsTransparent) {
-
               transparent.push(...pair);
-
-            }
-
-            else {
-
+            } else {
               opaque.push(...pair);
-
             }
-
 
             continue;
-
           }
-
 
           handled.add(item);
 
-
-          const image =
-            item.querySelector(
-              ".artwork img"
-            );
-
+          const image = item.querySelector(".artwork img");
 
           const isTransparent =
             image &&
-            await imageHasTransparency(
-              image
-            );
-
+            await imageHasTransparency(image);
 
           if (isTransparent) {
-
             transparent.push(item);
-
-          }
-
-          else {
-
+          } else {
             opaque.push(item);
-
           }
-
         }
-
 
         [
           ...opaque,
           ...transparent
         ].forEach((item) => {
-
           group.appendChild(item);
-
         });
-
       }
 
 
-      /* Keep gallery notice attached
-         to first visible gallery item */
+      /* Keep notice attached to first visible item */
 
-      const notice =
-        document.getElementById(
-          "gallery-note"
-        );
+      const notice = document.getElementById("gallery-note");
 
-
-      const firstInfo =
-        document.querySelector(
-          ".gallery .gallery-item .info"
-        );
-
+      const firstInfo = document.querySelector(
+        ".gallery .gallery-item .info"
+      );
 
       if (
         notice &&
         firstInfo &&
         notice.parentElement !== firstInfo
       ) {
-
         firstInfo.prepend(notice);
-
       }
-
     }
 
 
-    window.addEventListener(
-      "load",
-      () => {
-
-        sortTransparentArtwork();
-
-      }
-    );
+    window.addEventListener("load", () => {
+      sortTransparentArtwork();
+    });
   </script>
-
 
 
   <!-- =====================================================
@@ -2899,15 +1730,12 @@
   ====================================================== -->
 
   <script type="text/javascript">
-
     var colour = "#AAAAAA";
     var sparkles = 20;
 
     var mouseSpeed = 0;
-
     var lastMouseX = 400;
     var lastMouseY = 300;
-
     var sparkleSpeedThreshold = 4;
 
     var x = 400;
@@ -2924,170 +1752,95 @@
 
     var tiny = new Array();
     var star = new Array();
-
     var starv = new Array();
     var starx = new Array();
     var stary = new Array();
-
     var tinyx = new Array();
     var tinyy = new Array();
     var tinyv = new Array();
 
 
-    window.addEventListener(
-      "load",
-      function () {
+    window.addEventListener("load", function () {
+      if (document.getElementById) {
+        var rats;
+        var rlef;
+        var rdow;
 
-        if (document.getElementById) {
+        for (var i = 0; i < sparkles; i++) {
+          rats = createDiv(3, 3);
+          rats.style.visibility = "hidden";
 
-          var rats;
-          var rlef;
-          var rdow;
+          document.body.appendChild(
+            tiny[i] = rats
+          );
 
+          starv[i] = 0;
+          tinyv[i] = 0;
 
-          for (
-            var i = 0;
-            i < sparkles;
-            i++
-          ) {
+          rats = createDiv(5, 5);
 
-            rats =
-              createDiv(3, 3);
+          rats.style.backgroundColor = "transparent";
+          rats.style.visibility = "hidden";
 
-            rats.style.visibility =
-              "hidden";
+          rlef = createDiv(1, 5);
+          rdow = createDiv(5, 1);
 
+          rats.appendChild(rlef);
+          rats.appendChild(rdow);
 
-            document.body.appendChild(
-              tiny[i] = rats
-            );
+          rlef.style.top = "2px";
+          rlef.style.left = "0px";
 
+          rdow.style.top = "0px";
+          rdow.style.left = "2px";
 
-            starv[i] = 0;
-            tinyv[i] = 0;
-
-
-            rats =
-              createDiv(5, 5);
-
-            rats.style.backgroundColor =
-              "transparent";
-
-            rats.style.visibility =
-              "hidden";
-
-
-            rlef =
-              createDiv(1, 5);
-
-            rdow =
-              createDiv(5, 1);
-
-
-            rats.appendChild(rlef);
-            rats.appendChild(rdow);
-
-
-            rlef.style.top =
-              "2px";
-
-            rlef.style.left =
-              "0px";
-
-
-            rdow.style.top =
-              "0px";
-
-            rdow.style.left =
-              "2px";
-
-
-            document.body.appendChild(
-              star[i] = rats
-            );
-
-          }
-
-
-          set_width();
-
-          sparkle();
-
+          document.body.appendChild(
+            star[i] = rats
+          );
         }
 
+        set_width();
+        sparkle();
       }
-    );
+    });
 
 
     function sparkle() {
-
       var c;
-
 
       if (
         (x != ox || y != oy) &&
         mouseSpeed >= sparkleSpeedThreshold
       ) {
-
         ox = x;
         oy = y;
 
-
-        for (
-          c = 0;
-          c < sparkles;
-          c++
-        ) {
-
+        for (c = 0; c < sparkles; c++) {
           if (!starv[c]) {
-
-            var offsetX =
-              Math.random() * 30 - 15;
-
-            var offsetY =
-              Math.random() * 30 - 15;
-
+            var offsetX = Math.random() * 30 - 15;
+            var offsetY = Math.random() * 30 - 15;
 
             star[c].style.left =
-              (
-                starx[c] =
-                  x + offsetX
-              ) + "px";
-
+              (starx[c] = x + offsetX) + "px";
 
             star[c].style.top =
-              (
-                stary[c] =
-                  y + offsetY
-              ) + "px";
-
+              (stary[c] = y + offsetY) + "px";
 
             star[c].style.clip =
               "rect(0px, 5px, 5px, 0px)";
 
-
             star[c].style.visibility =
               "visible";
 
-
             starv[c] = 15;
 
-
             break;
-
           }
-
         }
-
       }
 
 
-      for (
-        c = 0;
-        c < sparkles;
-        c++
-      ) {
-
+      for (c = 0; c < sparkles; c++) {
         if (starv[c]) {
           update_star(c);
         }
@@ -3095,160 +1848,97 @@
         if (tinyv[c]) {
           update_tiny(c);
         }
-
       }
 
-
-      setTimeout(
-        sparkle,
-        20
-      );
-
+      setTimeout(sparkle, 20);
     }
 
 
     function update_star(i) {
-
       if (--starv[i] == 7) {
-
         star[i].style.clip =
           "rect(1px, 4px, 4px, 1px)";
-
       }
 
-
       if (starv[i]) {
+        stary[i] += 1 + Math.random() * 3;
 
-        stary[i] +=
-          1 + Math.random() * 3;
-
-
-        if (
-          stary[i] <
-          shigh + sdown
-        ) {
-
+        if (stary[i] < shigh + sdown) {
           star[i].style.top =
             stary[i] + "px";
-
 
           starx[i] +=
             (i % 7 - 3) / 3.5;
 
-
           star[i].style.left =
             starx[i] + "px";
-
         }
 
         else {
-
           star[i].style.visibility =
             "hidden";
 
           starv[i] = 0;
 
           return;
-
         }
-
       }
 
       else {
-
         tinyv[i] = 15;
 
-
         tiny[i].style.top =
-          (
-            tinyy[i] =
-              stary[i]
-          ) + "px";
-
+          (tinyy[i] = stary[i]) + "px";
 
         tiny[i].style.left =
-          (
-            tinyx[i] =
-              starx[i]
-          ) + "px";
+          (tinyx[i] = starx[i]) + "px";
 
-
-        tiny[i].style.width =
-          "2px";
-
-        tiny[i].style.height =
-          "2px";
-
+        tiny[i].style.width = "2px";
+        tiny[i].style.height = "2px";
 
         star[i].style.visibility =
           "hidden";
 
-
         tiny[i].style.visibility =
           "visible";
-
       }
-
     }
 
 
     function update_tiny(i) {
-
       if (--tinyv[i] == 7) {
-
-        tiny[i].style.width =
-          "1px";
-
-        tiny[i].style.height =
-          "1px";
-
+        tiny[i].style.width = "1px";
+        tiny[i].style.height = "1px";
       }
 
-
       if (tinyv[i]) {
+        tinyy[i] += 1 + Math.random() * 3;
 
-        tinyy[i] +=
-          1 + Math.random() * 3;
-
-
-        if (
-          tinyy[i] <
-          shigh + sdown
-        ) {
-
+        if (tinyy[i] < shigh + sdown) {
           tiny[i].style.top =
             tinyy[i] + "px";
-
 
           tinyx[i] +=
             (i % 7 - 3) / 3.5;
 
-
           tiny[i].style.left =
             tinyx[i] + "px";
-
         }
 
         else {
-
           tiny[i].style.visibility =
             "hidden";
 
           tinyv[i] = 0;
 
           return;
-
         }
-
       }
 
       else {
-
         tiny[i].style.visibility =
           "hidden";
-
       }
-
     }
 
 
@@ -3259,25 +1949,16 @@
 
 
     function mouse(e) {
-
       set_scroll();
 
-
-      var newY =
-        e.pageY;
-
-
-      var newX =
-        e.pageX;
-
+      var newY = e.pageY;
+      var newX = e.pageX;
 
       var deltaX =
         newX - lastMouseX;
 
-
       var deltaY =
         newY - lastMouseY;
-
 
       mouseSpeed =
         Math.sqrt(
@@ -3285,47 +1966,29 @@
           deltaY * deltaY
         );
 
-
-      lastMouseX =
-        newX;
-
-
-      lastMouseY =
-        newY;
-
+      lastMouseX = newX;
+      lastMouseY = newY;
 
       x = newX;
       y = newY;
-
     }
 
 
     function set_scroll() {
-
       if (
         typeof self.pageYOffset ==
         "number"
       ) {
-
-        sdown =
-          self.pageYOffset;
-
-        sleft =
-          self.pageXOffset;
-
+        sdown = self.pageYOffset;
+        sleft = self.pageXOffset;
       }
 
       else if (
         document.body.scrollTop ||
         document.body.scrollLeft
       ) {
-
-        sdown =
-          document.body.scrollTop;
-
-        sleft =
-          document.body.scrollLeft;
-
+        sdown = document.body.scrollTop;
+        sleft = document.body.scrollLeft;
       }
 
       else if (
@@ -3335,22 +1998,17 @@
           document.documentElement.scrollLeft
         )
       ) {
-
         sleft =
           document.documentElement.scrollLeft;
 
         sdown =
           document.documentElement.scrollTop;
-
       }
 
       else {
-
         sdown = 0;
         sleft = 0;
-
       }
-
     }
 
 
@@ -3361,94 +2019,54 @@
 
 
     function set_width() {
-
       if (
         typeof self.innerWidth ==
         "number"
       ) {
-
-        swide =
-          self.innerWidth;
-
-        shigh =
-          self.innerHeight;
-
+        swide = self.innerWidth;
+        shigh = self.innerHeight;
       }
 
       else if (
         document.documentElement &&
         document.documentElement.clientWidth
       ) {
-
         swide =
           document.documentElement.clientWidth;
 
         shigh =
           document.documentElement.clientHeight;
-
       }
 
       else if (
         document.body.clientWidth
       ) {
-
         swide =
           document.body.clientWidth;
 
         shigh =
           document.body.clientHeight;
-
       }
-
     }
 
 
-    function createDiv(
-      height,
-      width
-    ) {
-
+    function createDiv(height, width) {
       var div =
         document.createElement("div");
 
+      div.style.position = "absolute";
+      div.style.height = height + "px";
+      div.style.width = width + "px";
+      div.style.overflow = "hidden";
+      div.style.backgroundColor = colour;
 
-      div.style.position =
-        "absolute";
+      div.style.pointerEvents = "none";
 
-
-      div.style.height =
-        height + "px";
-
-
-      div.style.width =
-        width + "px";
-
-
-      div.style.overflow =
-        "hidden";
-
-
-      div.style.backgroundColor =
-        colour;
-
-
-      div.style.pointerEvents =
-        "none";
-
-
-      /*
-        Below the lightbox (10000),
-        above normal gallery content.
-      */
-
-      div.style.zIndex =
-        "9999";
-
+      /* Above gallery, below lightbox */
+      div.style.zIndex = "9999";
 
       return div;
-
     }
-
   </script>
 
 </body>
