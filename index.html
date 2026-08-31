@@ -8,10 +8,6 @@
 
   <style>
 
-    /* ========================================
-       BASIC RESET
-    ======================================== */
-
     * {
       margin: 0;
       padding: 0;
@@ -32,11 +28,6 @@
       overflow: hidden;
     }
 
-
-    /* ========================================
-       FULLSCREEN VIDEO BACKGROUND
-    ======================================== */
-
     .background-video {
       position: fixed;
       top: 0;
@@ -50,11 +41,6 @@
       z-index: -3;
     }
 
-
-    /* ========================================
-       80% DIM BACKGROUND
-    ======================================== */
-
     .video-overlay {
       position: fixed;
       inset: 0;
@@ -63,11 +49,6 @@
 
       z-index: -2;
     }
-
-
-    /* ========================================
-       MAIN PAGE
-    ======================================== */
 
     .page {
       width: 100%;
@@ -81,11 +62,6 @@
 
       overflow: hidden;
     }
-
-
-    /* ========================================
-       CONTENT
-    ======================================== */
 
     .content {
       display: flex;
@@ -101,11 +77,6 @@
       animation: pageEnter 0.9s ease forwards;
     }
 
-
-    /* ========================================
-       LOGO
-    ======================================== */
-
     .logo {
       display: block;
 
@@ -119,11 +90,6 @@
       );
     }
 
-
-    /* ========================================
-       SHORT INFO
-    ======================================== */
-
     .short-info {
       margin-bottom: 22px;
 
@@ -136,17 +102,10 @@
       text-align: center;
     }
 
-
     .short-info-name {
       color: #aaaaaa;
-
       font-size: 11px;
     }
-
-
-    /* ========================================
-       NAVIGATION
-    ======================================== */
 
     .nav {
       display: flex;
@@ -158,7 +117,6 @@
       font-family: Verdana, Geneva, sans-serif;
       font-size: 18px;
     }
-
 
     .dropdown-button {
       display: block;
@@ -175,10 +133,6 @@
         text-shadow 0.2s ease;
     }
 
-
-    /* More specific selector so live-site CSS
-       is less likely to override the glow */
-
     .nav .dropdown .dropdown-button:hover {
       color: #ffffff !important;
 
@@ -188,15 +142,9 @@
         0 0 16px rgba(255, 255, 255, 0.20) !important;
     }
 
-
-    /* ========================================
-       DROPDOWNS
-    ======================================== */
-
     .dropdown {
       position: relative;
     }
-
 
     .dropdown-menu {
       position: absolute;
@@ -223,7 +171,6 @@
         visibility 0.25s ease;
     }
 
-
     .dropdown:hover .dropdown-menu {
       opacity: 1;
       visibility: visible;
@@ -232,11 +179,6 @@
         translate(-50%, 0)
         scale(1);
     }
-
-
-    /* ========================================
-       DROPDOWN LINKS
-    ======================================== */
 
     .dropdown-menu a {
       display: block;
@@ -257,10 +199,6 @@
         text-shadow 0.2s ease;
     }
 
-
-    /* More specific selector so live-site CSS
-       is less likely to override the glow */
-
     .nav .dropdown .dropdown-menu a:hover {
       color: #ffffff !important;
 
@@ -269,11 +207,6 @@
         0 0 8px rgba(255, 255, 255, 0.40),
         0 0 12px rgba(255, 255, 255, 0.20) !important;
     }
-
-
-    /* ========================================
-       STEAM SMALL TEXT
-    ======================================== */
 
     .steam-account small {
       display: block;
@@ -285,11 +218,6 @@
 
       color: #666666;
     }
-
-
-    /* ========================================
-       APB INFO DROPDOWN
-    ======================================== */
 
     .info-menu {
       min-width: 430px;
@@ -308,13 +236,11 @@
       transform-origin: top center;
     }
 
-
     .dropdown:hover .info-menu {
       transform:
         translate(-50%, 0)
         scale(1);
     }
-
 
     .info-menu .specs-section {
       width: 100%;
@@ -323,7 +249,6 @@
       margin-right: 0;
     }
 
-
     .info-menu .specs-title,
     .info-menu .specs-line {
       padding-left: 0;
@@ -331,7 +256,6 @@
 
       text-align: center;
     }
-
 
     .apb-retired {
       width: 100%;
@@ -350,25 +274,17 @@
       white-space: nowrap;
     }
 
-
     .apb-character-gap {
       margin-top: 5px;
     }
-
-
-    /* ========================================
-       SPECS / INFO SECTIONS
-    ======================================== */
 
     .specs-section {
       margin-bottom: 14px;
     }
 
-
     .specs-section:last-child {
       margin-bottom: 0;
     }
-
 
     .specs-title {
       margin-bottom: 5px;
@@ -381,7 +297,6 @@
 
       text-align: center;
     }
-
 
     .specs-line {
       padding: 2px 10px;
@@ -396,15 +311,9 @@
       text-align: center;
     }
 
-
     .specs-line strong {
       color: #aaaaaa;
     }
-
-
-    /* ========================================
-       SPECS DROPDOWN - TWO COLUMNS
-    ======================================== */
 
     .specs-menu {
       min-width: 760px;
@@ -414,7 +323,6 @@
       text-align: center;
     }
 
-
     .specs-columns {
       display: grid;
 
@@ -423,17 +331,11 @@
       gap: 32px;
     }
 
-
     .specs-column {
       min-width: 0;
 
       text-align: center;
     }
-
-
-    /* ========================================
-       FOOTER
-    ======================================== */
 
     .footer {
       position: fixed;
@@ -451,18 +353,12 @@
       user-select: none;
     }
 
-
     .artist-credit {
       margin-top: 4px;
 
       font-size: 9px;
       color: #555555;
     }
-
-
-    /* ========================================
-       PAGE ENTRANCE ANIMATION
-    ======================================== */
 
     @keyframes pageEnter {
 
@@ -478,11 +374,6 @@
 
     }
 
-
-    /* ========================================
-       ACCESSIBILITY
-    ======================================== */
-
     @media (prefers-reduced-motion: reduce) {
 
       .content {
@@ -495,22 +386,15 @@
 
     }
 
-
-    /* ========================================
-       MOBILE
-    ======================================== */
-
     @media (max-width: 650px) {
 
       .page {
         padding: 20px;
       }
 
-
       .content {
         top: -20vh;
       }
-
 
       .logo {
         width: min(320px, 85vw);
@@ -518,18 +402,15 @@
         margin-bottom: 25px;
       }
 
-
       .short-info {
         margin-bottom: 20px;
 
         font-size: 9px;
       }
 
-
       .short-info-name {
         font-size: 10px;
       }
-
 
       .nav {
         flex-wrap: wrap;
@@ -539,21 +420,17 @@
         font-size: 16px;
       }
 
-
       .dropdown-menu {
         min-width: 180px;
       }
-
 
       .info-menu {
         min-width: min(390px, 94vw);
       }
 
-
       .specs-menu {
         min-width: min(390px, 94vw);
       }
-
 
       .specs-columns {
         grid-template-columns: 1fr;
@@ -561,13 +438,11 @@
         gap: 0;
       }
 
-
       .specs-line {
         font-size: 8px;
 
         white-space: normal;
       }
-
 
       .apb-retired {
         font-size: 8px;
@@ -580,13 +455,7 @@
   </style>
 </head>
 
-
 <body>
-
-
-  <!-- ========================================
-       BACKGROUND VIDEO
-  ======================================== -->
 
   <video
     class="background-video"
@@ -603,37 +472,17 @@
 
   </video>
 
-
-  <!-- ========================================
-       80% DARK OVERLAY
-  ======================================== -->
-
   <div class="video-overlay"></div>
-
-
-  <!-- ========================================
-       WEBSITE
-  ======================================== -->
 
   <main class="page">
 
     <div class="content">
-
-
-      <!-- ====================================
-           LOGO
-      ===================================== -->
 
       <img
         src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/swib.by_files/logo.png"
         alt="Website Logo"
         class="logo"
       >
-
-
-      <!-- ====================================
-           SHORT INFO
-      ===================================== -->
 
       <div class="short-info">
 
@@ -651,24 +500,13 @@
 
       </div>
 
-
-      <!-- ====================================
-           NAVIGATION
-      ===================================== -->
-
       <nav class="nav">
-
-
-        <!-- ==================================
-             STEAM
-        =================================== -->
 
         <div class="dropdown">
 
           <span class="dropdown-button">
             Steam
           </span>
-
 
           <div class="dropdown-menu">
 
@@ -682,7 +520,6 @@
               <small>lvl 750</small>
             </a>
 
-
             <a
               href="https://steamcommunity.com/id/suffer"
               target="_blank"
@@ -692,7 +529,6 @@
               <span>/id/suffer (alt)</span>
               <small>lvl 200</small>
             </a>
-
 
             <a
               href="https://steamcommunity.com/groups/cut"
@@ -704,7 +540,6 @@
               <small>Matching</small>
             </a>
 
-
             <a
               href="https://steamcommunity.com/groups/broken"
               target="_blank"
@@ -714,7 +549,6 @@
               <span>/groups/broken</span>
               <small>Matching</small>
             </a>
-
 
             <a
               href="https://steamcommunity.com/groups/bonjour"
@@ -730,17 +564,11 @@
 
         </div>
 
-
-        <!-- ==================================
-             TELEGRAM
-        =================================== -->
-
         <div class="dropdown">
 
           <span class="dropdown-button">
             Telegram
           </span>
-
 
           <div class="dropdown-menu">
 
@@ -756,17 +584,11 @@
 
         </div>
 
-
-        <!-- ==================================
-             DISCORD
-        =================================== -->
-
         <div class="dropdown">
 
           <span class="dropdown-button">
             Discord
           </span>
-
 
           <div class="dropdown-menu">
 
@@ -782,17 +604,11 @@
 
         </div>
 
-
-        <!-- ==================================
-             VRCHAT
-        =================================== -->
-
         <div class="dropdown">
 
           <span class="dropdown-button">
             VRChat
           </span>
-
 
           <div class="dropdown-menu">
 
@@ -804,7 +620,6 @@
               Profile
             </a>
 
-
             <a
               href="https://vrchat.com/home/avatar/avtr_5e141822-004a-4dae-be8a-5ea70dbb43fa"
               target="_blank"
@@ -812,7 +627,6 @@
             >
               Dope Cat
             </a>
-
 
             <a
               href="https://vrc.group/111.1111"
@@ -826,17 +640,11 @@
 
         </div>
 
-
-        <!-- ==================================
-             APB INFO
-        =================================== -->
-
         <div class="dropdown">
 
           <span class="dropdown-button">
             APB Info
           </span>
-
 
           <div class="dropdown-menu info-menu">
 
@@ -844,43 +652,36 @@
               (Retired)
             </div>
 
-
             <div class="specs-section">
 
               <div class="specs-title">
                 Main characters
               </div>
 
-
               <div class="specs-line">
                 <strong>Name:</strong>
                 Swibbiz (R255)
               </div>
-
 
               <div class="specs-line">
                 <strong>Faction:</strong>
                 Enforcer
               </div>
 
-
               <div class="specs-line">
                 <strong>Clan:</strong>
                 1337
               </div>
-
 
               <div class="specs-line apb-character-gap">
                 <strong>Name:</strong>
                 Lie (R255)
               </div>
 
-
               <div class="specs-line">
                 <strong>Faction:</strong>
                 Criminal
               </div>
-
 
               <div class="specs-line">
                 <strong>Clan:</strong>
@@ -889,20 +690,17 @@
 
             </div>
 
-
             <div class="specs-section">
 
               <div class="specs-title">
                 Other characters
               </div>
 
-
               <div class="specs-line">
                 Swibbex R255,
                 rate R255,
                 Swibby R255
               </div>
-
 
               <div class="specs-line">
                 suffer R255,
@@ -912,28 +710,23 @@
 
             </div>
 
-
             <div class="specs-section">
 
               <div class="specs-title">
                 Other
               </div>
 
-
               <div class="specs-line">
                 Clothing, Car &amp; Symbol Designer
               </div>
-
 
               <div class="specs-line">
                 6.6K Hours on Record
               </div>
 
-
               <div class="specs-line">
                 RTW Veteran 2010 (Patriot EU2)
               </div>
-
 
               <div class="specs-line">
                 Leader of &lt;1337&gt; on EU &amp; NA
@@ -945,25 +738,17 @@
 
         </div>
 
-
-        <!-- ==================================
-             SPECS
-        =================================== -->
-
         <div class="dropdown">
 
           <span class="dropdown-button">
             Specs
           </span>
 
-
           <div class="dropdown-menu specs-menu">
 
             <div class="specs-columns">
 
-
               <div class="specs-column">
-
 
                 <div class="specs-section">
 
@@ -971,54 +756,45 @@
                     PC
                   </div>
 
-
                   <div class="specs-line">
                     <strong>GPU:</strong>
                     GeForce RTX 4080 SUPER OC
                   </div>
-
 
                   <div class="specs-line">
                     <strong>CPU:</strong>
                     Intel Core i7-14700K - 3.40GHz
                   </div>
 
-
                   <div class="specs-line">
                     <strong>RAM:</strong>
                     Corsair Vengeance RGB - 32GB (DDR5@6000MHz)
                   </div>
-
 
                   <div class="specs-line">
                     <strong>Motherboard:</strong>
                     ASUS ROG STRIX Z790-F GAMING WIFI II
                   </div>
 
-
                   <div class="specs-line">
                     <strong>CPU Cooler:</strong>
                     NZXT Kraken Elite
                   </div>
-
 
                   <div class="specs-line">
                     <strong>PSU:</strong>
                     Corsair RM850x - 850W
                   </div>
 
-
                   <div class="specs-line">
                     <strong>Case:</strong>
                     HYTE Y70 - Black
                   </div>
 
-
                   <div class="specs-line">
                     <strong>Storage 1:</strong>
                     Samsung 990 PRO w/ Heatsink - 2TB
                   </div>
-
 
                   <div class="specs-line">
                     <strong>Storage 2:</strong>
@@ -1027,37 +803,31 @@
 
                 </div>
 
-
                 <div class="specs-section">
 
                   <div class="specs-title">
                     Peripherals
                   </div>
 
-
                   <div class="specs-line">
                     <strong>Keyboard:</strong>
                     Corsair K55
                   </div>
-
 
                   <div class="specs-line">
                     <strong>Mouse:</strong>
                     Logitech G PRO Wireless
                   </div>
 
-
                   <div class="specs-line">
                     <strong>Headset:</strong>
                     SteelSeries Arctis Nova Pro Wireless
                   </div>
 
-
                   <div class="specs-line">
                     <strong>Mouse Pad:</strong>
                     SteelSeries QcK+
                   </div>
-
 
                   <div class="specs-line">
                     <strong>Chair:</strong>
@@ -1068,9 +838,7 @@
 
               </div>
 
-
               <div class="specs-column">
-
 
                 <div class="specs-section">
 
@@ -1078,12 +846,10 @@
                     Monitors
                   </div>
 
-
                   <div class="specs-line">
                     <strong>Main Monitor:</strong>
                     OMEN 27i - 27" IPS, 1440p, 165Hz
                   </div>
-
 
                   <div class="specs-line">
                     <strong>2nd Monitor:</strong>
@@ -1092,43 +858,36 @@
 
                 </div>
 
-
                 <div class="specs-section">
 
                   <div class="specs-title">
                     VR Equipment
                   </div>
 
-
                   <div class="specs-line">
                     <strong>Primary Headset:</strong>
                     HTC VIVE Pro Eye
                   </div>
-
 
                   <div class="specs-line">
                     <strong>Secondary Headset:</strong>
                     Valve Index
                   </div>
 
-
                   <div class="specs-line">
                     <strong>Controllers:</strong>
                     Valve Index Controllers
                   </div>
-
 
                   <div class="specs-line">
                     <strong>Base Stations:</strong>
                     SteamVR Base Station 2.0 x2
                   </div>
 
-
                   <div class="specs-line">
                     <strong>Trackers:</strong>
                     HTC VIVE Tracker (3rd Generation) x3
                   </div>
-
 
                   <div class="specs-line">
                     <strong>Straps:</strong>
@@ -1139,17 +898,11 @@
 
               </div>
 
-
             </div>
 
           </div>
 
         </div>
-
-
-        <!-- ==================================
-             GALLERY
-        =================================== -->
 
         <div class="dropdown">
 
@@ -1162,17 +915,11 @@
 
         </div>
 
-
       </nav>
 
     </div>
 
   </main>
-
-
-  <!-- ========================================
-       FOOTER
-  ======================================== -->
 
   <footer class="footer">
 
@@ -1184,14 +931,9 @@
 
   </footer>
 
-
-  <!-- ========================================
-       MOUSE SPARKLE TRAIL
-  ======================================== -->
-
   <script type="text/javascript">
-  // <![CDATA[
-  var colour="#FFFFFF";
+
+  var colour="#AAAAAA";
   var sparkles=20;
 
   var mouseSpeed=0;
@@ -1199,12 +941,6 @@
   var lastMouseY=300;
   var sparkleSpeedThreshold=4;
 
-  /****************************
-  *  Tinkerbell Magic Sparkle *
-  * (c) 2005 mf2fm web-design *
-  *  http://www.mf2fm.com/rv  *
-  * DON'T EDIT BELOW THIS BOX *
-  ****************************/
   var x=ox=400;
   var y=oy=300;
   var swide=800;
@@ -1220,10 +956,13 @@
   var tinyv=new Array();
 
   window.onload=function() { if (document.getElementById) {
+
     var i, rats, rlef, rdow;
 
     for (var i=0; i<sparkles; i++) {
+
       var rats=createDiv(3, 3);
+
       rats.style.visibility="hidden";
 
       document.body.appendChild(tiny[i]=rats);
@@ -1232,6 +971,7 @@
       tinyv[i]=0;
 
       var rats=createDiv(5, 5);
+
       rats.style.backgroundColor="transparent";
       rats.style.visibility="hidden";
 
@@ -1248,17 +988,20 @@
       rdow.style.left="2px";
 
       document.body.appendChild(star[i]=rats);
+
     }
 
     set_width();
     sparkle();
+
   }}
 
-
   function sparkle() {
+
     var c;
 
     if ((x!=ox || y!=oy) && mouseSpeed>=sparkleSpeedThreshold) {
+
       ox=x;
       oy=y;
 
@@ -1276,22 +1019,28 @@
         starv[c]=15;
 
         break;
+
       }
+
     }
 
     for (c=0; c<sparkles; c++) {
+
       if (starv[c]) update_star(c);
       if (tinyv[c]) update_tiny(c);
+
     }
 
     setTimeout("sparkle()", 20);
-  }
 
+  }
 
   function update_star(i) {
 
     if (--starv[i]==7) {
+
       star[i].style.clip="rect(1px, 4px, 4px, 1px)";
+
     }
 
     if (starv[i]) {
@@ -1314,6 +1063,7 @@
         starv[i]=0;
 
         return;
+
       }
 
     }
@@ -1334,7 +1084,6 @@
     }
 
   }
-
 
   function update_tiny(i) {
 
@@ -1365,6 +1114,7 @@
         tinyv[i]=0;
 
         return;
+
       }
 
     }
@@ -1377,9 +1127,7 @@
 
   }
 
-
   document.onmousemove=mouse;
-
 
   function mouse(e) {
 
@@ -1403,7 +1151,6 @@
     y=newY;
 
   }
-
 
   function set_scroll() {
 
@@ -1443,9 +1190,7 @@
 
   }
 
-
   window.onresize=set_width;
-
 
   function set_width() {
 
@@ -1475,7 +1220,6 @@
 
   }
 
-
   function createDiv(height, width) {
 
     var div=document.createElement("div");
@@ -1492,9 +1236,8 @@
     return div;
 
   }
-  // ]]>
-  </script>
 
+  </script>
 
 </body>
 </html>
