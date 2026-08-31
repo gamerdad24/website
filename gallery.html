@@ -61,6 +61,10 @@
         0 0 5px rgba(0, 0, 0, 0.4);
     }
 
+    /* =====================================================
+       GALLERY
+    ====================================================== */
+
     .gallery {
       display: flex;
       flex-direction: column;
@@ -84,6 +88,10 @@
       background: transparent;
     }
 
+    /* =====================================================
+       INFO
+    ====================================================== */
+
     .info {
       position: relative;
       display: flex;
@@ -98,17 +106,23 @@
       margin-right: 70px;
     }
 
+    /* =====================================================
+       TOP LEFT NOTICE
+    ====================================================== */
+
     .gallery-note {
       position: absolute;
       top: 35px;
       left: 35px;
       width: auto;
       max-width: 340px;
+
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 10px;
       font-weight: 400;
       line-height: 1.55;
       letter-spacing: 0.1px;
+
       color: #9a9a9a;
       text-align: left;
 
@@ -136,6 +150,10 @@
       font-weight: 400;
       line-height: 1.55;
     }
+
+    /* =====================================================
+       YEAR / METADATA
+    ====================================================== */
 
     .subtitle {
       width: 100%;
@@ -195,6 +213,10 @@
       text-align: right;
     }
 
+    /* =====================================================
+       ARTWORK
+    ====================================================== */
+
     .artwork {
       display: flex;
       align-items: center;
@@ -237,22 +259,83 @@
       background: transparent;
     }
 
+    /* =====================================================
+       SPOILER / CONTENT WARNING
+    ====================================================== */
+
+    .artwork.spoiler {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .artwork.spoiler img {
+      transition: filter 0.3s ease;
+    }
+
+    .artwork.spoiler:not(.revealed) img {
+      filter: blur(30px);
+    }
+
+    .spoiler-warning {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+
+      background: rgba(0, 0, 0, 0.18);
+
+      cursor: pointer;
+
+      text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.9),
+        0 0 8px rgba(0, 0, 0, 0.8);
+
+      transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+    .artwork.spoiler.revealed .spoiler-warning {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* =====================================================
+       LIGHTBOX
+    ====================================================== */
+
     .lightbox {
       position: fixed;
       inset: 0;
       z-index: 9999;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       padding: 40px;
+
       background: rgba(0, 0, 0, 0.92);
+
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
+
       opacity: 0;
       visibility: hidden;
+
       transition:
         opacity 0.2s ease,
         visibility 0.2s ease;
+
       cursor: zoom-out;
     }
 
@@ -271,6 +354,10 @@
       cursor: default;
       box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
     }
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
 
     @media (max-width: 900px) {
       .gallery {
@@ -357,7 +444,9 @@
 
   <main class="gallery">
 
-    <!-- GROUP 1 -->
+    <!-- =====================================================
+         GROUP 1
+    ====================================================== -->
 
     <div class="gallery-group" data-sort-transparent="true">
 
@@ -367,6 +456,7 @@
         <section class="info">
 
           <div class="gallery-note" id="gallery-note">
+
             <div class="gallery-intro">
               A curated gallery of artwork I've commissioned.<br>
               Not every piece is shown here.
@@ -378,9 +468,9 @@
             </div>
 
             <div class="credit-notice">
-              All artwork is credited to its respective artist.<br>
-              The character 'Swibby' belongs to me.
+              All artwork is credited to its respective artist.
             </div>
+
           </div>
 
           <div class="info-content">
@@ -457,7 +547,7 @@
       </article>
 
 
-      <!-- FLEET-FOOT -->
+      <!-- FLEET-FOOT - NSFW SPOILER -->
 
       <article class="gallery-item">
         <section class="info">
@@ -471,12 +561,16 @@
           </div>
         </section>
 
-        <section class="artwork">
+        <section class="artwork spoiler">
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Fleet-foot%20NSFW.png"
             alt="Fleet-Foot commission artwork"
           >
+
+          <div class="spoiler-warning">
+            Contains: NSFW
+          </div>
         </section>
 
         <div class="gallery-space"></div>
@@ -576,7 +670,7 @@
       </article>
 
 
-      <!-- WETDOG2003 2025 -->
+      <!-- WETDOG2003 2025 - CONTENT WARNING SPOILER -->
 
       <article class="gallery-item">
         <section class="info">
@@ -590,12 +684,16 @@
           </div>
         </section>
 
-        <section class="artwork">
+        <section class="artwork spoiler">
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/wetdog2003%20(6).png"
             alt="wetdog2003 commission artwork"
           >
+
+          <div class="spoiler-warning">
+            Contains: Blood, Drugs, SH
+          </div>
         </section>
 
         <div class="gallery-space"></div>
@@ -630,7 +728,9 @@
     </div>
 
 
-    <!-- GROUP 2 -->
+    <!-- =====================================================
+         GROUP 2
+    ====================================================== -->
 
     <div class="gallery-group" data-sort-transparent="true">
 
@@ -818,7 +918,9 @@
     </div>
 
 
-    <!-- GROUP 3 -->
+    <!-- =====================================================
+         GROUP 3
+    ====================================================== -->
 
     <div class="gallery-group">
 
@@ -886,7 +988,9 @@
     </div>
 
 
-    <!-- GROUP 4 -->
+    <!-- =====================================================
+         GROUP 4
+    ====================================================== -->
 
     <div class="gallery-group" data-sort-transparent="true">
 
@@ -973,7 +1077,7 @@
       </article>
 
 
-      <!-- OGGYTHEFOX ANIMATED GIF -->
+      <!-- OGGYTHEFOX GIF -->
 
       <article class="gallery-item">
         <section class="info">
@@ -1061,7 +1165,7 @@
       </article>
 
 
-      <!-- OGGYTHEFOX PNG - TRANSPARENT -->
+      <!-- OGGYTHEFOX PNG -->
 
       <article class="gallery-item">
         <section class="info">
@@ -1172,7 +1276,10 @@
     </div>
 
 
-    <!-- GROUP 5 -->
+    <!-- =====================================================
+         GROUP 5
+         RREZE → RREZE → SOYATU → WOJAK → SNOS
+    ====================================================== -->
 
     <div class="gallery-group">
 
@@ -1313,7 +1420,9 @@
     </div>
 
 
-    <!-- GROUP 6 -->
+    <!-- =====================================================
+         GROUP 6
+    ====================================================== -->
 
     <div class="gallery-group">
 
@@ -1352,6 +1461,10 @@
   </main>
 
 
+  <!-- =====================================================
+       LIGHTBOX
+  ====================================================== -->
+
   <div class="lightbox" id="lightbox">
     <img id="lightbox-image" src="" alt="">
   </div>
@@ -1362,8 +1475,39 @@
     const lightboxImage = document.getElementById("lightbox-image");
     const artworkImages = document.querySelectorAll(".artwork img");
 
+
+    /* =====================================================
+       SPOILER REVEAL
+    ====================================================== */
+
+    document.querySelectorAll(".artwork.spoiler").forEach((spoiler) => {
+      const warning = spoiler.querySelector(".spoiler-warning");
+
+      warning.addEventListener("click", (event) => {
+        event.stopPropagation();
+        spoiler.classList.add("revealed");
+      });
+    });
+
+
+    /* =====================================================
+       LIGHTBOX
+    ====================================================== */
+
     artworkImages.forEach((image) => {
       image.addEventListener("click", () => {
+
+        /*
+          Do not open the lightbox while the artwork
+          is still hidden by a spoiler.
+        */
+
+        const spoiler = image.closest(".artwork.spoiler");
+
+        if (spoiler && !spoiler.classList.contains("revealed")) {
+          return;
+        }
+
         lightboxImage.src = image.src;
         lightboxImage.alt = image.alt;
 
@@ -1371,6 +1515,7 @@
         document.body.classList.add("lightbox-open");
       });
     });
+
 
     function closeLightbox() {
       lightbox.classList.remove("active");
@@ -1384,11 +1529,13 @@
       }, 200);
     }
 
+
     lightbox.addEventListener("click", (event) => {
       if (event.target === lightbox) {
         closeLightbox();
       }
     });
+
 
     document.addEventListener("keydown", (event) => {
       if (
@@ -1399,8 +1546,14 @@
       }
     });
 
+
+    /* =====================================================
+       TRANSPARENCY DETECTION
+    ====================================================== */
+
     async function imageHasTransparency(image) {
       try {
+
         if (!image.complete) {
           await new Promise((resolve) => {
             image.addEventListener("load", resolve, { once: true });
@@ -1482,12 +1635,19 @@
       }
     }
 
+
+    /* =====================================================
+       TRANSPARENT IMAGES TO BOTTOM OF GROUP
+    ====================================================== */
+
     async function sortTransparentArtwork() {
+
       const groups = document.querySelectorAll(
         '.gallery-group[data-sort-transparent="true"]'
       );
 
       for (const group of groups) {
+
         const items = Array.from(
           group.querySelectorAll(
             ":scope > .gallery-item"
@@ -1499,13 +1659,19 @@
         const handled = new Set();
 
         for (const item of items) {
+
           if (handled.has(item)) {
             continue;
           }
 
           const pairName = item.dataset.pair;
 
+          /*
+            Keep paired artwork together.
+          */
+
           if (pairName) {
+
             const pair = items.filter(
               (candidate) =>
                 candidate.dataset.pair === pairName
@@ -1518,6 +1684,7 @@
             let pairIsTransparent = false;
 
             for (const pairItem of pair) {
+
               const pairImage = pairItem.querySelector(
                 ".artwork img"
               );
@@ -1564,6 +1731,12 @@
         });
       }
 
+
+      /*
+        Keep gallery notice attached to the
+        first visible gallery entry after sorting.
+      */
+
       const notice = document.getElementById(
         "gallery-note"
       );
@@ -1581,12 +1754,10 @@
       }
     }
 
-    window.addEventListener(
-      "load",
-      () => {
-        sortTransparentArtwork();
-      }
-    );
+
+    window.addEventListener("load", () => {
+      sortTransparentArtwork();
+    });
   </script>
 
 </body>
