@@ -17,7 +17,7 @@
     html {
       width: 100%;
       min-height: 100%;
-      background: #0d0d0d;
+      background: #0b0d0d;
     }
 
     body {
@@ -29,11 +29,11 @@
       background:
         linear-gradient(
           180deg,
-          #171717 0%,
-          #141414 25%,
-          #111111 50%,
-          #0f0f0f 75%,
-          #0d0d0d 100%
+          #101212 0%,
+          #0f1111 25%,
+          #0e1010 50%,
+          #0d0f0f 75%,
+          #0b0d0d 100%
         );
 
       overflow-x: hidden;
@@ -152,7 +152,7 @@
     }
 
     /* =====================================================
-       YEAR / METADATA
+       METADATA
     ====================================================== */
 
     .subtitle {
@@ -232,8 +232,10 @@
       height: auto;
       max-width: none;
       max-height: none;
+
       object-fit: contain;
       object-position: center;
+
       margin: 0;
       cursor: zoom-in;
 
@@ -260,7 +262,7 @@
     }
 
     /* =====================================================
-       SPOILER / CONTENT WARNING
+       SPOILERS
     ====================================================== */
 
     .artwork.spoiler {
@@ -290,7 +292,8 @@
       font-weight: 500;
       letter-spacing: 0.2px;
 
-      background: rgba(0, 0, 0, 0.18);
+      /* No dark tint */
+      background: transparent;
 
       cursor: pointer;
 
@@ -350,9 +353,13 @@
       height: auto;
       max-width: 90vw;
       max-height: 90vh;
+
       object-fit: contain;
+
       cursor: default;
-      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
+
+      box-shadow:
+        0 10px 50px rgba(0, 0, 0, 0.7);
     }
 
     /* =====================================================
@@ -404,10 +411,13 @@
         width: 100%;
         height: auto;
         min-height: 250px;
+
         display: flex;
         align-items: center;
         justify-content: flex-end;
+
         padding: 65px 28px 40px;
+
         background: transparent;
       }
 
@@ -456,7 +466,6 @@
         <section class="info">
 
           <div class="gallery-note" id="gallery-note">
-
             <div class="gallery-intro">
               A curated gallery of artwork I've commissioned.<br>
               Not every piece is shown here.
@@ -470,7 +479,6 @@
             <div class="credit-notice">
               All artwork is credited to its respective artist.
             </div>
-
           </div>
 
           <div class="info-content">
@@ -547,7 +555,7 @@
       </article>
 
 
-      <!-- FLEET-FOOT - NSFW SPOILER -->
+      <!-- FLEET-FOOT -->
 
       <article class="gallery-item">
         <section class="info">
@@ -670,7 +678,7 @@
       </article>
 
 
-      <!-- WETDOG2003 2025 - CONTENT WARNING SPOILER -->
+      <!-- WETDOG2003 2025 -->
 
       <article class="gallery-item">
         <section class="info">
@@ -955,7 +963,7 @@
       </article>
 
 
-      <!-- EZMODE REFERENCE SHEET -->
+      <!-- EZMODE REFERENCE -->
 
       <article class="gallery-item">
         <section class="info">
@@ -1077,7 +1085,7 @@
       </article>
 
 
-      <!-- OGGYTHEFOX GIF -->
+      <!-- OGGY GIF -->
 
       <article class="gallery-item">
         <section class="info">
@@ -1103,7 +1111,7 @@
       </article>
 
 
-      <!-- UNKNOWN / GIFT FROM MOCHA -->
+      <!-- UNKNOWN -->
 
       <article class="gallery-item">
         <section class="info">
@@ -1165,7 +1173,7 @@
       </article>
 
 
-      <!-- OGGYTHEFOX PNG -->
+      <!-- OGGY PNG -->
 
       <article class="gallery-item">
         <section class="info">
@@ -1243,7 +1251,7 @@
       </article>
 
 
-      <!-- EZMODE 2 -->
+      <!-- EZMODE NON-REF -->
 
       <article class="gallery-item" data-pair="shiineji-ezmode">
         <section class="info">
@@ -1278,12 +1286,11 @@
 
     <!-- =====================================================
          GROUP 5
-         RREZE → RREZE → SOYATU → WOJAK → SNOS
     ====================================================== -->
 
     <div class="gallery-group">
 
-      <!-- RREZE — LEAD NEVER FOLLOW -->
+      <!-- RREZE 1 -->
 
       <article class="gallery-item">
         <section class="info">
@@ -1309,7 +1316,7 @@
       </article>
 
 
-      <!-- RREZE — EVERSINCE -->
+      <!-- RREZE 2 -->
 
       <article class="gallery-item">
         <section class="info">
@@ -1477,7 +1484,7 @@
 
 
     /* =====================================================
-       SPOILER REVEAL
+       SPOILERS
     ====================================================== */
 
     document.querySelectorAll(".artwork.spoiler").forEach((spoiler) => {
@@ -1496,15 +1503,12 @@
 
     artworkImages.forEach((image) => {
       image.addEventListener("click", () => {
-
-        /*
-          Do not open the lightbox while the artwork
-          is still hidden by a spoiler.
-        */
-
         const spoiler = image.closest(".artwork.spoiler");
 
-        if (spoiler && !spoiler.classList.contains("revealed")) {
+        if (
+          spoiler &&
+          !spoiler.classList.contains("revealed")
+        ) {
           return;
         }
 
@@ -1553,7 +1557,6 @@
 
     async function imageHasTransparency(image) {
       try {
-
         if (!image.complete) {
           await new Promise((resolve) => {
             image.addEventListener("load", resolve, { once: true });
@@ -1637,17 +1640,15 @@
 
 
     /* =====================================================
-       TRANSPARENT IMAGES TO BOTTOM OF GROUP
+       TRANSPARENT IMAGES TO BOTTOM
     ====================================================== */
 
     async function sortTransparentArtwork() {
-
       const groups = document.querySelectorAll(
         '.gallery-group[data-sort-transparent="true"]'
       );
 
       for (const group of groups) {
-
         const items = Array.from(
           group.querySelectorAll(
             ":scope > .gallery-item"
@@ -1659,19 +1660,13 @@
         const handled = new Set();
 
         for (const item of items) {
-
           if (handled.has(item)) {
             continue;
           }
 
           const pairName = item.dataset.pair;
 
-          /*
-            Keep paired artwork together.
-          */
-
           if (pairName) {
-
             const pair = items.filter(
               (candidate) =>
                 candidate.dataset.pair === pairName
@@ -1684,7 +1679,6 @@
             let pairIsTransparent = false;
 
             for (const pairItem of pair) {
-
               const pairImage = pairItem.querySelector(
                 ".artwork img"
               );
@@ -1732,10 +1726,7 @@
       }
 
 
-      /*
-        Keep gallery notice attached to the
-        first visible gallery entry after sorting.
-      */
+      /* Keep notice on first visible item after sorting */
 
       const notice = document.getElementById(
         "gallery-note"
