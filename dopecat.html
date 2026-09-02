@@ -39,7 +39,6 @@
     .background-overlay {
       position: fixed;
       inset: 0;
-
       z-index: -1;
 
       pointer-events: none;
@@ -66,6 +65,8 @@
     }
 
     .content {
+      position: relative;
+
       width: 1120px;
 
       flex: 0 0 auto;
@@ -77,6 +78,7 @@
 
     .panel {
       position: relative;
+      z-index: 0;
 
       padding: 42px 44px;
 
@@ -91,6 +93,9 @@
     }
 
     .page-header {
+      position: relative;
+      z-index: 1;
+
       margin-bottom: 36px;
 
       text-align: left;
@@ -117,6 +122,9 @@
     }
 
     .dopecat-info {
+      position: relative;
+      z-index: 1;
+
       max-width: 650px;
 
       color: #9a9a9a;
@@ -201,6 +209,7 @@
 
     .dopecat-showcase {
       position: relative;
+      z-index: 3;
 
       display: flex;
       align-items: center;
@@ -212,8 +221,7 @@
 
     .dopecat-showcase img {
       position: relative;
-
-      z-index: 2;
+      z-index: 3;
 
       display: block;
 
@@ -354,6 +362,8 @@
 
       </section>
 
+      <div id="sparkle-layer"></div>
+
     </div>
 
   </main>
@@ -411,6 +421,8 @@
 
       if (document.getElementById) {
 
+        var sparkleLayer=document.getElementById("sparkle-layer");
+
         var i, rats, rlef, rdow;
 
         for (var i=0; i<sparkles; i++) {
@@ -419,7 +431,7 @@
 
           rats.style.visibility="hidden";
 
-          document.body.appendChild(tiny[i]=rats);
+          sparkleLayer.appendChild(tiny[i]=rats);
 
           starv[i]=0;
           tinyv[i]=0;
@@ -441,7 +453,7 @@
           rdow.style.top="0px";
           rdow.style.left="2px";
 
-          document.body.appendChild(star[i]=rats);
+          sparkleLayer.appendChild(star[i]=rats);
 
         }
 
@@ -589,19 +601,27 @@
 
       set_scroll();
 
-      var newY=(e)?e.pageY:event.y+sdown;
-      var newX=(e)?e.pageX:event.x+sleft;
+      var content=document.getElementById("content");
+      var rect=content.getBoundingClientRect();
 
-      var deltaX=newX-lastMouseX;
-      var deltaY=newY-lastMouseY;
+      var scale=rect.width/content.offsetWidth;
+
+      var mousePageX=(e)?e.clientX:event.clientX;
+      var mousePageY=(e)?e.clientY:event.clientY;
+
+      var newX=(mousePageX-rect.left)/scale;
+      var newY=(mousePageY-rect.top)/scale;
+
+      var deltaX=mousePageX-lastMouseX;
+      var deltaY=mousePageY-lastMouseY;
 
       mouseSpeed=Math.sqrt(
         deltaX*deltaX +
         deltaY*deltaY
       );
 
-      lastMouseX=newX;
-      lastMouseY=newY;
+      lastMouseX=mousePageX;
+      lastMouseY=mousePageY;
 
       x=newX;
       y=newY;
@@ -624,27 +644,12 @@
 
     function set_width() {
 
-      if (typeof(self.innerWidth)=="number") {
+      var content=document.getElementById("content");
 
-        swide=self.innerWidth;
-        shigh=self.innerHeight;
+      if (content) {
 
-      }
-
-      else if (
-        document.documentElement &&
-        document.documentElement.clientWidth
-      ) {
-
-        swide=document.documentElement.clientWidth;
-        shigh=document.documentElement.clientHeight;
-
-      }
-
-      else if (document.body.clientWidth) {
-
-        swide=document.body.clientWidth;
-        shigh=document.body.clientHeight;
+        swide=content.offsetWidth;
+        shigh=content.offsetHeight;
 
       }
 
@@ -661,7 +666,7 @@
       div.style.backgroundColor=colour;
 
       div.style.pointerEvents="none";
-      div.style.zIndex="1";
+      div.style.zIndex="2";
 
       return div;
 
