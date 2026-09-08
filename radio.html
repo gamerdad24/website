@@ -1,0 +1,471 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Live Radio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0d0d0d;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .radio {
+      width: min(420px, 92vw);
+      padding: 40px 30px;
+      background: #181818;
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .live {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 25px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      background: red;
+      border-radius: 50%;
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    #listenButton {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 999px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      background: white;
+      color: black;
+      transition: transform 0.15s ease;
+    }
+
+    #listenButton:hover {
+      transform: scale(1.02);
+    }
+
+    #listenButton:disabled {
+      cursor: default;
+      opacity: 0.8;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="radio">
+    <h1>📻 My Radio</h1>
+
+    <div class="live">
+      <span class="live-dot"></span>
+      LIVE
+    </div>
+
+    <button id="listenButton">
+      Listen Live
+    </button>
+
+    <div id="status">
+      Press the button to join the broadcast
+    </div>
+
+    <!--
+      Put radio.mp3 in the same folder as this HTML file.
+      "loop" makes the MP3 repeat forever.
+    -->
+    <audio
+      id="radio"
+      src="https://github.com/gamerdad24/website/blob/main/swib.by_files/radio.mp3"
+      preload="metadata"
+      loop
+    ></audio>
+  </div>
+
+
+  <script>
+    /*
+      ============================================================
+      CONFIGURATION
+      ============================================================
+    */
+
+    /*
+      This timestamp determines where the radio broadcast started.
+
+      EVERY listener must receive the SAME value.
+
+      The value below is:
+      September 8, 2026 at 17:00:00 UTC.
+
+      You can replace this with any fixed Unix timestamp
+      in milliseconds.
+
+      IMPORTANT:
+      Don't use Date.now() here, because every visitor would get
+      their own start time and would NOT be synchronized.
+    */
+
+    const RADIO_START_EPOCH_MS = 1788886800000;
+
+
+    /*
+      ============================================================
+      RADIO CODE
+      ============================================================
+    */
+
+    const audio = document.getElementById("radio");
+    const listenButton = document.getElementById("listenButton");
+    const status = document.getElementById("status");
+
+
+    /*
+      Work out where the MP3 should currently be playing.
+    */
+    function getLivePosition() {
+
+      if (!audio.duration || !isFinite(audio.duration)) {
+        return 0;
+      }
+
+      /*
+        How many seconds have passed since the radio started?
+      */
+      const secondsSinceStart =
+        (Date.now() - RADIO_START_EPOCH_MS) / 1000;
+
+
+      /*
+        Modulo (%) makes the song repeat forever.
+
+        Example:
+
+        Song duration: 300 seconds
+        Time elapsed: 740 seconds
+
+        740 % 300 = 140
+
+        So the listener joins at 2:20.
+      */
+      const position =
+        ((secondsSinceStart % audio.duration) + audio.duration)
+        % audio.duration;
+
+      return position;
+    }
+
+
+    /*
+      Move the listener to the current live position.
+    */
+    function hardSync() {
+
+      if (!audio.duration || !isFinite(audio.duration)) {
+        return;
+      }
+
+      audio.currentTime = getLivePosition();
+      audio.playbackRate = 1;
+    }
+
+
+    /*
+      Keep listeners synchronized.
+
+      If they're significantly out of sync,
+      jump to the proper position.
+
+      For tiny differences, slightly adjust playback speed
+      so synchronization feels smoother.
+    */
+    function keepSynced() {
+
+      if (
+        audio.paused ||
+        !audio.duration ||
+        !isFinite(audio.duration)
+      ) {
+        return;
+      }
+
+      const expectedPosition = getLivePosition();
+
+      let difference =
+        expectedPosition - audio.currentTime;
+
+
+      /*
+        Handle the point where the MP3 loops.
+
+        Example:
+
+        Expected: 1 second
+        Current: 299 seconds
+
+        That's actually only ~2 seconds apart,
+        not 298 seconds apart.
+      */
+      if (difference > audio.duration / 2) {
+        difference -= audio.duration;
+      }
+
+      if (difference < -audio.duration / 2) {
+        difference += audio.duration;
+      }
+
+
+      /*
+        More than 1 second out:
+        jump directly to live position.
+      */
+      if (Math.abs(difference) > 1) {
+
+        audio.currentTime = expectedPosition;
+        audio.playbackRate = 1;
+
+        return;
+      }
+
+
+      /*
+        Small drift:
+        gently speed up or slow down.
+      */
+      if (Math.abs(difference) > 0.10) {
+
+        if (difference > 0) {
+          audio.playbackRate = 1.015;
+        } else {
+          audio.playbackRate = 0.985;
+        }
+
+      } else {
+
+        audio.playbackRate = 1;
+
+      }
+    }
+
+
+    /*
+      ============================================================
+      LISTEN BUTTON
+      ============================================================
+    */
+
+    listenButton.addEventListener("click", async () => {
+
+      listenButton.disabled = true;
+
+      status.textContent =
+        "Connecting to live broadcast...";
+
+      try {
+
+        /*
+          Wait until the browser knows how long
+          the MP3 is.
+        */
+        if (
+          !audio.duration ||
+          !isFinite(audio.duration)
+        ) {
+
+          await new Promise((resolve, reject) => {
+
+            const loaded = () => {
+              cleanup();
+              resolve();
+            };
+
+            const failed = () => {
+              cleanup();
+              reject(
+                new Error("Could not load radio.mp3")
+              );
+            };
+
+            const cleanup = () => {
+              audio.removeEventListener(
+                "loadedmetadata",
+                loaded
+              );
+
+              audio.removeEventListener(
+                "error",
+                failed
+              );
+            };
+
+            audio.addEventListener(
+              "loadedmetadata",
+              loaded
+            );
+
+            audio.addEventListener(
+              "error",
+              failed
+            );
+
+            audio.load();
+
+          });
+
+        }
+
+
+        /*
+          Jump directly to wherever the broadcast
+          currently is.
+        */
+        hardSync();
+
+
+        /*
+          Start audio.
+        */
+        await audio.play();
+
+
+        listenButton.textContent = "🔊 Listening Live";
+
+        status.textContent =
+          "You are listening to the live broadcast";
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        listenButton.disabled = false;
+
+        listenButton.textContent =
+          "Listen Live";
+
+        status.textContent =
+          "Could not start the radio. Make sure radio.mp3 is in the same folder.";
+
+      }
+
+    });
+
+
+    /*
+      ============================================================
+      AUTOMATIC LOOPING
+      ============================================================
+
+      The HTML audio element already has:
+
+      loop
+
+      so the MP3 repeats automatically.
+
+      This extra event also makes sure it remains
+      synchronized when the track wraps around.
+    */
+
+    audio.addEventListener("ended", async () => {
+
+      hardSync();
+
+      try {
+        await audio.play();
+      } catch (error) {
+        console.error(error);
+      }
+
+    });
+
+
+    /*
+      Check synchronization every 5 seconds.
+    */
+    setInterval(() => {
+
+      keepSynced();
+
+    }, 5000);
+
+
+    /*
+      If the user switches tabs or locks their phone,
+      browsers may suspend audio/timers.
+
+      When they return, immediately resynchronize.
+    */
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+
+        if (
+          document.visibilityState === "visible" &&
+          !audio.paused
+        ) {
+
+          hardSync();
+
+        }
+
+      }
+    );
+
+
+    /*
+      Also resync after the browser resumes playback.
+    */
+    audio.addEventListener("play", () => {
+
+      hardSync();
+
+    });
+
+  </script>
+
+</body>
+</html>
+```
