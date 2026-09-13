@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,27 +16,52 @@
             background: black;
         }
 
-        video {
+        #bgvideo {
             position: fixed;
             top: 0;
             left: 0;
-
             width: 100vw;
             height: 100vh;
-
-            /* Stretches the video to fill the screen */
             object-fit: fill;
-
-            z-index: -1;
+            background: black;
         }
     </style>
 </head>
 
 <body>
 
-    <video autoplay muted loop playsinline>
-        <source src="https://github.com/gamerdad24/website/raw/refs/heads/main/swib.by_files/funnygoat.mp4" type="video/mp4">
+    <video
+        id="bgvideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+    >
+        <source src="funnygoat.mp4" type="video/mp4">
     </video>
+
+    <script>
+        const video = document.getElementById("bgvideo");
+
+        video.muted = true;
+        video.volume = 0;
+
+        function startVideo() {
+            video.play().catch(function(error) {
+                console.log("Video autoplay failed:", error);
+            });
+        }
+
+        window.addEventListener("load", startVideo);
+        video.addEventListener("canplay", startVideo);
+
+        video.addEventListener("ended", function() {
+            video.currentTime = 0;
+            startVideo();
+        });
+    </script>
 
 </body>
 </html>
+```
