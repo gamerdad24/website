@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Autism Kindergarten RP — Loading</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{font-family:Arial,Helvetica,sans-serif;background:#111;color:#fff}.loading{position:relative;width:100%;height:100%;min-height:100vh;overflow:hidden;background:#202321}.bg-layer{position:absolute;top:-3%;right:-3%;bottom:-3%;left:-3%;width:106%;height:106%;object-fit:cover;transform:scale(1.04);opacity:0;transition:opacity 1s ease}.bg-layer.active{opacity:1}.dark-overlay{position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.25) 45%,rgba(0,0,0,.58))}.texture{position:absolute;top:0;right:0;bottom:0;left:0;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.018) 0 2px,rgba(0,0,0,.018) 2px 6px)}.logo{position:absolute;z-index:5;top:24px;left:42px;width:min(390px,32vw);height:auto}.content{position:absolute;z-index:4;left:5%;right:6%;top:54%;transform:translateY(-50%);display:flex;align-items:center;gap:6%}.photo-wrap{position:relative;width:44%;transform:rotate(-4deg);filter:drop-shadow(0 16px 22px rgba(0,0,0,.55));transition:opacity .5s ease,transform .5s ease}.photo{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border:9px solid #fff}.tape{position:absolute;width:78px;height:25px;background:rgba(239,226,190,.88);z-index:2}.tl{left:-25px;top:-7px;transform:rotate(-43deg)}.tr{right:-27px;top:-5px;transform:rotate(39deg)}.bl{left:-23px;bottom:-7px;transform:rotate(36deg)}.br{right:-29px;bottom:-7px;transform:rotate(-41deg)}.tip{flex:1;text-shadow:0 2px 5px #000;transition:opacity .5s ease,transform .5s ease}.tip h1{font-size:clamp(28px,2.4vw,46px);margin:0 0 18px;font-weight:800}.tip p{font-size:clamp(14px,1.2vw,21px);line-height:1.5;font-weight:600;margin:0}.photo-wrap.hidden{opacity:0;transform:rotate(-4deg) translateY(10px) scale(.97)}.tip.hidden{opacity:0;transform:translateY(10px)}.footer{position:absolute;z-index:6;left:50%;bottom:24px;transform:translateX(-50%);width:70%;max-width:760px;display:grid;grid-template-columns:1fr auto;grid-template-areas:"status status" "progress percent";align-items:center;gap:8px 16px}.status{grid-area:status;min-width:0;text-align:center}.status b{display:block;font-size:16px}.status span{font-size:13px;color:#ddd}.progress{grid-area:progress;height:6px;width:100%;background:rgba(255,255,255,.18);border-radius:10px;overflow:hidden;margin-bottom:8px}.fill{height:100%;width:0;background:#fff;transition:width .35s}.percent{grid-area:percent;font-weight:700;margin:0}@media(max-width:760px){.logo{width:260px;left:24px}.content{top:55%;flex-direction:column;gap:28px}.photo-wrap{width:72%}.tip{text-align:center}.footer{width:82vw;gap:7px 12px}.status{min-width:0}.status span{display:block}}
+</style>
+</head>
+<body>
+<div class="loading">
+<img class="bg-layer active" id="bgA" src="images/tip1.jpg" alt=""><img class="bg-layer" id="bgB" src="images/tip1.jpg" alt="">
+<div class="dark-overlay"></div><div class="texture"></div>
+<img class="logo" src="autism-kindergarten-rp-logo.png" alt="Autism Kindergarten RP">
+<main class="content">
+<div class="photo-wrap" id="photoWrap"><i class="tape tl"></i><i class="tape tr"></i><i class="tape bl"></i><i class="tape br"></i><img class="photo" id="photo" src="images/tip1.jpg" alt=""></div>
+<section class="tip" id="tip"><h1 id="tipTitle">Did you know?</h1><p id="tipText">You can use /me to describe actions your character is performing.</p></section>
+</main>
+<footer class="footer"><div class="status"><b id="server">Connecting to server...</b><span id="status">Loading map resources...</span></div><div class="progress"><div class="fill" id="fill"></div></div><div class="percent" id="percent">0%</div></footer>
+</div>
+<script>
+const CHANGE_INTERVAL=8000;
+const tips=[
+{title:'Did you know?',text:'You can use /me to describe actions your character is performing.',image:"images/tip1.jpg",background:"images/tip1.jpg"},
+{title:'Stay in character',text:'Use only information your character could reasonably know.',image:"images/tip2.jpg",background:"images/tip2.jpg"},
+{title:'Explore the map',text:'Look around for jobs, activities and places to roleplay.',image:"images/tip3.jpg",background:"images/tip3.jpg"},
+{title:'Respect other players',text:'Give everyone a fair chance to react and take part in the scene.',image:"images/tip4.jpg",background:"images/tip4.jpg"},
+{title:'Need help?',text:'If something goes wrong, contact staff instead of interrupting active roleplay.',image:"images/tip5.jpg",background:"images/tip5.jpg"},
+{title:'Build your character',text:'Give your character a personality, goals and flaws to make roleplay more interesting.',image:"images/tip6.jpg",background:"images/tip6.jpg"},
+{title:'Let scenes develop',text:'Not every roleplay situation needs to be rushed. Give other players time to respond and build the scene.',image:"images/tip7.jpg",background:"images/tip7.jpg"},
+{title:'Use local chat',text:'Keep nearby conversations in local chat when possible so roleplay stays easy to follow.',image:"images/tip8.jpg",background:"images/tip8.jpg"},
+{title:'Actions have consequences',text:"Think about how your character's choices could affect the people and situations around them.",image:"images/tip9.jpg",background:"images/tip9.jpg"},
+{title:'Create stories together',text:'The best roleplay gives other players something interesting to respond to and build upon.',image:"images/tip10.jpg",background:"images/tip10.jpg"},
+{title:'Keep it immersive',text:'Try to avoid unnecessary out-of-character discussion while an active roleplay scene is happening.',image:"images/tip11.jpg",background:"images/tip11.jpg"},
+{title:'Have fun',text:'Be creative, include other players and help make memorable roleplay situations for everyone.',image:"images/tip12.jpg",background:"images/tip12.jpg"}
+];
+let current=0,filesTotal=0,filesNeeded=0,activeBackground="A";
+const photo=document.getElementById("photo"),photoWrap=document.getElementById("photoWrap"),tip=document.getElementById("tip"),tipTitle=document.getElementById("tipTitle"),tipText=document.getElementById("tipText"),bgA=document.getElementById("bgA"),bgB=document.getElementById("bgB"),server=document.getElementById("server"),status=document.getElementById("status"),fill=document.getElementById("fill"),percent=document.getElementById("percent");
+tips.forEach(function(x){var a=new Image();a.src=x.image;var b=new Image();b.src=x.background;});
+function crossFadeBackground(url){
+var incoming=activeBackground==="A"?bgB:bgA;
+var outgoing=activeBackground==="A"?bgA:bgB;
+
+incoming.classList.remove("active");
+
+incoming.onload=function(){
+  incoming.classList.add("active");
+  outgoing.classList.remove("active");
+  activeBackground=activeBackground==="A"?"B":"A";
+  incoming.onload=null;
+};
+
+incoming.src=url;
+}
+function showTip(i){const x=tips[i];photoWrap.classList.add("hidden");tip.classList.add("hidden");crossFadeBackground(x.background);setTimeout(()=>{photo.src=x.image;tipTitle.textContent=x.title;tipText.textContent=x.text;photoWrap.classList.remove("hidden");tip.classList.remove("hidden")},500)}
+setInterval(()=>{current=(current+1)%tips.length;showTip(current)},CHANGE_INTERVAL);
+function GameDetails(servername,serverurl,mapname,maxplayers,steamid,gamemode){server.textContent=servername+" • "+mapname}
+function SetStatusChanged(s){status.textContent=s}
+function SetFilesTotal(n){filesTotal=Number(n);updateProgress()}
+function SetFilesNeeded(n){filesNeeded=Number(n);updateProgress()}
+function DownloadingFile(name){status.textContent="Downloading "+name}
+function updateProgress(){if(filesTotal<=0)return;let p=Math.max(0,Math.min(100,(filesTotal-filesNeeded)/filesTotal*100));fill.style.width=p+"%";percent.textContent=Math.round(p)+"%"}
+</script>
+</body>
+</html>
