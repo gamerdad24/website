@@ -215,7 +215,7 @@
       background: transparent;
     }
 
-    /* Spoilers */
+    /* SPOILERS */
 
     .artwork.spoiler {
       position: relative;
@@ -259,7 +259,7 @@
       pointer-events: none;
     }
 
-    /* Lightbox */
+    /* LIGHTBOX */
 
     .lightbox {
       position: fixed;
@@ -654,7 +654,7 @@
           src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/ponyboy%20(2).png"
           alt="Ponyboy commission artwork"
         >
-        <div class="spoiler-warning">Contains: Kink Gear</div>
+        <div class="spoiler-warning">Contains: Latex, Harness</div>
       </section>
 
       <div class="gallery-space"></div>
@@ -997,6 +997,30 @@
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Coughingfish.png"
             alt="CoughingFish commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+      </article>
+
+      <!-- TRICKATE -->
+      <article class="gallery-item">
+        <section class="info">
+          <div class="info-content">
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Trickate</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/trickate.png"
+            alt="Trickate commission artwork"
           >
         </section>
 
@@ -1466,16 +1490,13 @@
   </main>
 
 
-  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <img id="lightbox-image" src="" alt="">
   </div>
 
 
   <script>
-    /* ==========================================
-       SPOILERS + LIGHTBOX
-    ========================================== */
+    /* SPOILERS + LIGHTBOX */
 
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightbox-image");
@@ -1537,9 +1558,7 @@
     });
 
 
-    /* ==========================================
-       TRANSPARENCY SORTING
-    ========================================== */
+    /* TRANSPARENCY SORTING */
 
     async function imageHasTransparency(image) {
       try {
@@ -1569,7 +1588,6 @@
         height = Math.max(1, Math.round(height * scale));
 
         const canvas = document.createElement("canvas");
-
         canvas.width = width;
         canvas.height = height;
 
@@ -1578,20 +1596,8 @@
           { willReadFrequently: true }
         );
 
-        context.clearRect(
-          0,
-          0,
-          width,
-          height
-        );
-
-        context.drawImage(
-          image,
-          0,
-          0,
-          width,
-          height
-        );
+        context.clearRect(0, 0, width, height);
+        context.drawImage(image, 0, 0, width, height);
 
         const pixels = context.getImageData(
           0,
@@ -1600,11 +1606,7 @@
           height
         ).data;
 
-        for (
-          let i = 3;
-          i < pixels.length;
-          i += 4
-        ) {
+        for (let i = 3; i < pixels.length; i += 4) {
           if (pixels[i] < 250) {
             return true;
           }
@@ -1645,16 +1647,12 @@
                 candidate.dataset.pair === pairName
             );
 
-            pair.forEach(
-              (candidate) =>
-                handled.add(candidate)
-            );
+            pair.forEach((candidate) => handled.add(candidate));
 
             let pairIsTransparent = false;
 
             for (const pairItem of pair) {
-              const pairImage =
-                pairItem.querySelector(".artwork img");
+              const pairImage = pairItem.querySelector(".artwork img");
 
               if (
                 pairImage &&
@@ -1675,9 +1673,7 @@
 
           handled.add(item);
 
-          const image =
-            item.querySelector(".artwork img");
-
+          const image = item.querySelector(".artwork img");
           const isTransparent =
             image &&
             await imageHasTransparency(image);
@@ -1689,21 +1685,15 @@
           }
         }
 
-        [
-          ...opaque,
-          ...transparent
-        ].forEach((item) => {
+        [...opaque, ...transparent].forEach((item) => {
           group.appendChild(item);
         });
       }
 
-      const notice =
-        document.getElementById("gallery-note");
-
-      const firstInfo =
-        document.querySelector(
-          ".gallery .gallery-item .info"
-        );
+      const notice = document.getElementById("gallery-note");
+      const firstInfo = document.querySelector(
+        ".gallery .gallery-item .info"
+      );
 
       if (
         notice &&
@@ -1714,17 +1704,12 @@
       }
     }
 
-    window.addEventListener(
-      "load",
-      () => {
-        sortTransparentArtwork();
-      }
-    );
+    window.addEventListener("load", () => {
+      sortTransparentArtwork();
+    });
 
 
-    /* ==========================================
-       MOUSE SPARKLES
-    ========================================== */
+    /* MOUSE SPARKLES */
 
     var colour = "#AAAAAA";
     var sparkles = 20;
@@ -1738,7 +1723,6 @@
     var ox = 400;
     var y = 300;
     var oy = 300;
-
     var swide = 800;
     var shigh = 600;
     var sleft = 0;
@@ -1757,26 +1741,16 @@
       if (document.getElementById) {
         var rats, rlef, rdow;
 
-        for (
-          var i = 0;
-          i < sparkles;
-          i++
-        ) {
+        for (var i = 0; i < sparkles; i++) {
           rats = createDiv(3, 3);
           rats.style.visibility = "hidden";
-
-          document.body.appendChild(
-            tiny[i] = rats
-          );
-
+          document.body.appendChild(tiny[i] = rats);
           starv[i] = 0;
           tinyv[i] = 0;
 
           rats = createDiv(5, 5);
-          rats.style.backgroundColor =
-            "transparent";
-          rats.style.visibility =
-            "hidden";
+          rats.style.backgroundColor = "transparent";
+          rats.style.visibility = "hidden";
 
           rlef = createDiv(1, 5);
           rdow = createDiv(5, 1);
@@ -1786,20 +1760,16 @@
 
           rlef.style.top = "2px";
           rlef.style.left = "0px";
-
           rdow.style.top = "0px";
           rdow.style.left = "2px";
 
-          document.body.appendChild(
-            star[i] = rats
-          );
+          document.body.appendChild(star[i] = rats);
         }
 
         set_width();
         sparkle();
       }
     });
-
 
     function sparkle() {
       var c;
@@ -1811,167 +1781,89 @@
         ox = x;
         oy = y;
 
-        for (
-          c = 0;
-          c < sparkles;
-          c++
-        ) {
+        for (c = 0; c < sparkles; c++) {
           if (!starv[c]) {
-            var offsetX =
-              Math.random() * 30 - 15;
+            var offsetX = Math.random() * 30 - 15;
+            var offsetY = Math.random() * 30 - 15;
 
-            var offsetY =
-              Math.random() * 30 - 15;
-
-            star[c].style.left =
-              (starx[c] =
-                x + offsetX) + "px";
-
-            star[c].style.top =
-              (stary[c] =
-                y + offsetY) + "px";
-
-            star[c].style.clip =
-              "rect(0px, 5px, 5px, 0px)";
-
-            star[c].style.visibility =
-              "visible";
-
+            star[c].style.left = (starx[c] = x + offsetX) + "px";
+            star[c].style.top = (stary[c] = y + offsetY) + "px";
+            star[c].style.clip = "rect(0px, 5px, 5px, 0px)";
+            star[c].style.visibility = "visible";
             starv[c] = 15;
             break;
           }
         }
       }
 
-      for (
-        c = 0;
-        c < sparkles;
-        c++
-      ) {
-        if (starv[c]) {
-          update_star(c);
-        }
-
-        if (tinyv[c]) {
-          update_tiny(c);
-        }
+      for (c = 0; c < sparkles; c++) {
+        if (starv[c]) update_star(c);
+        if (tinyv[c]) update_tiny(c);
       }
 
       setTimeout(sparkle, 20);
     }
 
-
     function update_star(i) {
       if (--starv[i] == 7) {
-        star[i].style.clip =
-          "rect(1px, 4px, 4px, 1px)";
+        star[i].style.clip = "rect(1px, 4px, 4px, 1px)";
       }
 
       if (starv[i]) {
-        stary[i] +=
-          1 + Math.random() * 3;
+        stary[i] += 1 + Math.random() * 3;
 
-        if (
-          stary[i] <
-          shigh + sdown
-        ) {
-          star[i].style.top =
-            stary[i] + "px";
-
-          starx[i] +=
-            (i % 7 - 3) / 3.5;
-
-          star[i].style.left =
-            starx[i] + "px";
+        if (stary[i] < shigh + sdown) {
+          star[i].style.top = stary[i] + "px";
+          starx[i] += (i % 7 - 3) / 3.5;
+          star[i].style.left = starx[i] + "px";
         } else {
-          star[i].style.visibility =
-            "hidden";
-
+          star[i].style.visibility = "hidden";
           starv[i] = 0;
           return;
         }
       } else {
         tinyv[i] = 15;
-
-        tiny[i].style.top =
-          (tinyy[i] =
-            stary[i]) + "px";
-
-        tiny[i].style.left =
-          (tinyx[i] =
-            starx[i]) + "px";
-
-        tiny[i].style.width =
-          "2px";
-
-        tiny[i].style.height =
-          "2px";
-
-        star[i].style.visibility =
-          "hidden";
-
-        tiny[i].style.visibility =
-          "visible";
+        tiny[i].style.top = (tinyy[i] = stary[i]) + "px";
+        tiny[i].style.left = (tinyx[i] = starx[i]) + "px";
+        tiny[i].style.width = "2px";
+        tiny[i].style.height = "2px";
+        star[i].style.visibility = "hidden";
+        tiny[i].style.visibility = "visible";
       }
     }
 
-
     function update_tiny(i) {
       if (--tinyv[i] == 7) {
-        tiny[i].style.width =
-          "1px";
-
-        tiny[i].style.height =
-          "1px";
+        tiny[i].style.width = "1px";
+        tiny[i].style.height = "1px";
       }
 
       if (tinyv[i]) {
-        tinyy[i] +=
-          1 + Math.random() * 3;
+        tinyy[i] += 1 + Math.random() * 3;
 
-        if (
-          tinyy[i] <
-          shigh + sdown
-        ) {
-          tiny[i].style.top =
-            tinyy[i] + "px";
-
-          tinyx[i] +=
-            (i % 7 - 3) / 3.5;
-
-          tiny[i].style.left =
-            tinyx[i] + "px";
+        if (tinyy[i] < shigh + sdown) {
+          tiny[i].style.top = tinyy[i] + "px";
+          tinyx[i] += (i % 7 - 3) / 3.5;
+          tiny[i].style.left = tinyx[i] + "px";
         } else {
-          tiny[i].style.visibility =
-            "hidden";
-
+          tiny[i].style.visibility = "hidden";
           tinyv[i] = 0;
           return;
         }
       } else {
-        tiny[i].style.visibility =
-          "hidden";
+        tiny[i].style.visibility = "hidden";
       }
     }
 
-
-    document.addEventListener(
-      "mousemove",
-      mouse
-    );
-
+    document.addEventListener("mousemove", mouse);
 
     function mouse(e) {
       set_scroll();
 
       var newY = e.pageY;
       var newX = e.pageX;
-
-      var deltaX =
-        newX - lastMouseX;
-
-      var deltaY =
-        newY - lastMouseY;
+      var deltaX = newX - lastMouseX;
+      var deltaY = newY - lastMouseY;
 
       mouseSpeed = Math.sqrt(
         deltaX * deltaX +
@@ -1985,12 +1877,8 @@
       y = newY;
     }
 
-
     function set_scroll() {
-      if (
-        typeof self.pageYOffset ==
-        "number"
-      ) {
+      if (typeof self.pageYOffset == "number") {
         sdown = self.pageYOffset;
         sleft = self.pageXOffset;
 
@@ -1998,11 +1886,8 @@
         document.body.scrollTop ||
         document.body.scrollLeft
       ) {
-        sdown =
-          document.body.scrollTop;
-
-        sleft =
-          document.body.scrollLeft;
+        sdown = document.body.scrollTop;
+        sleft = document.body.scrollLeft;
 
       } else if (
         document.documentElement &&
@@ -2011,11 +1896,8 @@
           document.documentElement.scrollLeft
         )
       ) {
-        sleft =
-          document.documentElement.scrollLeft;
-
-        sdown =
-          document.documentElement.scrollTop;
+        sleft = document.documentElement.scrollLeft;
+        sdown = document.documentElement.scrollTop;
 
       } else {
         sdown = 0;
@@ -2023,18 +1905,10 @@
       }
     }
 
-
-    window.addEventListener(
-      "resize",
-      set_width
-    );
-
+    window.addEventListener("resize", set_width);
 
     function set_width() {
-      if (
-        typeof self.innerWidth ==
-        "number"
-      ) {
+      if (typeof self.innerWidth == "number") {
         swide = self.innerWidth;
         shigh = self.innerHeight;
 
@@ -2042,48 +1916,25 @@
         document.documentElement &&
         document.documentElement.clientWidth
       ) {
-        swide =
-          document.documentElement.clientWidth;
+        swide = document.documentElement.clientWidth;
+        shigh = document.documentElement.clientHeight;
 
-        shigh =
-          document.documentElement.clientHeight;
-
-      } else if (
-        document.body.clientWidth
-      ) {
-        swide =
-          document.body.clientWidth;
-
-        shigh =
-          document.body.clientHeight;
+      } else if (document.body.clientWidth) {
+        swide = document.body.clientWidth;
+        shigh = document.body.clientHeight;
       }
     }
 
-
     function createDiv(height, width) {
-      var div =
-        document.createElement("div");
+      var div = document.createElement("div");
 
-      div.style.position =
-        "absolute";
-
-      div.style.height =
-        height + "px";
-
-      div.style.width =
-        width + "px";
-
-      div.style.overflow =
-        "hidden";
-
-      div.style.backgroundColor =
-        colour;
-
-      div.style.pointerEvents =
-        "none";
-
-      div.style.zIndex =
-        "9999";
+      div.style.position = "absolute";
+      div.style.height = height + "px";
+      div.style.width = width + "px";
+      div.style.overflow = "hidden";
+      div.style.backgroundColor = colour;
+      div.style.pointerEvents = "none";
+      div.style.zIndex = "9999";
 
       return div;
     }
