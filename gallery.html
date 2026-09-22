@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Commission Gallery</title>
 
   <style>
@@ -25,7 +23,6 @@
       min-height: 100%;
       font-family: Arial, Helvetica, sans-serif;
       color: #ffffff;
-
       background: linear-gradient(
         to bottom,
         #0d0d0d 0%,
@@ -33,10 +30,8 @@
         #070707 70%,
         #030303 100%
       );
-
       overflow-x: hidden;
       overflow-y: auto;
-
       text-shadow:
         0 2px 3px rgba(0, 0, 0, 0.85),
         0 0 6px rgba(0, 0, 0, 0.55);
@@ -46,30 +41,13 @@
       overflow: hidden;
     }
 
-    .subtitle,
-    .description,
-    .artist-block,
-    .description-block,
-    .other-character-block,
-    .gallery-note,
-    .content-warning,
-    .credit-notice {
-      text-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.9),
-        0 0 5px rgba(0, 0, 0, 0.4);
-    }
-
-    /* =====================================================
-       GALLERY
-    ====================================================== */
-
     .gallery {
       display: flex;
       flex-direction: column;
       gap: 80px;
       width: 100%;
       padding-top: 30px;
-      background: transparent;
+      padding-bottom: 80px;
     }
 
     .gallery-group {
@@ -86,10 +64,6 @@
       background: transparent;
     }
 
-    /* =====================================================
-       INFO
-    ====================================================== */
-
     .info {
       position: relative;
       display: flex;
@@ -102,11 +76,68 @@
     .info-content {
       width: 260px;
       margin-right: 70px;
+      text-align: right;
     }
 
-    /* =====================================================
-       TOP LEFT NOTICE
-    ====================================================== */
+    .subtitle {
+      margin-bottom: 20px;
+      color: #9a9a9a;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.2;
+      text-align: right;
+    }
+
+    .artist-block,
+    .description-block,
+    .other-character-block {
+      width: 100%;
+      text-align: right;
+    }
+
+    .artist-label,
+    .description-label,
+    .other-character-label {
+      display: block;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .artist-name,
+    .description,
+    .other-character-name {
+      display: block;
+      margin-top: 2px;
+      color: #9a9a9a;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .description-block {
+      width: 100%;
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .other-character-block {
+      margin-top: 20px;
+    }
+
+    .subtitle,
+    .description,
+    .artist-block,
+    .description-block,
+    .other-character-block,
+    .gallery-note,
+    .content-warning,
+    .credit-notice {
+      text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.9),
+        0 0 5px rgba(0, 0, 0, 0.4);
+    }
 
     .gallery-note {
       position: absolute;
@@ -114,16 +145,13 @@
       left: 35px;
       width: auto;
       max-width: 340px;
-
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 10px;
       font-weight: 400;
       line-height: 1.55;
       letter-spacing: 0.1px;
-
       color: #b0b0b0;
       text-align: left;
-
       text-shadow:
         0 1px 3px rgba(0, 0, 0, 0.8),
         0 0 5px rgba(0, 0, 0, 0.3);
@@ -149,72 +177,6 @@
       line-height: 1.55;
     }
 
-    /* =====================================================
-       METADATA
-    ====================================================== */
-
-    .subtitle {
-      width: 100%;
-      margin-bottom: 20px;
-      color: #9a9a9a;
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 1.2;
-      text-align: right;
-    }
-
-    .artist-block {
-      width: 100%;
-      margin: 0;
-      text-align: right;
-    }
-
-    .artist-label,
-    .description-label,
-    .other-character-label {
-      display: block;
-      margin-bottom: 2px;
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: 500;
-      line-height: 1.2;
-    }
-
-    .artist-name,
-    .other-character-name {
-      display: block;
-      color: #9a9a9a;
-      font-size: 11px;
-      font-weight: 400;
-      line-height: 1.2;
-    }
-
-    .description-block {
-      width: 100%;
-      margin-top: 20px;
-      text-align: right;
-    }
-
-    .description {
-      width: 100%;
-      margin: 0;
-      color: #9a9a9a;
-      font-size: 11px;
-      font-weight: 400;
-      line-height: 1.2;
-      text-align: right;
-    }
-
-    .other-character-block {
-      width: 100%;
-      margin-top: 20px;
-      text-align: right;
-    }
-
-    /* =====================================================
-       ARTWORK
-    ====================================================== */
-
     .artwork {
       display: flex;
       align-items: center;
@@ -234,17 +196,13 @@
       object-position: center;
       margin: 0;
       cursor: zoom-in;
-
       background-color: #181818;
-
       background-image:
         linear-gradient(45deg, #202020 25%, transparent 25%),
         linear-gradient(-45deg, #202020 25%, transparent 25%),
         linear-gradient(45deg, transparent 75%, #202020 75%),
         linear-gradient(-45deg, transparent 75%, #202020 75%);
-
       background-size: 20px 20px;
-
       background-position:
         0 0,
         0 10px,
@@ -257,9 +215,7 @@
       background: transparent;
     }
 
-    /* =====================================================
-       SPOILERS
-    ====================================================== */
+    /* Spoilers */
 
     .artwork.spoiler {
       position: relative;
@@ -278,25 +234,20 @@
       position: absolute;
       inset: 0;
       z-index: 2;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
-      color: #ffffff;
+      color: #fff;
       font-size: 11px;
       font-weight: 500;
       line-height: 1.3;
       letter-spacing: 0.2px;
-
       white-space: nowrap;
       background: transparent;
       cursor: pointer;
-
       text-shadow:
         0 1px 3px rgba(0, 0, 0, 0.9),
         0 0 8px rgba(0, 0, 0, 0.8);
-
       transition:
         opacity 0.2s ease,
         visibility 0.2s ease;
@@ -308,33 +259,24 @@
       pointer-events: none;
     }
 
-    /* =====================================================
-       LIGHTBOX
-    ====================================================== */
+    /* Lightbox */
 
     .lightbox {
       position: fixed;
       inset: 0;
       z-index: 10000;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       padding: 40px;
-
       background: rgba(0, 0, 0, 0.92);
-
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
-
       opacity: 0;
       visibility: hidden;
-
       transition:
         opacity 0.2s ease,
         visibility 0.2s ease;
-
       cursor: zoom-out;
     }
 
@@ -353,10 +295,6 @@
       cursor: default;
       box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
     }
-
-    /* =====================================================
-       MOBILE
-    ====================================================== */
 
     @media (max-width: 900px) {
       .gallery {
@@ -403,11 +341,9 @@
         width: 100%;
         height: auto;
         min-height: 250px;
-
         display: flex;
         align-items: center;
         justify-content: flex-end;
-
         padding: 65px 28px 40px;
         background: transparent;
       }
@@ -445,16 +381,12 @@
 
   <main class="gallery">
 
-    <!-- =====================================================
-         GROUP 1
-    ====================================================== -->
-
+    <!-- GROUP 1 -->
     <div class="gallery-group" data-sort-transparent="true">
 
       <!-- WOLFE -->
       <article class="gallery-item">
         <section class="info">
-
           <div class="gallery-note" id="gallery-note">
             <div class="gallery-intro">
               A curated gallery of artwork I've commissioned.<br>
@@ -492,7 +424,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- KITAKETTU -->
       <article class="gallery-item">
         <section class="info">
@@ -516,7 +447,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- FALVIE -->
       <article class="gallery-item">
@@ -542,7 +472,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- FLEET-FOOT -->
       <article class="gallery-item">
         <section class="info">
@@ -562,13 +491,11 @@
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Fleet-foot%20NSFW.png"
             alt="Fleet-Foot commission artwork"
           >
-
           <div class="spoiler-warning">Contains: NSFW</div>
         </section>
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- ABS33NCE -->
       <article class="gallery-item">
@@ -599,7 +526,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- PRESUK -->
       <article class="gallery-item">
         <section class="info">
@@ -623,7 +549,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- WETDOG 2024 -->
       <article class="gallery-item">
@@ -659,7 +584,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- WETDOG 2025 -->
       <article class="gallery-item">
         <section class="info">
@@ -679,13 +603,11 @@
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/wetdog2003%20(6).png"
             alt="wetdog2003 commission artwork"
           >
-
           <div class="spoiler-warning">Contains: Blood, Drugs, SH</div>
         </section>
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- AILENSOLID -->
       <article class="gallery-item">
@@ -713,61 +635,82 @@
 
     </div>
 
+    <!-- PONYBOY -->
+    <article class="gallery-item">
+      <section class="info">
+        <div class="info-content">
+          <div class="subtitle">2026</div>
 
-    <!-- =====================================================
-         GROUP 2
-    ====================================================== -->
+          <div class="artist-block">
+            <span class="artist-label">Artist</span>
+            <span class="artist-name">Ponyboy</span>
+          </div>
+        </div>
+      </section>
 
+      <section class="artwork spoiler">
+        <img
+          crossorigin="anonymous"
+          src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/ponyboy%20(2).png"
+          alt="Ponyboy commission artwork"
+        >
+        <div class="spoiler-warning">Contains: Kink Gear</div>
+      </section>
+
+      <div class="gallery-space"></div>
+    </article>
+
+
+    <!-- GROUP 2 -->
     <div class="gallery-group" data-sort-transparent="true">
 
-<!-- ROSEPUPPIES -->
-<article class="gallery-item">
-  <section class="info">
-    <div class="info-content">
-      <div class="subtitle">2026</div>
+      <!-- ROSEPUPPIES -->
+      <article class="gallery-item">
+        <section class="info">
+          <div class="info-content">
+            <div class="subtitle">2026</div>
 
-      <div class="artist-block">
-        <span class="artist-label">Artist</span>
-        <span class="artist-name">Rosepuppies</span>
-      </div>
-    </div>
-  </section>
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Rosepuppies</span>
+            </div>
+          </div>
+        </section>
 
-  <section class="artwork">
-    <img
-      crossorigin="anonymous"
-      src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Rosepuppies%20(2).png"
-      alt="Rosepuppies commission artwork"
-    >
-  </section>
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Rosepuppies%20(2).png"
+            alt="Rosepuppies commission artwork"
+          >
+        </section>
 
-  <div class="gallery-space"></div>
-</article>
+        <div class="gallery-space"></div>
+      </article>
 
+      <!-- FOXSNAX -->
+      <article class="gallery-item">
+        <section class="info">
+          <div class="info-content">
+            <div class="subtitle">2026</div>
 
-<!-- FOXSNAX -->
-<article class="gallery-item">
-  <section class="info">
-    <div class="info-content">
-      <div class="subtitle">2026</div>
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Foxsnax</span>
+            </div>
+          </div>
+        </section>
 
-      <div class="artist-block">
-        <span class="artist-label">Artist</span>
-        <span class="artist-name">Foxsnax</span>
-      </div>
-    </div>
-  </section>
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/foxsnax%20(1).png"
+            alt="Foxsnax commission artwork"
+          >
+        </section>
 
-  <section class="artwork">
-    <img
-      crossorigin="anonymous"
-      src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/foxsnax%20(1).png"
-      alt="Foxsnax commission artwork"
-    >
-  </section>
-
-  <div class="gallery-space"></div>
-</article>
+        <div class="gallery-space"></div>
+      </article>
 
       <!-- HAMGIRL -->
       <article class="gallery-item">
@@ -793,7 +736,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- AUZUTEA 1 -->
       <article class="gallery-item">
         <section class="info">
@@ -817,7 +759,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- AUZUTEA 2 -->
       <article class="gallery-item">
@@ -843,7 +784,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- KRATZY -->
       <article class="gallery-item">
         <section class="info">
@@ -868,7 +808,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- F0XLETT -->
       <article class="gallery-item">
         <section class="info">
@@ -892,7 +831,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- SYLFEANNE -->
       <article class="gallery-item">
@@ -921,10 +859,7 @@
     </div>
 
 
-    <!-- =====================================================
-         GROUP 3
-    ====================================================== -->
-
+    <!-- GROUP 3 -->
     <div class="gallery-group">
 
       <!-- KIRO -->
@@ -955,7 +890,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- EZMODE REFERENCE -->
       <article class="gallery-item">
@@ -989,10 +923,7 @@
     </div>
 
 
-    <!-- =====================================================
-         GROUP 4
-    ====================================================== -->
-
+    <!-- GROUP 4 -->
     <div class="gallery-group" data-sort-transparent="true">
 
       <!-- COYRIN -->
@@ -1018,7 +949,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- PAWKISSER44 -->
       <article class="gallery-item">
@@ -1049,7 +979,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- COUGHINGFISH -->
       <article class="gallery-item">
         <section class="info">
@@ -1073,7 +1002,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- LOVELOCK 1 -->
       <article class="gallery-item">
@@ -1099,7 +1027,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- LOVELOCK 2 -->
       <article class="gallery-item">
         <section class="info">
@@ -1124,7 +1051,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- OGGY GIF -->
       <article class="gallery-item">
         <section class="info">
@@ -1148,7 +1074,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- UNKNOWN -->
       <article class="gallery-item">
@@ -1184,7 +1109,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- WOLFIEMOONSCAR -->
       <article class="gallery-item">
         <section class="info">
@@ -1208,7 +1132,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- OGGY PNG -->
       <article class="gallery-item">
@@ -1234,7 +1157,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- SHIINEJI -->
       <article class="gallery-item" data-pair="shiineji-ezmode">
         <section class="info">
@@ -1259,8 +1181,7 @@
         <div class="gallery-space"></div>
       </article>
 
-
-      <!-- EZMODE NON-REF -->
+      <!-- EZMODE -->
       <article class="gallery-item" data-pair="shiineji-ezmode">
         <section class="info">
           <div class="info-content">
@@ -1292,10 +1213,7 @@
     </div>
 
 
-    <!-- =====================================================
-         GROUP 5
-    ====================================================== -->
-
+    <!-- GROUP 5 -->
     <div class="gallery-group">
 
       <!-- FEVE -->
@@ -1321,7 +1239,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- EARTHLINGSFURSUITS -->
       <article class="gallery-item">
@@ -1352,7 +1269,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- PLUSH -->
       <article class="gallery-item">
         <section class="info">
@@ -1366,7 +1282,6 @@
 
             <div class="description-block">
               <span class="description-label">Info</span>
-
               <p class="description">
                 Crocheted plush<br>
                 Gift from my friend Zack's partner
@@ -1379,15 +1294,14 @@
           <img
             crossorigin="anonymous"
             src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/plush.jpg"
-            alt="Crocheted plush gift"
+            alt="Crocheted plush"
           >
         </section>
 
         <div class="gallery-space"></div>
       </article>
 
-
-      <!-- RREZE 1 -->
+      <!-- RREZE - LEAD NEVER FOLLOW -->
       <article class="gallery-item">
         <section class="info">
           <div class="info-content">
@@ -1411,8 +1325,7 @@
         <div class="gallery-space"></div>
       </article>
 
-
-      <!-- RREZE 2 -->
+      <!-- RREZE - EVERSINCE -->
       <article class="gallery-item">
         <section class="info">
           <div class="info-content">
@@ -1435,7 +1348,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- SOYATU -->
       <article class="gallery-item">
@@ -1460,7 +1372,6 @@
 
         <div class="gallery-space"></div>
       </article>
-
 
       <!-- WOJAK -->
       <article class="gallery-item">
@@ -1491,7 +1402,6 @@
         <div class="gallery-space"></div>
       </article>
 
-
       <!-- SNOS -->
       <article class="gallery-item">
         <section class="info">
@@ -1519,10 +1429,7 @@
     </div>
 
 
-    <!-- =====================================================
-         GROUP 6
-    ====================================================== -->
-
+    <!-- GROUP 6 -->
     <div class="gallery-group">
 
       <!-- MYONIIS -->
@@ -1559,28 +1466,20 @@
   </main>
 
 
-  <!-- =====================================================
-       LIGHTBOX
-  ====================================================== -->
-
+  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <img id="lightbox-image" src="" alt="">
   </div>
 
 
-  <!-- =====================================================
-       GALLERY / SPOILER / LIGHTBOX / SORTING
-  ====================================================== -->
-
   <script>
+    /* ==========================================
+       SPOILERS + LIGHTBOX
+    ========================================== */
+
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightbox-image");
     const artworkImages = document.querySelectorAll(".artwork img");
-
-
-    /* =====================================================
-       SPOILERS
-    ====================================================== */
 
     document.querySelectorAll(".artwork.spoiler").forEach((spoiler) => {
       const warning = spoiler.querySelector(".spoiler-warning");
@@ -1590,11 +1489,6 @@
         spoiler.classList.add("revealed");
       });
     });
-
-
-    /* =====================================================
-       LIGHTBOX
-    ====================================================== */
 
     artworkImages.forEach((image) => {
       image.addEventListener("click", () => {
@@ -1615,7 +1509,6 @@
       });
     });
 
-
     function closeLightbox() {
       lightbox.classList.remove("active");
       document.body.classList.remove("lightbox-open");
@@ -1628,13 +1521,11 @@
       }, 200);
     }
 
-
     lightbox.addEventListener("click", (event) => {
       if (event.target === lightbox) {
         closeLightbox();
       }
     });
-
 
     document.addEventListener("keydown", (event) => {
       if (
@@ -1646,9 +1537,9 @@
     });
 
 
-    /* =====================================================
-       TRANSPARENCY DETECTION
-    ====================================================== */
+    /* ==========================================
+       TRANSPARENCY SORTING
+    ========================================== */
 
     async function imageHasTransparency(image) {
       try {
@@ -1674,15 +1565,8 @@
           maxSize / height
         );
 
-        width = Math.max(
-          1,
-          Math.round(width * scale)
-        );
-
-        height = Math.max(
-          1,
-          Math.round(height * scale)
-        );
+        width = Math.max(1, Math.round(width * scale));
+        height = Math.max(1, Math.round(height * scale));
 
         const canvas = document.createElement("canvas");
 
@@ -1691,9 +1575,7 @@
 
         const context = canvas.getContext(
           "2d",
-          {
-            willReadFrequently: true
-          }
+          { willReadFrequently: true }
         );
 
         context.clearRect(
@@ -1736,10 +1618,6 @@
     }
 
 
-    /* =====================================================
-       TRANSPARENT IMAGES TO BOTTOM
-    ====================================================== */
-
     async function sortTransparentArtwork() {
       const groups = document.querySelectorAll(
         '.gallery-group[data-sort-transparent="true"]'
@@ -1747,9 +1625,7 @@
 
       for (const group of groups) {
         const items = Array.from(
-          group.querySelectorAll(
-            ":scope > .gallery-item"
-          )
+          group.querySelectorAll(":scope > .gallery-item")
         );
 
         const opaque = [];
@@ -1769,9 +1645,10 @@
                 candidate.dataset.pair === pairName
             );
 
-            pair.forEach((candidate) => {
-              handled.add(candidate);
-            });
+            pair.forEach(
+              (candidate) =>
+                handled.add(candidate)
+            );
 
             let pairIsTransparent = false;
 
@@ -1820,9 +1697,6 @@
         });
       }
 
-
-      /* Keep notice attached to first visible gallery item */
-
       const notice =
         document.getElementById("gallery-note");
 
@@ -1840,18 +1714,18 @@
       }
     }
 
+    window.addEventListener(
+      "load",
+      () => {
+        sortTransparentArtwork();
+      }
+    );
 
-    window.addEventListener("load", () => {
-      sortTransparentArtwork();
-    });
-  </script>
 
+    /* ==========================================
+       MOUSE SPARKLES
+    ========================================== */
 
-  <!-- =====================================================
-       MOUSE SPARKLE TRAIL
-  ====================================================== -->
-
-  <script>
     var colour = "#AAAAAA";
     var sparkles = 20;
 
@@ -1862,13 +1736,11 @@
 
     var x = 400;
     var ox = 400;
-
     var y = 300;
     var oy = 300;
 
     var swide = 800;
     var shigh = 600;
-
     var sleft = 0;
     var sdown = 0;
 
@@ -1881,14 +1753,15 @@
     var tinyy = new Array();
     var tinyv = new Array();
 
-
-    window.addEventListener("load", function () {
+    window.addEventListener("load", function() {
       if (document.getElementById) {
-        var rats;
-        var rlef;
-        var rdow;
+        var rats, rlef, rdow;
 
-        for (var i = 0; i < sparkles; i++) {
+        for (
+          var i = 0;
+          i < sparkles;
+          i++
+        ) {
           rats = createDiv(3, 3);
           rats.style.visibility = "hidden";
 
@@ -1900,9 +1773,10 @@
           tinyv[i] = 0;
 
           rats = createDiv(5, 5);
-
-          rats.style.backgroundColor = "transparent";
-          rats.style.visibility = "hidden";
+          rats.style.backgroundColor =
+            "transparent";
+          rats.style.visibility =
+            "hidden";
 
           rlef = createDiv(1, 5);
           rdow = createDiv(5, 1);
@@ -1937,7 +1811,11 @@
         ox = x;
         oy = y;
 
-        for (c = 0; c < sparkles; c++) {
+        for (
+          c = 0;
+          c < sparkles;
+          c++
+        ) {
           if (!starv[c]) {
             var offsetX =
               Math.random() * 30 - 15;
@@ -1946,10 +1824,12 @@
               Math.random() * 30 - 15;
 
             star[c].style.left =
-              (starx[c] = x + offsetX) + "px";
+              (starx[c] =
+                x + offsetX) + "px";
 
             star[c].style.top =
-              (stary[c] = y + offsetY) + "px";
+              (stary[c] =
+                y + offsetY) + "px";
 
             star[c].style.clip =
               "rect(0px, 5px, 5px, 0px)";
@@ -1958,7 +1838,6 @@
               "visible";
 
             starv[c] = 15;
-
             break;
           }
         }
@@ -1978,10 +1857,7 @@
         }
       }
 
-      setTimeout(
-        sparkle,
-        20
-      );
+      setTimeout(sparkle, 20);
     }
 
 
@@ -2012,17 +1888,18 @@
             "hidden";
 
           starv[i] = 0;
-
           return;
         }
       } else {
         tinyv[i] = 15;
 
         tiny[i].style.top =
-          (tinyy[i] = stary[i]) + "px";
+          (tinyy[i] =
+            stary[i]) + "px";
 
         tiny[i].style.left =
-          (tinyx[i] = starx[i]) + "px";
+          (tinyx[i] =
+            starx[i]) + "px";
 
         tiny[i].style.width =
           "2px";
@@ -2069,7 +1946,6 @@
             "hidden";
 
           tinyv[i] = 0;
-
           return;
         }
       } else {
@@ -2097,11 +1973,10 @@
       var deltaY =
         newY - lastMouseY;
 
-      mouseSpeed =
-        Math.sqrt(
-          deltaX * deltaX +
-          deltaY * deltaY
-        );
+      mouseSpeed = Math.sqrt(
+        deltaX * deltaX +
+        deltaY * deltaY
+      );
 
       lastMouseX = newX;
       lastMouseY = newY;
@@ -2116,14 +1991,10 @@
         typeof self.pageYOffset ==
         "number"
       ) {
-        sdown =
-          self.pageYOffset;
+        sdown = self.pageYOffset;
+        sleft = self.pageXOffset;
 
-        sleft =
-          self.pageXOffset;
-      }
-
-      else if (
+      } else if (
         document.body.scrollTop ||
         document.body.scrollLeft
       ) {
@@ -2132,9 +2003,8 @@
 
         sleft =
           document.body.scrollLeft;
-      }
 
-      else if (
+      } else if (
         document.documentElement &&
         (
           document.documentElement.scrollTop ||
@@ -2146,9 +2016,8 @@
 
         sdown =
           document.documentElement.scrollTop;
-      }
 
-      else {
+      } else {
         sdown = 0;
         sleft = 0;
       }
@@ -2166,14 +2035,10 @@
         typeof self.innerWidth ==
         "number"
       ) {
-        swide =
-          self.innerWidth;
+        swide = self.innerWidth;
+        shigh = self.innerHeight;
 
-        shigh =
-          self.innerHeight;
-      }
-
-      else if (
+      } else if (
         document.documentElement &&
         document.documentElement.clientWidth
       ) {
@@ -2182,9 +2047,8 @@
 
         shigh =
           document.documentElement.clientHeight;
-      }
 
-      else if (
+      } else if (
         document.body.clientWidth
       ) {
         swide =
@@ -2226,5 +2090,4 @@
   </script>
 
 </body>
-
 </html>
