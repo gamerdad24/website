@@ -38,94 +38,147 @@
         background-repeat: no-repeat;
     }
 
+    /* =========================================================
+       INFORMATION
+       ========================================================= */
+
     #leftSide {
         position: fixed;
-        left: 45px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 420px;
+
+        left: 30px;
+        bottom: 28px;
+
+        width: 360px;
+
         z-index: 20;
     }
 
     .section {
-        margin-bottom: 24px;
+        margin-bottom: 14px;
     }
 
     .label {
-        margin-bottom: 5px;
-        font-size: 12px;
+        margin-bottom: 3px;
+
+        font-size: 9px;
         font-weight: 600;
+
         color: rgba(255,255,255,0.55);
+
         text-transform: uppercase;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
     }
 
     #steamName {
-        font-size: 30px;
+        font-size: 21px;
         font-weight: 600;
         color: white;
     }
 
     #serverName {
-        font-size: 26px;
+        font-size: 18px;
         font-weight: 600;
         color: white;
     }
 
     #mapName {
-        margin-top: 6px;
-        font-size: 15px;
+        margin-top: 4px;
+
+        font-size: 11px;
+
         color: rgba(255,255,255,0.65);
     }
 
     #status {
-        min-height: 22px;
-        font-size: 15px;
+        min-height: 17px;
+
+        font-size: 11px;
+
         color: rgba(255,255,255,0.75);
     }
 
+    /* =========================================================
+       PROGRESS BAR
+       ========================================================= */
+
     #loadingBar {
         width: 100%;
-        height: 4px;
-        margin-top: 12px;
+        height: 3px;
+
+        margin-top: 8px;
+
         overflow: hidden;
+
         background: rgba(255,255,255,0.18);
-        border-radius: 4px;
+
+        border-radius: 3px;
     }
 
     #loadingProgress {
         width: 0%;
         height: 100%;
+
         background: white;
-        border-radius: 4px;
+
+        border-radius: 3px;
+
         transition: width 0.25s ease;
     }
 
     #eggMessage {
-        min-height: 20px;
-        font-size: 13px;
+        min-height: 17px;
+
+        font-size: 10px;
+
         color: rgba(255,255,255,0.45);
+
         transition: opacity 0.3s ease;
     }
 
-    #avatar {
+    /* =========================================================
+       BALLS
+       ========================================================= */
+
+    #avatar,
+    #enemy {
         position: fixed;
-        width: 128px;
-        height: 128px;
-        z-index: 10;
+
+        width: 125px;
+        height: 125px;
+
         pointer-events: none;
+
         transform-origin: center center;
     }
 
-    #avatarImage {
-        width: 128px;
-        height: 128px;
-        display: block;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 3px solid rgba(255,255,255,0.9);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+    #avatar {
+        z-index: 10;
+    }
 
+    #enemy {
+        z-index: 9;
+    }
+
+    #avatarImage,
+    #enemyImage {
+        width: 125px;
+        height: 125px;
+
+        display: block;
+
+        object-fit: cover;
+
+        border-radius: 50%;
+
+        border: 3px solid
+            rgba(255,255,255,0.9);
+
+        box-shadow:
+            0 8px 30px
+            rgba(0,0,0,0.6);
+    }
+
+    #avatarImage {
         animation:
             subtlePulse
             2s
@@ -133,32 +186,18 @@
             infinite;
     }
 
-    #enemy {
-        position: fixed;
-        width: 110px;
-        height: 110px;
-        z-index: 9;
-        pointer-events: none;
-        transform-origin: center center;
-    }
+    /* =========================================================
+       PARTICLES
+       ========================================================= */
 
-    #enemyImage {
-        width: 110px;
-        height: 110px;
-        display: block;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 3px solid rgba(255,255,255,0.9);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.65);
-    }
-
-    .explosionParticle {
+    .explosionParticle,
+    .edgeParticle {
         position: fixed;
-        width: 7px;
-        height: 7px;
+
         border-radius: 50%;
+
         pointer-events: none;
-        z-index: 30;
+
         background: #fff;
 
         box-shadow:
@@ -173,12 +212,28 @@
             opacity;
     }
 
+    .explosionParticle {
+        z-index: 30;
+    }
+
+    .edgeParticle {
+        z-index: 8;
+    }
+
+    /* =========================================================
+       COLLISION FLASH
+       ========================================================= */
+
     .explosionFlash {
         position: fixed;
+
         width: 18px;
         height: 18px;
+
         border-radius: 50%;
+
         pointer-events: none;
+
         z-index: 29;
 
         background:
@@ -218,13 +273,21 @@
         }
     }
 
+    /* =========================================================
+       EDGE IMPACT
+       ========================================================= */
+
     .impact {
         position: fixed;
+
         width: 8px;
         height: 8px;
+
         border-radius: 50%;
+
         pointer-events: none;
-        z-index: 4;
+
+        z-index: 7;
 
         background:
             rgba(255,255,255,0.8);
@@ -243,21 +306,28 @@
 
         0% {
             opacity: 0.8;
+
             width: 8px;
             height: 8px;
         }
 
         100% {
             opacity: 0;
+
             width: 45px;
             height: 45px;
         }
     }
 
+    /* =========================================================
+       DEMO BADGE
+       ========================================================= */
+
     #demoBadge {
         display: none;
 
         position: fixed;
+
         right: 25px;
         top: 25px;
 
@@ -279,8 +349,13 @@
         font-size: 11px;
 
         letter-spacing: 1px;
+
         text-transform: uppercase;
     }
+
+    /* =========================================================
+       ANIMATION
+       ========================================================= */
 
     @keyframes subtlePulse {
 
@@ -294,49 +369,52 @@
         }
     }
 
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
     @media (max-width: 700px) {
 
         #leftSide {
-            left: 25px;
-            right: 25px;
-            bottom: 25px;
-            top: auto;
+            left: 18px;
+            right: 18px;
+            bottom: 18px;
+
             width: auto;
-            transform: none;
         }
 
         #steamName {
-            font-size: 24px;
+            font-size: 18px;
         }
 
         #serverName {
-            font-size: 22px;
+            font-size: 16px;
         }
 
-        #avatar {
-            width: 96px;
-            height: 96px;
-        }
+        /*
+            Mobile balls remain 110px.
+        */
 
-        #avatarImage {
-            width: 96px;
-            height: 96px;
-        }
-
+        #avatar,
         #enemy {
-            width: 84px;
-            height: 84px;
+            width: 110px;
+            height: 110px;
         }
 
+        #avatarImage,
         #enemyImage {
-            width: 84px;
-            height: 84px;
+            width: 110px;
+            height: 110px;
         }
     }
 </style>
 </head>
 
 <body>
+
+<!-- =========================================================
+     INFORMATION
+     ========================================================= -->
 
 <div id="leftSide">
 
@@ -390,10 +468,18 @@
 </div>
 
 
+<!-- =========================================================
+     DEMO MODE
+     ========================================================= -->
+
 <div id="demoBadge">
     Demo Mode
 </div>
 
+
+<!-- =========================================================
+     PLAYER BALL
+     ========================================================= -->
 
 <div id="avatar">
 
@@ -404,6 +490,10 @@
 
 </div>
 
+
+<!-- =========================================================
+     ENEMY BALL
+     ========================================================= -->
 
 <div id="enemy">
 
@@ -423,17 +513,37 @@
 
 const FORCE_DEMO_MODE = false;
 
-const AVATAR_SIZE = 128;
+
+/*
+    Desktop balls:
+    125px
+
+    Mobile balls:
+    110px through CSS media query.
+*/
+
+const BALL_SIZE = 125;
+
+const AVATAR_SIZE = BALL_SIZE;
+const ENEMY_SIZE = BALL_SIZE;
+
 
 const MIN_SPEED = 1.5;
 const MAX_SPEED = 5.5;
 
-const ENEMY_SIZE = 110;
-
 const ENEMY_MIN_SPEED = 1.7;
 const ENEMY_MAX_SPEED = 5.0;
 
+
+/* Collision explosion */
+
 const EXPLOSION_PARTICLES = 28;
+
+
+/* Edge particles */
+
+const EDGE_PARTICLES = 12;
+const CORNER_PARTICLES = 22;
 
 
 /* ============================================================
@@ -442,21 +552,36 @@ const EXPLOSION_PARTICLES = 28;
 
 const ENEMY_IMAGES = [
 
-    // Enemy 1
+    /* Enemy 1 */
+
     "https://i.pinimg.com/736x/9a/2d/fc/9a2dfce91444f5777adf91953ba36ed7.jpg",
 
-    // Enemy 2
+
+    /* Enemy 2 */
+
     "https://i1.sndcdn.com/artworks-OhcxKQSwuzGanUDr-19O4tQ-t500x500.jpg",
 
-    // Enemy 3
-    "https://images.shoutwiki.com/8chanmania/7/7e/Aleksandr_Pistoletov_Image.png"
+
+    /* Enemy 3 */
+
+    "https://images.shoutwiki.com/8chanmania/7/7e/Aleksandr_Pistoletov_Image.png",
+
+
+    /* Enemy 4 */
+
+    "https://upload.wikimedia.org/wikipedia/en/e/e7/Viper_You%27ll_Cowards_Don%27t_Even_Smoke_Crack.jpg",
+
+
+    /* Enemy 5 */
+
+    "https://i.kym-cdn.com/photos/images/original/001/971/033/8b4.png"
 
 ];
 
 
 /*
-    Pick one enemy randomly every time
-    the loading screen starts.
+    Choose one enemy every time the
+    loading screen starts.
 */
 
 const randomEnemyImage =
@@ -476,6 +601,9 @@ let gotGameDetails = false;
 
 let progress = 0;
 
+
+/* Player position */
+
 let posX =
     window.innerWidth / 2 -
     AVATAR_SIZE / 2;
@@ -483,6 +611,9 @@ let posX =
 let posY =
     window.innerHeight / 2 -
     AVATAR_SIZE / 2;
+
+
+/* Player velocity */
 
 let vx =
     randomDirection() *
@@ -498,11 +629,17 @@ let vy =
         MAX_SPEED
     );
 
+
+/* Enemy position */
+
 let enemyX =
     window.innerWidth * 0.72;
 
 let enemyY =
     window.innerHeight * 0.30;
+
+
+/* Enemy velocity */
 
 let enemyVX =
     randomDirection() *
@@ -517,6 +654,12 @@ let enemyVY =
         ENEMY_MIN_SPEED,
         ENEMY_MAX_SPEED
     );
+
+
+/*
+    Prevent the same collision from
+    triggering many explosions.
+*/
 
 let collisionCooldown = 0;
 
@@ -582,7 +725,7 @@ const demoBadge =
 
 
 /* ============================================================
-   SET RANDOM ENEMY
+   RANDOM ENEMY
    ============================================================ */
 
 enemyImage.src =
@@ -702,10 +845,12 @@ function setRealSteamAvatar(
         return;
     }
 
+
     const url =
         "https://steamcommunity.com/profiles/" +
         steamID +
         "/avatarfull.jpg";
+
 
     avatarImage.onload =
         function() {
@@ -714,11 +859,13 @@ function setRealSteamAvatar(
                 "block";
         };
 
+
     avatarImage.onerror =
         function() {
 
             setDummyAvatar();
         };
+
 
     avatarImage.src =
         url;
@@ -741,6 +888,7 @@ async function getSteamName(
         return;
     }
 
+
     try {
 
         const response =
@@ -750,6 +898,7 @@ async function getSteamName(
                 "?xml=1"
             );
 
+
         if (!response.ok) {
 
             throw new Error(
@@ -757,13 +906,16 @@ async function getSteamName(
             );
         }
 
+
         const text =
             await response.text();
+
 
         const match =
             text.match(
                 /<steamID><!\[CDATA\[(.*?)\]\]><\/steamID>/
             );
+
 
         if (
             match &&
@@ -801,20 +953,26 @@ function startDemoMode() {
         return;
     }
 
+
     demoBadge.style.display =
         "block";
+
 
     steamName.textContent =
         "GMod Player";
 
+
     serverName.textContent =
         "Example GMod Server";
+
 
     mapName.textContent =
         "MAP: gm_construct";
 
+
     statusElement.textContent =
         "Demo mode — pretending to load...";
+
 
     setDummyAvatar();
 
@@ -823,7 +981,7 @@ function startDemoMode() {
 
 
 /* ============================================================
-   GAMEMODE API
+   GARRY'S MOD API
    ============================================================ */
 
 window.GameDetails =
@@ -843,12 +1001,15 @@ function(
     demoBadge.style.display =
         "none";
 
+
     steamName.textContent =
         "GMod Player";
+
 
     serverName.textContent =
         servername ||
         "Garry's Mod Server";
+
 
     mapName.textContent =
         "MAP: " +
@@ -857,16 +1018,20 @@ function(
             "unknown"
         );
 
+
     setRealSteamAvatar(
         steamid
     );
+
 
     getSteamName(
         steamid
     );
 
+
     statusElement.textContent =
         "Getting things ready...";
+
 
     setProgress(5);
 };
@@ -879,11 +1044,13 @@ function(statusText) {
         statusText ||
         "Loading...";
 
+
     progress +=
         randomRange(
             3,
             10
         );
+
 
     setProgress(
         progress
@@ -901,11 +1068,13 @@ function(file) {
             "file"
         );
 
+
     progress +=
         randomRange(
             0.5,
             3
         );
+
 
     setProgress(
         progress
@@ -922,6 +1091,7 @@ function setProgress(value) {
             100
         );
 
+
     progressElement.style.width =
         progress + "%";
 }
@@ -934,17 +1104,27 @@ function setProgress(value) {
 const messages = [
 
     "Loading...",
+
     "Getting things ready...",
+
     "Loading game files...",
+
     "Checking server connection...",
+
     "Preparing the map...",
+
     "Loading addons...",
+
     "Almost there...",
+
     "Please wait...",
+
     "Connecting...",
+
     "Starting server session..."
 
 ];
+
 
 let messageIndex = 0;
 
@@ -954,6 +1134,7 @@ function nextMessage() {
     eggMessage.style.opacity =
         "0";
 
+
     setTimeout(
         () => {
 
@@ -962,11 +1143,13 @@ function nextMessage() {
                     messageIndex
                 ];
 
+
             messageIndex =
                 (
                     messageIndex + 1
                 ) %
                 messages.length;
+
 
             eggMessage.style.opacity =
                 "1";
@@ -984,6 +1167,204 @@ setInterval(
 
 
 /* ============================================================
+   EDGE PARTICLE BURST
+   ============================================================ */
+
+function createEdgeParticles(
+    x,
+    y,
+    directionX,
+    directionY,
+    isCorner
+) {
+
+    const amount =
+        isCorner
+            ? CORNER_PARTICLES
+            : EDGE_PARTICLES;
+
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        const particle =
+            document.createElement(
+                "div"
+            );
+
+
+        particle.className =
+            "edgeParticle";
+
+
+        const size =
+            randomRange(
+                3,
+                7
+            );
+
+
+        particle.style.width =
+            size + "px";
+
+
+        particle.style.height =
+            size + "px";
+
+
+        particle.style.left =
+            x + "px";
+
+
+        particle.style.top =
+            y + "px";
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        let velocityX =
+            directionX *
+            randomRange(
+                2,
+                7
+            );
+
+
+        let velocityY =
+            directionY *
+            randomRange(
+                2,
+                7
+            );
+
+
+        /*
+            Add spread when travelling
+            away from a horizontal wall.
+        */
+
+        if (
+            directionX === 0
+        ) {
+
+            velocityX =
+                randomRange(
+                    -3,
+                    3
+                );
+        }
+
+
+        /*
+            Add spread when travelling
+            away from a vertical wall.
+        */
+
+        if (
+            directionY === 0
+        ) {
+
+            velocityY =
+                randomRange(
+                    -3,
+                    3
+                );
+        }
+
+
+        let particleX = x;
+
+        let particleY = y;
+
+
+        let life =
+            randomRange(
+                25,
+                50
+            );
+
+
+        const gravity =
+            0.12;
+
+
+        function animateEdgeParticle() {
+
+            particleX +=
+                velocityX;
+
+
+            particleY +=
+                velocityY;
+
+
+            velocityY +=
+                gravity;
+
+
+            velocityX *=
+                0.985;
+
+
+            velocityY *=
+                0.985;
+
+
+            life--;
+
+
+            particle.style.left =
+                particleX + "px";
+
+
+            particle.style.top =
+                particleY + "px";
+
+
+            particle.style.opacity =
+                Math.max(
+                    0,
+                    life / 50
+                );
+
+
+            if (
+                life > 0
+            ) {
+
+                requestAnimationFrame(
+                    animateEdgeParticle
+                );
+
+            } else {
+
+                if (
+                    particle.parentNode
+                ) {
+
+                    particle.parentNode
+                        .removeChild(
+                            particle
+                        );
+                }
+            }
+        }
+
+
+        requestAnimationFrame(
+            animateEdgeParticle
+        );
+    }
+}
+
+
+/* ============================================================
    EDGE IMPACT
    ============================================================ */
 
@@ -997,18 +1378,23 @@ function createImpact(
             "div"
         );
 
+
     impact.className =
         "impact";
+
 
     impact.style.left =
         x + "px";
 
+
     impact.style.top =
         y + "px";
+
 
     document.body.appendChild(
         impact
     );
+
 
     setTimeout(
         () => {
@@ -1030,7 +1416,7 @@ function createImpact(
 
 
 /* ============================================================
-   PARTICLE EXPLOSION
+   COLLISION EXPLOSION
    ============================================================ */
 
 function createExplosion(
@@ -1038,19 +1424,27 @@ function createExplosion(
     centerY
 ) {
 
+    /*
+        Small white flash.
+    */
+
     const flash =
         document.createElement(
             "div"
         );
 
+
     flash.className =
         "explosionFlash";
+
 
     flash.style.left =
         centerX + "px";
 
+
     flash.style.top =
         centerY + "px";
+
 
     document.body.appendChild(
         flash
@@ -1075,6 +1469,10 @@ function createExplosion(
     );
 
 
+    /*
+        Particle burst.
+    */
+
     for (
         let i = 0;
         i < EXPLOSION_PARTICLES;
@@ -1085,6 +1483,7 @@ function createExplosion(
             document.createElement(
                 "div"
             );
+
 
         particle.className =
             "explosionParticle";
@@ -1107,6 +1506,7 @@ function createExplosion(
             Math.cos(angle) *
             velocity;
 
+
         let velocityY =
             Math.sin(angle) *
             velocity;
@@ -1122,12 +1522,14 @@ function createExplosion(
         particle.style.width =
             size + "px";
 
+
         particle.style.height =
             size + "px";
 
 
         particle.style.left =
             centerX + "px";
+
 
         particle.style.top =
             centerY + "px";
@@ -1139,13 +1541,16 @@ function createExplosion(
 
 
         let x = centerX;
+
         let y = centerY;
+
 
         let life =
             randomRange(
                 35,
                 65
             );
+
 
         const gravity =
             0.16;
@@ -1154,12 +1559,21 @@ function createExplosion(
         function animateParticle() {
 
             x += velocityX;
+
             y += velocityY;
 
-            velocityY += gravity;
 
-            velocityX *= 0.985;
-            velocityY *= 0.985;
+            velocityY +=
+                gravity;
+
+
+            velocityX *=
+                0.985;
+
+
+            velocityY *=
+                0.985;
+
 
             life--;
 
@@ -1167,8 +1581,10 @@ function createExplosion(
             particle.style.left =
                 x + "px";
 
+
             particle.style.top =
                 y + "px";
+
 
             particle.style.opacity =
                 Math.max(
@@ -1222,6 +1638,7 @@ function changeDirection(
             MAX_SPEED
         );
 
+
     const variation =
         randomRange(
             -0.4,
@@ -1237,6 +1654,7 @@ function changeDirection(
             direction *
             speed;
 
+
         vy +=
             variation;
 
@@ -1245,6 +1663,7 @@ function changeDirection(
         vy =
             direction *
             speed;
+
 
         vx +=
             variation;
@@ -1267,6 +1686,7 @@ function changeEnemyDirection(
             ENEMY_MAX_SPEED
         );
 
+
     const variation =
         randomRange(
             -0.4,
@@ -1282,6 +1702,7 @@ function changeEnemyDirection(
             direction *
             speed;
 
+
         enemyVY +=
             variation;
 
@@ -1291,6 +1712,7 @@ function changeEnemyDirection(
             direction *
             speed;
 
+
         enemyVX +=
             variation;
     }
@@ -1298,7 +1720,7 @@ function changeEnemyDirection(
 
 
 /* ============================================================
-   COLLISION
+   PLAYER / ENEMY COLLISION
    ============================================================ */
 
 function checkPlayerEnemyCollision() {
@@ -1315,6 +1737,7 @@ function checkPlayerEnemyCollision() {
         posX +
         AVATAR_SIZE / 2;
 
+
     const playerCenterY =
         posY +
         AVATAR_SIZE / 2;
@@ -1324,6 +1747,7 @@ function checkPlayerEnemyCollision() {
         enemyX +
         ENEMY_SIZE / 2;
 
+
     const enemyCenterY =
         enemyY +
         ENEMY_SIZE / 2;
@@ -1332,6 +1756,7 @@ function checkPlayerEnemyCollision() {
     const dx =
         playerCenterX -
         enemyCenterX;
+
 
     const dy =
         playerCenterY -
@@ -1345,9 +1770,14 @@ function checkPlayerEnemyCollision() {
         );
 
 
+    /*
+        Both balls are the same size,
+        so their combined radii equal
+        one full BALL_SIZE.
+    */
+
     const collisionDistance =
-        AVATAR_SIZE / 2 +
-        ENEMY_SIZE / 2;
+        BALL_SIZE;
 
 
     if (
@@ -1361,6 +1791,7 @@ function checkPlayerEnemyCollision() {
                 enemyCenterX
             ) / 2;
 
+
         const explosionY =
             (
                 playerCenterY +
@@ -1373,6 +1804,10 @@ function checkPlayerEnemyCollision() {
             explosionY
         );
 
+
+        /*
+            Push balls apart.
+        */
 
         let normalX = dx;
         let normalY = dy;
@@ -1403,18 +1838,28 @@ function checkPlayerEnemyCollision() {
 
 
         posX +=
-            normalX * push;
+            normalX *
+            push;
+
 
         posY +=
-            normalY * push;
+            normalY *
+            push;
 
 
         enemyX -=
-            normalX * push;
+            normalX *
+            push;
+
 
         enemyY -=
-            normalY * push;
+            normalY *
+            push;
 
+
+        /*
+            Bounce both balls away.
+        */
 
         vx =
             -vx *
@@ -1422,6 +1867,7 @@ function checkPlayerEnemyCollision() {
                 0.9,
                 1.1
             );
+
 
         vy =
             -vy *
@@ -1437,6 +1883,7 @@ function checkPlayerEnemyCollision() {
                 0.9,
                 1.1
             );
+
 
         enemyVY =
             -enemyVY *
@@ -1460,13 +1907,19 @@ function updatePlayer() {
     const width =
         window.innerWidth;
 
+
     const height =
         window.innerHeight;
 
 
     posX += vx;
+
     posY += vy;
 
+
+    /*
+        Left wall.
+    */
 
     if (
         posX <= 0
@@ -1474,21 +1927,37 @@ function updatePlayer() {
 
         posX = 0;
 
+
         vx =
             Math.abs(vx);
+
 
         changeDirection(
             true,
             1
         );
 
+
         createImpact(
             0,
             posY +
             AVATAR_SIZE / 2
         );
+
+
+        createEdgeParticles(
+            0,
+            posY +
+            AVATAR_SIZE / 2,
+            1,
+            false
+        );
     }
 
+
+    /*
+        Right wall.
+    */
 
     if (
         posX +
@@ -1500,21 +1969,37 @@ function updatePlayer() {
             width -
             AVATAR_SIZE;
 
+
         vx =
             -Math.abs(vx);
+
 
         changeDirection(
             true,
             -1
         );
 
+
         createImpact(
             width,
             posY +
             AVATAR_SIZE / 2
         );
+
+
+        createEdgeParticles(
+            width,
+            posY +
+            AVATAR_SIZE / 2,
+            -1,
+            false
+        );
     }
 
+
+    /*
+        Top wall.
+    */
 
     if (
         posY <= 0
@@ -1522,21 +2007,38 @@ function updatePlayer() {
 
         posY = 0;
 
+
         vy =
             Math.abs(vy);
+
 
         changeDirection(
             false,
             1
         );
 
+
         createImpact(
             posX +
             AVATAR_SIZE / 2,
             0
         );
+
+
+        createEdgeParticles(
+            posX +
+            AVATAR_SIZE / 2,
+            0,
+            0,
+            1,
+            false
+        );
     }
 
+
+    /*
+        Bottom wall.
+    */
 
     if (
         posY +
@@ -1548,24 +2050,38 @@ function updatePlayer() {
             height -
             AVATAR_SIZE;
 
+
         vy =
             -Math.abs(vy);
+
 
         changeDirection(
             false,
             -1
         );
 
+
         createImpact(
             posX +
             AVATAR_SIZE / 2,
             height
+        );
+
+
+        createEdgeParticles(
+            posX +
+            AVATAR_SIZE / 2,
+            height,
+            0,
+            -1,
+            false
         );
     }
 
 
     avatar.style.left =
         posX + "px";
+
 
     avatar.style.top =
         posY + "px";
@@ -1581,13 +2097,19 @@ function updateEnemy() {
     const width =
         window.innerWidth;
 
+
     const height =
         window.innerHeight;
 
 
     enemyX += enemyVX;
+
     enemyY += enemyVY;
 
+
+    /*
+        Left wall.
+    */
 
     if (
         enemyX <= 0
@@ -1595,21 +2117,37 @@ function updateEnemy() {
 
         enemyX = 0;
 
+
         enemyVX =
             Math.abs(enemyVX);
+
 
         changeEnemyDirection(
             true,
             1
         );
 
+
         createImpact(
             0,
             enemyY +
             ENEMY_SIZE / 2
         );
+
+
+        createEdgeParticles(
+            0,
+            enemyY +
+            ENEMY_SIZE / 2,
+            1,
+            false
+        );
     }
 
+
+    /*
+        Right wall.
+    */
 
     if (
         enemyX +
@@ -1621,21 +2159,37 @@ function updateEnemy() {
             width -
             ENEMY_SIZE;
 
+
         enemyVX =
             -Math.abs(enemyVX);
+
 
         changeEnemyDirection(
             true,
             -1
         );
 
+
         createImpact(
             width,
             enemyY +
             ENEMY_SIZE / 2
         );
+
+
+        createEdgeParticles(
+            width,
+            enemyY +
+            ENEMY_SIZE / 2,
+            -1,
+            false
+        );
     }
 
+
+    /*
+        Top wall.
+    */
 
     if (
         enemyY <= 0
@@ -1643,21 +2197,38 @@ function updateEnemy() {
 
         enemyY = 0;
 
+
         enemyVY =
             Math.abs(enemyVY);
+
 
         changeEnemyDirection(
             false,
             1
         );
 
+
         createImpact(
             enemyX +
             ENEMY_SIZE / 2,
             0
         );
+
+
+        createEdgeParticles(
+            enemyX +
+            ENEMY_SIZE / 2,
+            0,
+            0,
+            1,
+            false
+        );
     }
 
+
+    /*
+        Bottom wall.
+    */
 
     if (
         enemyY +
@@ -1669,24 +2240,38 @@ function updateEnemy() {
             height -
             ENEMY_SIZE;
 
+
         enemyVY =
             -Math.abs(enemyVY);
+
 
         changeEnemyDirection(
             false,
             -1
         );
 
+
         createImpact(
             enemyX +
             ENEMY_SIZE / 2,
             height
+        );
+
+
+        createEdgeParticles(
+            enemyX +
+            ENEMY_SIZE / 2,
+            height,
+            0,
+            -1,
+            false
         );
     }
 
 
     enemy.style.left =
         enemyX + "px";
+
 
     enemy.style.top =
         enemyY + "px";
@@ -1736,6 +2321,7 @@ window.addEventListener(
                 AVATAR_SIZE
             );
 
+
         posY =
             clamp(
                 posY,
@@ -1752,6 +2338,7 @@ window.addEventListener(
                 window.innerWidth -
                 ENEMY_SIZE
             );
+
 
         enemyY =
             clamp(
