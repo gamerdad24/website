@@ -23,21 +23,18 @@
     body {
         position: relative;
         color: white;
-
         background-image:
             linear-gradient(
                 rgba(0, 0, 0, 0.18),
                 rgba(0, 0, 0, 0.38)
             ),
             url("https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/images/autism.png");
-
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
 
     /* Colorful overlay */
-
     body::before {
         content: "";
         position: fixed;
@@ -65,7 +62,6 @@
     }
 
     /* CRT scanlines */
-
     body::after {
         content: "";
         position: fixed;
@@ -86,7 +82,7 @@
     }
 
     /* =========================================================
-       LEFT SIDE UI
+       LEFT UI
        ========================================================= */
 
     #leftSide {
@@ -586,10 +582,6 @@
 
 <body>
 
-<!-- =========================================================
-     LEFT UI
-     ========================================================= -->
-
 <div id="leftSide">
 
     <div class="card" id="playerCard">
@@ -638,13 +630,9 @@
 
 </div>
 
-<!-- Demo badge -->
-
 <div id="demoBadge">
     DEMO MODE :D
 </div>
-
-<!-- Bouncing avatar -->
 
 <div id="avatar">
 
@@ -654,8 +642,6 @@
     >
 
 </div>
-
-<!-- Glitch overlay -->
 
 <div id="glitch"></div>
 
@@ -1155,7 +1141,7 @@ function setProgress(value) {
 
 
 /* ============================================================
-   EASTER EGG MESSAGES
+   EASTER EGGS
    ============================================================ */
 
 const easterEggMessages = [
@@ -1247,7 +1233,7 @@ setInterval(
 
 
 /* ============================================================
-   RGB TRAILS
+   RGB TRAIL
    ============================================================ */
 
 function createTrail(
@@ -1368,7 +1354,7 @@ function updateTrails() {
 
 
 /* ============================================================
-   EDGE IMPACT
+   IMPACT
    ============================================================ */
 
 function createImpact(
@@ -1576,8 +1562,6 @@ function animateStar(
             rotationSpeed;
 
 
-        /* Left wall */
-
         if (
             x <= 0
         ) {
@@ -1589,8 +1573,6 @@ function animateStar(
                 0.75;
         }
 
-
-        /* Right wall */
 
         if (
             x >=
@@ -1606,8 +1588,6 @@ function animateStar(
         }
 
 
-        /* Top wall */
-
         if (
             y <= 0
         ) {
@@ -1619,8 +1599,6 @@ function animateStar(
                 0.65;
         }
 
-
-        /* Bottom */
 
         if (
             y >=
@@ -1705,7 +1683,7 @@ function animateStar(
 
 
 /* ============================================================
-   RANDOM DIRECTION CHANGES
+   RANDOM DIRECTION
    ============================================================ */
 
 function changeDirection(
@@ -1984,7 +1962,7 @@ function animateAvatar() {
 
 
 /* ============================================================
-   GLITCH EFFECT
+   GLITCH
    ============================================================ */
 
 function randomGlitch() {
@@ -2024,7 +2002,7 @@ setInterval(
 
 
 /* ============================================================
-   WINDOW RESIZE
+   RESIZE
    ============================================================ */
 
 window.addEventListener(
