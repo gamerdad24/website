@@ -27,28 +27,94 @@
             background-repeat: no-repeat;
             background-color: #000;
 
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: white;
         }
+
+        /* ============================================================
+           OVERLAY
+           ============================================================ */
 
         #overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.10);
+
+            background:
+                rgba(0, 0, 0, 0.12);
+
             pointer-events: none;
+
+            z-index: 1;
         }
 
-        /*
-         * The container holds the avatar AND its trail.
-         */
+
+        /* ============================================================
+           CRT SCANLINES
+           ============================================================ */
+
+        #scanlines {
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(255,255,255,0.025) 0px,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px,
+                    transparent 4px
+                );
+
+            z-index: 50;
+
+            opacity: 0.45;
+        }
+
+
+        /* ============================================================
+           PARTICLES
+           ============================================================ */
+
+        #particles {
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            pointer-events: none;
+
+            z-index: 2;
+        }
+
+
+        /* ============================================================
+           AVATAR
+           ============================================================ */
+
         #avatarContainer {
             position: fixed;
+
             width: 128px;
             height: 128px;
+
             pointer-events: none;
+
+            z-index: 20;
+
+            transform-origin: center center;
         }
+
 
         #avatar {
             position: absolute;
+
             left: 0;
             top: 0;
 
@@ -56,23 +122,26 @@
             height: 128px;
 
             border-radius: 50%;
+
             object-fit: cover;
 
             border: 4px solid white;
 
             box-shadow:
-                0 0 15px rgba(0, 0, 0, 0.8),
-                0 0 30px rgba(255, 255, 255, 0.35);
-
-            user-select: none;
-            pointer-events: none;
+                0 0 12px rgba(255,255,255,0.8),
+                0 0 30px rgba(255,255,255,0.35),
+                0 0 60px rgba(255,255,255,0.15);
 
             display: none;
+
+            user-select: none;
         }
 
-        /*
-         * Trail images.
-         */
+
+        /* ============================================================
+           RGB TRAIL
+           ============================================================ */
+
         .trail {
             position: fixed;
 
@@ -83,67 +152,486 @@
 
             object-fit: cover;
 
-            border: 4px solid white;
-
             pointer-events: none;
 
-            opacity: 0.35;
+            z-index: 10;
+
+            opacity: 0.5;
 
             filter: blur(1px);
 
-            transform: scale(0.95);
-
             transition:
-                opacity 0.5s ease-out,
-                transform 0.5s ease-out;
+                opacity 0.7s ease-out,
+                transform 0.7s ease-out;
 
-            z-index: 1;
+            mix-blend-mode: screen;
         }
 
-        #avatarContainer {
-            z-index: 2;
+
+        .trail.red {
+            filter:
+                blur(1px)
+                drop-shadow(-5px 0 red);
         }
 
-        #loadingInfo {
+
+        .trail.green {
+            filter:
+                blur(1px)
+                drop-shadow(4px 0 lime);
+        }
+
+
+        .trail.blue {
+            filter:
+                blur(1px)
+                drop-shadow(0 5px blue);
+        }
+
+
+        /* ============================================================
+           IMPACT
+           ============================================================ */
+
+        .impact {
             position: fixed;
 
-            left: 50%;
-            bottom: 25px;
+            width: 20px;
+            height: 20px;
 
-            transform: translateX(-50%);
+            border-radius: 50%;
 
-            padding: 10px 18px;
+            pointer-events: none;
 
-            background: rgba(0, 0, 0, 0.65);
+            z-index: 15;
 
-            border-radius: 8px;
+            border: 3px solid white;
 
-            color: white;
+            box-shadow:
+                0 0 10px white,
+                0 0 20px cyan,
+                0 0 30px magenta;
 
-            font-size: 16px;
+            transform:
+                translate(-50%, -50%)
+                scale(0.3);
+
+            opacity: 1;
+
+            animation:
+                impactExpand 0.6s
+                ease-out forwards;
+        }
+
+
+        @keyframes impactExpand {
+
+            0% {
+                transform:
+                    translate(-50%, -50%)
+                    scale(0.3);
+
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translate(-50%, -50%)
+                    scale(4);
+
+                opacity: 0;
+            }
+
+        }
+
+
+        /* ============================================================
+           EASTER EGG PANEL
+           ============================================================ */
+
+        #easterEggs {
+            position: fixed;
+
+            left: 25px;
+            bottom: 30px;
+
+            width: 330px;
+
+            padding: 16px 18px;
+
+            background:
+                rgba(0,0,0,0.68);
+
+            border-left:
+                3px solid white;
+
+            border-radius:
+                0 8px 8px 0;
+
+            box-shadow:
+                0 5px 30px
+                rgba(0,0,0,0.4);
+
+            z-index: 30;
+
+            backdrop-filter:
+                blur(5px);
+        }
+
+
+        #eggHeader {
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            opacity: 0.55;
+
+            margin-bottom: 7px;
+        }
+
+
+        #eggMessage {
+            font-size: 15px;
+
             font-weight: bold;
 
-            text-align: center;
+            min-height: 22px;
 
-            text-shadow: 0 1px 3px black;
+            text-shadow:
+                0 2px 4px black;
+
+            transition:
+                opacity 0.3s ease;
+        }
+
+
+        /* ============================================================
+           SERVER INFO
+           ============================================================ */
+
+        #info {
+            position: fixed;
+
+            right: 25px;
+            bottom: 30px;
+
+            width: 300px;
+
+            padding: 17px 20px;
+
+            background:
+                rgba(0,0,0,0.70);
+
+            border-radius: 9px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.25);
+
+            z-index: 30;
+
+            backdrop-filter:
+                blur(5px);
+
+            box-shadow:
+                0 5px 30px
+                rgba(0,0,0,0.35);
+        }
+
+
+        #steamName {
+            font-size: 21px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+
+        #serverName {
+            font-size: 15px;
+
+            font-weight: bold;
+
+            margin-bottom: 4px;
+        }
+
+
+        #mapName {
+            font-size: 14px;
+
+            opacity: 0.75;
+        }
+
+
+        #status {
+            margin-top: 10px;
+
+            font-size: 13px;
+
+            opacity: 0.8;
 
             white-space: nowrap;
 
-            z-index: 10;
+            overflow: hidden;
+
+            text-overflow: ellipsis;
         }
+
+
+        /* ============================================================
+           LOADING BAR
+           ============================================================ */
+
+        #loadingBar {
+            width: 100%;
+
+            height: 4px;
+
+            margin-top: 10px;
+
+            background:
+                rgba(255,255,255,0.15);
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+
+        #loadingProgress {
+            width: 20%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff0040,
+                    #ff00cc,
+                    #0055ff,
+                    #00ffff
+                );
+
+            border-radius: 10px;
+
+            transition:
+                width 0.4s ease;
+        }
+
+
+        /* ============================================================
+           DEMO MODE BADGE
+           ============================================================ */
+
+        #demoBadge {
+            position: fixed;
+
+            top: 15px;
+            left: 15px;
+
+            padding: 6px 10px;
+
+            background:
+                rgba(0,0,0,0.65);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.25);
+
+            border-radius: 5px;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+
+            opacity: 0.7;
+
+            z-index: 60;
+
+            display: none;
+        }
+
+
+        /* ============================================================
+           GLITCH
+           ============================================================ */
+
+        #glitch {
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            z-index: 45;
+
+            opacity: 0;
+
+            background:
+                linear-gradient(
+                    rgba(255,0,0,0.08),
+                    rgba(0,255,255,0.08)
+                );
+
+            mix-blend-mode: screen;
+        }
+
+
+        .glitchActive {
+            animation:
+                glitchFlash 0.18s
+                steps(2);
+        }
+
+
+        @keyframes glitchFlash {
+
+            0% {
+                opacity: 0;
+                transform:
+                    translate(0);
+            }
+
+            25% {
+                opacity: 0.5;
+                transform:
+                    translate(5px, -2px);
+            }
+
+            50% {
+                opacity: 0.2;
+                transform:
+                    translate(-4px, 3px);
+            }
+
+            75% {
+                opacity: 0.4;
+                transform:
+                    translate(3px, 1px);
+            }
+
+            100% {
+                opacity: 0;
+                transform:
+                    translate(0);
+            }
+
+        }
+
+
+        /* ============================================================
+           SMALL SCREENS
+           ============================================================ */
+
+        @media (max-width: 700px) {
+
+            #easterEggs {
+                left: 10px;
+                bottom: 10px;
+
+                width: 260px;
+            }
+
+            #info {
+                right: 10px;
+                bottom: 10px;
+
+                width: 260px;
+            }
+
+            #avatarContainer,
+            #avatar,
+            .trail {
+                width: 96px;
+                height: 96px;
+            }
+
+        }
+
     </style>
 </head>
+
 
 <body>
 
     <div id="overlay"></div>
 
-    <div id="avatarContainer">
-        <img id="avatar" src="" alt="Steam Avatar">
+    <canvas id="particles"></canvas>
+
+    <div id="glitch"></div>
+
+    <div id="scanlines"></div>
+
+
+    <!-- Demo indicator -->
+    <div id="demoBadge">
+        DEMO MODE
     </div>
 
-    <div id="loadingInfo">
-        Connecting...
+
+    <!-- ============================================================
+         AVATAR
+         ============================================================ -->
+
+    <div id="avatarContainer">
+
+        <img
+            id="avatar"
+            src=""
+            alt="Player Avatar"
+        >
+
+    </div>
+
+
+    <!-- ============================================================
+         EASTER EGGS
+         ============================================================ -->
+
+    <div id="easterEggs">
+
+        <div id="eggHeader">
+            SERVER TRANSMISSION
+        </div>
+
+        <div id="eggMessage">
+            Connecting to the mothership...
+        </div>
+
+    </div>
+
+
+    <!-- ============================================================
+         SERVER INFO
+         ============================================================ -->
+
+    <div id="info">
+
+        <div id="steamName">
+            Loading player...
+        </div>
+
+        <div id="serverName">
+            Connecting...
+        </div>
+
+        <div id="mapName">
+            Loading map...
+        </div>
+
+        <div id="status">
+            Connecting...
+        </div>
+
+        <div id="loadingBar">
+
+            <div id="loadingProgress"></div>
+
+        </div>
+
     </div>
 
 
@@ -153,40 +641,110 @@
          * ============================================================
          * CONFIGURATION
          * ============================================================
+         *
+         * Set this to true if you want to force demo mode.
+         *
+         * Normally leave it false.
+         *
+         * When opened outside GMod, the script automatically detects
+         * that GameDetails() was never called and enables demo mode.
          */
 
-        const AVATAR_SIZE = 128;
-
-        const SPEED_X = 3.0;
-        const SPEED_Y = 2.5;
-
-        // How often a trail image is created.
-        const TRAIL_INTERVAL = 45;
-
-        // Maximum number of visible trail images.
-        const MAX_TRAILS = 15;
+        const FORCE_DEMO_MODE = false;
 
 
         /*
          * ============================================================
-         * VARIABLES
+         * AVATAR CONFIGURATION
          * ============================================================
          */
 
-        const avatar = document.getElementById("avatar");
-        const avatarContainer =
-            document.getElementById("avatarContainer");
+        const AVATAR_SIZE = 128;
 
-        const loadingInfo =
-            document.getElementById("loadingInfo");
+        const MIN_SPEED = 1.5;
+        const MAX_SPEED = 5.5;
+
+        const TRAIL_INTERVAL = 12;
+        const MAX_TRAILS = 24;
+
+        const MAX_ANGLE_CHANGE = 0.45;
+
+
+        /*
+         * ============================================================
+         * ELEMENTS
+         * ============================================================
+         */
+
+        const avatar =
+            document.getElementById(
+                "avatar"
+            );
+
+        const avatarContainer =
+            document.getElementById(
+                "avatarContainer"
+            );
+
+        const steamName =
+            document.getElementById(
+                "steamName"
+            );
+
+        const serverName =
+            document.getElementById(
+                "serverName"
+            );
+
+        const mapName =
+            document.getElementById(
+                "mapName"
+            );
+
+        const status =
+            document.getElementById(
+                "status"
+            );
+
+        const progress =
+            document.getElementById(
+                "loadingProgress"
+            );
+
+        const eggMessage =
+            document.getElementById(
+                "eggMessage"
+            );
+
+        const glitch =
+            document.getElementById(
+                "glitch"
+            );
+
+        const demoBadge =
+            document.getElementById(
+                "demoBadge"
+            );
+
+
+        /*
+         * ============================================================
+         * STATE
+         * ============================================================
+         */
 
         let x = 0;
         let y = 0;
 
-        let velocityX = SPEED_X;
-        let velocityY = SPEED_Y;
+        let velocityX = 3;
+        let velocityY = 2.5;
+
+        let rotation = 0;
+        let rotationVelocity = 0.4;
 
         let started = false;
+
+        let runningInGMod = false;
 
         let frameCounter = 0;
 
@@ -195,219 +753,1168 @@
 
         /*
          * ============================================================
-         * CREATE TRAIL
+         * RANDOM
          * ============================================================
          */
 
-        function createTrail() {
+        function randomBetween(
+            min,
+            max
+        ) {
 
-            if (!avatar.src || avatar.style.display === "none") {
-                return;
-            }
+            return (
+                min +
+                Math.random() *
+                (max - min)
+            );
 
-            const trail = document.createElement("img");
-
-            trail.className = "trail";
-
-            trail.src = avatar.src;
-
-            trail.style.left = x + "px";
-            trail.style.top = y + "px";
-
-            /*
-             * Newer trails are more visible.
-             */
-            trail.style.opacity = "0.30";
-
-            trail.style.transform = "scale(0.95)";
-
-            document.body.appendChild(trail);
-
-            trails.push(trail);
-
-            /*
-             * Animate the trail away.
-             */
-            requestAnimationFrame(() => {
-
-                trail.style.opacity = "0";
-                trail.style.transform = "scale(0.75)";
-
-            });
-
-
-            /*
-             * Remove the oldest trails once we have too many.
-             */
-            while (trails.length > MAX_TRAILS) {
-
-                const oldTrail = trails.shift();
-
-                if (oldTrail && oldTrail.parentNode) {
-                    oldTrail.parentNode.removeChild(oldTrail);
-                }
-            }
-
-
-            /*
-             * Remove this trail after the fade animation.
-             */
-            setTimeout(() => {
-
-                if (trail.parentNode) {
-                    trail.parentNode.removeChild(trail);
-                }
-
-                const index = trails.indexOf(trail);
-
-                if (index !== -1) {
-                    trails.splice(index, 1);
-                }
-
-            }, 600);
         }
 
 
         /*
          * ============================================================
-         * SET STEAM AVATAR
+         * DUMMY AVATAR
          * ============================================================
+         *
+         * SVG is generated locally, so demo mode doesn't depend
+         * on another website providing an avatar.
          */
 
-        function setSteamAvatar(steamID) {
+        function createDummyAvatar() {
 
-            if (!steamID || steamID === "0") {
-                return;
-            }
+            const colors = [
+                "#ff0080",
+                "#00ffff",
+                "#8000ff",
+                "#00ff66",
+                "#ff6600"
+            ];
 
-            const avatarURL =
-                "https://steamcommunity.com/profiles/"
-                + encodeURIComponent(steamID)
-                + "/avatarfull.jpg";
 
-            avatar.src = avatarURL;
+            const color =
+                colors[
+                    Math.floor(
+                        Math.random() *
+                        colors.length
+                    )
+                ];
 
-            avatar.onload = function () {
 
-                avatar.style.display = "block";
+            const svg = `
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="512"
+                    height="512"
+                    viewBox="0 0 512 512"
+                >
 
-                /*
-                 * Start exactly in the center.
-                 */
-                x =
-                    (window.innerWidth - AVATAR_SIZE) / 2;
+                    <defs>
 
-                y =
-                    (window.innerHeight - AVATAR_SIZE) / 2;
+                        <linearGradient
+                            id="bg"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="100%"
+                        >
 
-                avatarContainer.style.left = x + "px";
-                avatarContainer.style.top = y + "px";
+                            <stop
+                                offset="0%"
+                                stop-color="${color}"
+                            />
 
-                if (!started) {
+                            <stop
+                                offset="100%"
+                                stop-color="#050505"
+                            />
 
-                    started = true;
+                        </linearGradient>
 
-                    requestAnimationFrame(moveAvatar);
-                }
-            };
+                    </defs>
 
-            avatar.onerror = function () {
 
-                avatar.style.display = "none";
+                    <rect
+                        width="512"
+                        height="512"
+                        rx="256"
+                        fill="url(#bg)"
+                    />
 
-                loadingInfo.innerText =
-                    "Loading...";
 
-            };
+                    <circle
+                        cx="256"
+                        cy="190"
+                        r="95"
+                        fill="white"
+                    />
+
+
+                    <path
+                        d="
+                            M100 470
+                            C110 325
+                            175 285
+                            256 285
+                            C337 285
+                            402 325
+                            412 470
+                            Z
+                        "
+                        fill="white"
+                    />
+
+
+                    <circle
+                        cx="220"
+                        cy="185"
+                        r="12"
+                        fill="#222"
+                    />
+
+
+                    <circle
+                        cx="292"
+                        cy="185"
+                        r="12"
+                        fill="#222"
+                    />
+
+
+                    <path
+                        d="
+                            M210 235
+                            Q256 265
+                            302 235
+                        "
+                        fill="none"
+                        stroke="#222"
+                        stroke-width="12"
+                        stroke-linecap="round"
+                    />
+
+                </svg>
+            `;
+
+
+            return (
+                "data:image/svg+xml;charset=UTF-8," +
+                encodeURIComponent(svg)
+            );
+
         }
 
 
         /*
          * ============================================================
-         * DVD-STYLE MOVEMENT
+         * START DUMMY DATA
          * ============================================================
          */
+
+        function startDemoMode() {
+
+            runningInGMod = false;
+
+            demoBadge.style.display =
+                "block";
+
+
+            steamName.innerText =
+                "GModPlayer";
+
+
+            serverName.innerText =
+                "Example Garry's Mod Server";
+
+
+            mapName.innerText =
+                "gm_construct";
+
+
+            status.innerText =
+                "Demo mode — simulating loading";
+
+
+            progress.style.width =
+                "45%";
+
+
+            /*
+             * Use locally generated dummy avatar.
+             */
+
+            avatar.src =
+                createDummyAvatar();
+
+
+            avatar.onload =
+                function() {
+
+                    avatar.style.display =
+                        "block";
+
+
+                    startAvatar();
+
+                };
+
+        }
+
+
+        /*
+         * ============================================================
+         * START AVATAR
+         * ============================================================
+         */
+
+        function startAvatar() {
+
+            const size =
+                window.innerWidth < 700
+                    ? 96
+                    : AVATAR_SIZE;
+
+
+            /*
+             * Start exactly in the center.
+             */
+
+            x =
+                (
+                    window.innerWidth -
+                    size
+                ) / 2;
+
+
+            y =
+                (
+                    window.innerHeight -
+                    size
+                ) / 2;
+
+
+            avatarContainer.style.left =
+                x + "px";
+
+
+            avatarContainer.style.top =
+                y + "px";
+
+
+            if (!started) {
+
+                started = true;
+
+                requestAnimationFrame(
+                    moveAvatar
+                );
+
+            }
+
+        }
+
+
+        /*
+         * ============================================================
+         * AVATAR MOVEMENT
+         * ============================================================
+         */
+
+        function changeDirection(
+            horizontal,
+            direction
+        ) {
+
+            const speed =
+                randomBetween(
+                    MIN_SPEED,
+                    MAX_SPEED
+                );
+
+
+            if (horizontal) {
+
+                const angle =
+                    randomBetween(
+                        -MAX_ANGLE_CHANGE,
+                        MAX_ANGLE_CHANGE
+                    );
+
+
+                velocityX =
+                    direction *
+                    speed;
+
+
+                velocityY =
+                    velocityY * 0.75 +
+                    Math.sin(angle) *
+                    speed;
+
+            }
+
+            else {
+
+                const angle =
+                    randomBetween(
+                        -MAX_ANGLE_CHANGE,
+                        MAX_ANGLE_CHANGE
+                    );
+
+
+                velocityY =
+                    direction *
+                    speed;
+
+
+                velocityX =
+                    velocityX * 0.75 +
+                    Math.sin(angle) *
+                    speed;
+
+            }
+
+
+            /*
+             * Prevent the avatar from becoming
+             * almost completely horizontal/vertical.
+             */
+
+            if (
+                Math.abs(velocityX) <
+                0.8
+            ) {
+
+                velocityX =
+                    velocityX >= 0
+                        ? 0.8
+                        : -0.8;
+
+            }
+
+
+            if (
+                Math.abs(velocityY) <
+                0.8
+            ) {
+
+                velocityY =
+                    velocityY >= 0
+                        ? 0.8
+                        : -0.8;
+
+            }
+
+        }
+
 
         function moveAvatar() {
 
+            const size =
+                window.innerWidth < 700
+                    ? 96
+                    : AVATAR_SIZE;
+
+
             const maxX =
-                window.innerWidth - AVATAR_SIZE;
+                Math.max(
+                    0,
+                    window.innerWidth -
+                    size
+                );
+
 
             const maxY =
-                window.innerHeight - AVATAR_SIZE;
+                Math.max(
+                    0,
+                    window.innerHeight -
+                    size
+                );
 
 
             x += velocityX;
             y += velocityY;
 
 
+            rotation +=
+                rotationVelocity;
+
+
             /*
-             * Left / right collision.
+             * LEFT
              */
+
             if (x <= 0) {
 
                 x = 0;
 
-                velocityX =
-                    Math.abs(velocityX);
+
+                createImpact(
+                    0,
+                    y + size / 2
+                );
+
+
+                changeDirection(
+                    true,
+                    1
+                );
+
+
+                rotationVelocity =
+                    randomBetween(
+                        -1.2,
+                        1.2
+                    );
 
             }
+
+
+            /*
+             * RIGHT
+             */
+
             else if (x >= maxX) {
 
                 x = maxX;
 
-                velocityX =
-                    -Math.abs(velocityX);
+
+                createImpact(
+                    window.innerWidth,
+                    y + size / 2
+                );
+
+
+                changeDirection(
+                    true,
+                    -1
+                );
+
+
+                rotationVelocity =
+                    randomBetween(
+                        -1.2,
+                        1.2
+                    );
 
             }
 
 
             /*
-             * Top / bottom collision.
+             * TOP
              */
+
             if (y <= 0) {
 
                 y = 0;
 
-                velocityY =
-                    Math.abs(velocityY);
 
-            }
-            else if (y >= maxY) {
+                createImpact(
+                    x + size / 2,
+                    0
+                );
 
-                y = maxY;
 
-                velocityY =
-                    -Math.abs(velocityY);
+                changeDirection(
+                    false,
+                    1
+                );
+
+
+                rotationVelocity =
+                    randomBetween(
+                        -1.2,
+                        1.2
+                    );
 
             }
 
 
             /*
-             * Move avatar.
+             * BOTTOM
              */
+
+            else if (y >= maxY) {
+
+                y = maxY;
+
+
+                createImpact(
+                    x + size / 2,
+                    window.innerHeight
+                );
+
+
+                changeDirection(
+                    false,
+                    -1
+                );
+
+
+                rotationVelocity =
+                    randomBetween(
+                        -1.2,
+                        1.2
+                    );
+
+            }
+
+
             avatarContainer.style.left =
                 x + "px";
+
 
             avatarContainer.style.top =
                 y + "px";
 
 
-            /*
-             * Create trail periodically.
-             */
+            avatarContainer.style.transform =
+                `rotate(${rotation}deg)`;
+
+
             frameCounter++;
 
-            if (frameCounter >= TRAIL_INTERVAL) {
+
+            if (
+                frameCounter >=
+                TRAIL_INTERVAL
+            ) {
 
                 frameCounter = 0;
 
                 createTrail();
+
             }
 
 
-            requestAnimationFrame(moveAvatar);
+            requestAnimationFrame(
+                moveAvatar
+            );
+
         }
+
+
+        /*
+         * ============================================================
+         * RGB TRAIL
+         * ============================================================
+         */
+
+        function createTrail() {
+
+            if (
+                !avatar.src ||
+                avatar.style.display === "none"
+            ) {
+                return;
+            }
+
+
+            const trail =
+                document.createElement(
+                    "img"
+                );
+
+
+            trail.className =
+                "trail";
+
+
+            const colors = [
+                "red",
+                "green",
+                "blue"
+            ];
+
+
+            const color =
+                colors[
+                    Math.floor(
+                        Math.random() *
+                        colors.length
+                    )
+                ];
+
+
+            trail.classList.add(
+                color
+            );
+
+
+            trail.src =
+                avatar.src;
+
+
+            trail.style.left =
+                x + "px";
+
+
+            trail.style.top =
+                y + "px";
+
+
+            if (
+                color === "red"
+            ) {
+
+                trail.style.transform =
+                    "translate(-5px,0) scale(.92)";
+
+            }
+            else if (
+                color === "green"
+            ) {
+
+                trail.style.transform =
+                    "translate(4px,0) scale(.90)";
+
+            }
+            else {
+
+                trail.style.transform =
+                    "translate(0,5px) scale(.88)";
+
+            }
+
+
+            document.body.appendChild(
+                trail
+            );
+
+
+            trails.push(trail);
+
+
+            requestAnimationFrame(
+                () => {
+
+                    trail.style.opacity =
+                        "0";
+
+                    trail.style.transform +=
+                        " scale(.65)";
+
+                }
+            );
+
+
+            while (
+                trails.length >
+                MAX_TRAILS
+            ) {
+
+                const old =
+                    trails.shift();
+
+
+                if (
+                    old &&
+                    old.parentNode
+                ) {
+
+                    old.parentNode
+                        .removeChild(
+                            old
+                        );
+
+                }
+
+            }
+
+
+            setTimeout(
+                () => {
+
+                    if (
+                        trail.parentNode
+                    ) {
+
+                        trail.parentNode
+                            .removeChild(
+                                trail
+                            );
+
+                    }
+
+
+                    const index =
+                        trails.indexOf(
+                            trail
+                        );
+
+
+                    if (
+                        index !== -1
+                    ) {
+
+                        trails.splice(
+                            index,
+                            1
+                        );
+
+                    }
+
+                },
+                700
+            );
+
+        }
+
+
+        /*
+         * ============================================================
+         * IMPACT
+         * ============================================================
+         */
+
+        function createImpact(
+            impactX,
+            impactY
+        ) {
+
+            const impact =
+                document.createElement(
+                    "div"
+                );
+
+
+            impact.className =
+                "impact";
+
+
+            impact.style.left =
+                impactX + "px";
+
+
+            impact.style.top =
+                impactY + "px";
+
+
+            document.body.appendChild(
+                impact
+            );
+
+
+            setTimeout(
+                () => {
+
+                    if (
+                        impact.parentNode
+                    ) {
+
+                        impact.parentNode
+                            .removeChild(
+                                impact
+                            );
+
+                    }
+
+                },
+                650
+            );
+
+
+            if (
+                Math.random() <
+                0.25
+            ) {
+
+                triggerGlitch();
+
+            }
+
+        }
+
+
+        /*
+         * ============================================================
+         * GLITCH
+         * ============================================================
+         */
+
+        function triggerGlitch() {
+
+            glitch.classList.remove(
+                "glitchActive"
+            );
+
+
+            void glitch.offsetWidth;
+
+
+            glitch.classList.add(
+                "glitchActive"
+            );
+
+        }
+
+
+        /*
+         * ============================================================
+         * PARTICLES
+         * ============================================================
+         */
+
+        const canvas =
+            document.getElementById(
+                "particles"
+            );
+
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        let particles = [];
+
+
+        function resizeCanvas() {
+
+            canvas.width =
+                window.innerWidth;
+
+
+            canvas.height =
+                window.innerHeight;
+
+        }
+
+
+        function createParticles() {
+
+            particles = [];
+
+
+            const amount =
+                Math.min(
+                    100,
+                    Math.max(
+                        30,
+                        Math.floor(
+                            (
+                                window.innerWidth *
+                                window.innerHeight
+                            ) / 18000
+                        )
+                    )
+                );
+
+
+            for (
+                let i = 0;
+                i < amount;
+                i++
+            ) {
+
+                particles.push({
+
+                    x:
+                        Math.random() *
+                        canvas.width,
+
+                    y:
+                        Math.random() *
+                        canvas.height,
+
+                    vx:
+                        randomBetween(
+                            -0.35,
+                            0.35
+                        ),
+
+                    vy:
+                        randomBetween(
+                            -0.35,
+                            0.35
+                        ),
+
+                    size:
+                        randomBetween(
+                            1,
+                            3
+                        ),
+
+                    alpha:
+                        randomBetween(
+                            0.2,
+                            0.7
+                        )
+
+                });
+
+            }
+
+        }
+
+
+        function animateParticles() {
+
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            for (
+                const particle of particles
+            ) {
+
+                particle.x +=
+                    particle.vx;
+
+
+                particle.y +=
+                    particle.vy;
+
+
+                if (
+                    particle.x < 0
+                ) {
+
+                    particle.x =
+                        canvas.width;
+
+                }
+
+
+                if (
+                    particle.x >
+                    canvas.width
+                ) {
+
+                    particle.x = 0;
+
+                }
+
+
+                if (
+                    particle.y < 0
+                ) {
+
+                    particle.y =
+                        canvas.height;
+
+                }
+
+
+                if (
+                    particle.y >
+                    canvas.height
+                ) {
+
+                    particle.y = 0;
+
+                }
+
+
+                ctx.beginPath();
+
+
+                ctx.arc(
+                    particle.x,
+                    particle.y,
+                    particle.size,
+                    0,
+                    Math.PI * 2
+                );
+
+
+                ctx.fillStyle =
+                    `rgba(
+                        255,
+                        255,
+                        255,
+                        ${particle.alpha}
+                    )`;
+
+
+                ctx.fill();
+
+            }
+
+
+            /*
+             * Particle connections.
+             */
+
+            for (
+                let i = 0;
+                i < particles.length;
+                i++
+            ) {
+
+                for (
+                    let j = i + 1;
+                    j < particles.length;
+                    j++
+                ) {
+
+                    const a =
+                        particles[i];
+
+                    const b =
+                        particles[j];
+
+
+                    const dx =
+                        a.x - b.x;
+
+                    const dy =
+                        a.y - b.y;
+
+
+                    const distance =
+                        Math.sqrt(
+                            dx * dx +
+                            dy * dy
+                        );
+
+
+                    if (
+                        distance < 120
+                    ) {
+
+                        const opacity =
+                            (
+                                1 -
+                                distance / 120
+                            ) * 0.15;
+
+
+                        ctx.beginPath();
+
+
+                        ctx.moveTo(
+                            a.x,
+                            a.y
+                        );
+
+
+                        ctx.lineTo(
+                            b.x,
+                            b.y
+                        );
+
+
+                        ctx.strokeStyle =
+                            `rgba(
+                                255,
+                                255,
+                                255,
+                                ${opacity}
+                            )`;
+
+
+                        ctx.stroke();
+
+                    }
+
+                }
+
+            }
+
+
+            requestAnimationFrame(
+                animateParticles
+            );
+
+        }
+
+
+        resizeCanvas();
+
+        createParticles();
+
+        animateParticles();
+
+
+        /*
+         * ============================================================
+         * EASTER EGGS
+         * ============================================================
+         */
+
+        const messages = [
+
+            "Connecting to the mothership...",
+
+            "Loading questionable Lua code...",
+
+            "Definitely not downloading 400 addons...",
+
+            "Asking the server nicely to start...",
+
+            "Calibrating player stupidity...",
+
+            "Finding where the errors came from...",
+
+            "Reticulating splines...",
+
+            "Loading important stuff...",
+
+            "Removing unnecessary errors...",
+
+            "Checking if the server is still alive...",
+
+            "Downloading more RAM...",
+
+            "Preparing questionable decisions...",
+
+            "Summoning the server administrator...",
+
+            "Counting pixels...",
+
+            "Teaching the NPCs how to aim...",
+
+            "Compiling absolutely nothing...",
+
+            "Blaming the ping...",
+
+            "Almost there... probably."
+
+        ];
+
+
+        let messageIndex = 0;
+
+
+        function nextEasterEgg() {
+
+            eggMessage.style.opacity =
+                "0";
+
+
+            setTimeout(
+                () => {
+
+                    messageIndex =
+                        (
+                            messageIndex + 1
+                        ) %
+                        messages.length;
+
+
+                    eggMessage.innerText =
+                        messages[
+                            messageIndex
+                        ];
+
+
+                    eggMessage.style.opacity =
+                        "1";
+
+                },
+                300
+            );
+
+        }
+
+
+        setInterval(
+            nextEasterEgg,
+            3500
+        );
 
 
         /*
@@ -416,59 +1923,310 @@
          * ============================================================
          */
 
-        window.GameDetails = function (
-            servername,
-            serverurl,
-            mapname,
-            maxplayers,
-            steamid,
-            gamemode,
-            volume,
-            language
+        window.GameDetails =
+            function(
+                servername,
+                serverurl,
+                gamemap,
+                maxplayers,
+                steamid,
+                gamemode,
+                volume,
+                language
+            ) {
+
+                /*
+                 * GMod has called us, so this is
+                 * a real loading screen.
+                 */
+
+                runningInGMod = true;
+
+
+                demoBadge.style.display =
+                    "none";
+
+
+                /*
+                 * SERVER
+                 */
+
+                serverName.innerText =
+                    servername ||
+                    "Garry's Mod Server";
+
+
+                /*
+                 * MAP
+                 */
+
+                mapName.innerText =
+                    gamemap ||
+                    "Unknown Map";
+
+
+                /*
+                 * PLAYER
+                 */
+
+                steamName.innerText =
+                    "Player";
+
+
+                /*
+                 * STATUS
+                 */
+
+                status.innerText =
+                    "Connecting...";
+
+
+                progress.style.width =
+                    "20%";
+
+
+                /*
+                 * Load the player's avatar.
+                 */
+
+                setRealSteamAvatar(
+                    steamid
+                );
+
+            };
+
+
+        /*
+         * ============================================================
+         * REAL STEAM AVATAR
+         * ============================================================
+         */
+
+        function setRealSteamAvatar(
+            steamID
         ) {
 
-            console.log("Server:", servername);
-            console.log("Map:", mapname);
-            console.log("SteamID64:", steamid);
-            console.log("Gamemode:", gamemode);
+            if (
+                !steamID ||
+                steamID === "0"
+            ) {
 
-            loadingInfo.innerText =
-                "Loading " + mapname + "...";
+                /*
+                 * No SteamID — use dummy.
+                 */
 
-            setSteamAvatar(steamid);
-        };
+                avatar.src =
+                    createDummyAvatar();
+
+                avatar.onload =
+                    startAvatar;
+
+                return;
+
+            }
+
+
+            const avatarURL =
+                "https://steamcommunity.com/profiles/"
+                + encodeURIComponent(
+                    steamID
+                )
+                + "/avatarfull.jpg";
+
+
+            avatar.src =
+                avatarURL;
+
+
+            avatar.onload =
+                function() {
+
+                    avatar.style.display =
+                        "block";
+
+                    startAvatar();
+
+                };
+
+
+            /*
+             * If Steam doesn't provide an avatar,
+             * automatically use the dummy.
+             */
+
+            avatar.onerror =
+                function() {
+
+                    console.log(
+                        "Steam avatar unavailable. Using demo avatar."
+                    );
+
+
+                    avatar.src =
+                        createDummyAvatar();
+
+
+                    avatar.onload =
+                        function() {
+
+                            avatar.style.display =
+                                "block";
+
+                            startAvatar();
+
+                        };
+
+                };
+
+        }
 
 
         /*
          * ============================================================
-         * STATUS
+         * STEAM NAME
          * ============================================================
          */
 
-        window.SetStatusChanged = function (status) {
+        async function getSteamName(
+            steamID
+        ) {
 
-            if (status && status.length > 0) {
+            try {
 
-                loadingInfo.innerText =
-                    status;
+                const response =
+                    await fetch(
+                        "https://steamcommunity.com/profiles/"
+                        + encodeURIComponent(
+                            steamID
+                        )
+                        + "?xml=1"
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Steam request failed"
+                    );
+
+                }
+
+
+                const text =
+                    await response.text();
+
+
+                const match =
+                    text.match(
+                        /<steamID><!\[CDATA\[(.*?)\]\]><\/steamID>/
+                    );
+
+
+                if (
+                    match &&
+                    match[1]
+                ) {
+
+                    steamName.innerText =
+                        match[1];
+
+                    return;
+
+                }
+
+
+                steamName.innerText =
+                    "Player";
+
             }
-        };
+            catch (error) {
+
+                console.log(
+                    "Steam name lookup failed:",
+                    error
+                );
+
+
+                steamName.innerText =
+                    "Player";
+
+            }
+
+        }
 
 
         /*
          * ============================================================
-         * DOWNLOAD STATUS
+         * STATUS CALLBACK
          * ============================================================
          */
 
-        window.DownloadingFile = function (file) {
+        window.SetStatusChanged =
+            function(
+                statusText
+            ) {
 
-            if (file) {
+                if (
+                    statusText &&
+                    statusText.length
+                ) {
 
-                loadingInfo.innerText =
-                    "Downloading: " + file;
-            }
-        };
+                    status.innerText =
+                        statusText;
+
+
+                    const current =
+                        parseFloat(
+                            progress.style.width
+                        ) || 20;
+
+
+                    progress.style.width =
+                        Math.min(
+                            95,
+                            current +
+                            randomBetween(
+                                2,
+                                8
+                            )
+                        ) + "%";
+
+                }
+
+            };
+
+
+        /*
+         * ============================================================
+         * DOWNLOAD CALLBACK
+         * ============================================================
+         */
+
+        window.DownloadingFile =
+            function(file) {
+
+                if (file) {
+
+                    status.innerText =
+                        "Downloading: " +
+                        file;
+
+
+                    const current =
+                        parseFloat(
+                            progress.style.width
+                        ) || 20;
+
+
+                    progress.style.width =
+                        Math.min(
+                            95,
+                            current + 1
+                        ) + "%";
+
+                }
+
+            };
 
 
         /*
@@ -477,25 +2235,109 @@
          * ============================================================
          */
 
-        window.addEventListener("resize", function () {
+        window.addEventListener(
+            "resize",
+            function() {
 
-            const maxX =
-                window.innerWidth - AVATAR_SIZE;
+                resizeCanvas();
 
-            const maxY =
-                window.innerHeight - AVATAR_SIZE;
+                createParticles();
 
-            x = Math.max(
-                0,
-                Math.min(x, maxX)
-            );
 
-            y = Math.max(
-                0,
-                Math.min(y, maxY)
-            );
+                const size =
+                    window.innerWidth < 700
+                        ? 96
+                        : AVATAR_SIZE;
 
-        });
+
+                const maxX =
+                    Math.max(
+                        0,
+                        window.innerWidth -
+                        size
+                    );
+
+
+                const maxY =
+                    Math.max(
+                        0,
+                        window.innerHeight -
+                        size
+                    );
+
+
+                x =
+                    Math.max(
+                        0,
+                        Math.min(
+                            x,
+                            maxX
+                        )
+                    );
+
+
+                y =
+                    Math.max(
+                        0,
+                        Math.min(
+                            y,
+                            maxY
+                        )
+                    );
+
+            }
+        );
+
+
+        /*
+         * ============================================================
+         * RANDOM GLITCHES
+         * ============================================================
+         */
+
+        setInterval(
+            function() {
+
+                if (
+                    Math.random() <
+                    0.35
+                ) {
+
+                    triggerGlitch();
+
+                }
+
+            },
+            7000
+        );
+
+
+        /*
+         * ============================================================
+         * AUTOMATIC DEMO MODE
+         * ============================================================
+         *
+         * GameDetails() is normally called by Garry's Mod.
+         *
+         * If it hasn't been called after a short delay, assume
+         * we're being viewed directly in a normal browser.
+         */
+
+        setTimeout(
+            function() {
+
+                if (
+                    FORCE_DEMO_MODE ||
+                    !runningInGMod
+                ) {
+
+                    startDemoMode();
+
+                }
+
+            },
+            1000
+        );
 
     </script>
 
