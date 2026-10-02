@@ -307,33 +307,59 @@
 <div id="demoBadge">Demo Mode</div>
 
 <div id="avatar">
-    <img id="avatarImage" alt="Steam Avatar">
+    <img
+        id="avatarImage"
+        alt="Steam Avatar"
+    >
 </div>
 
 <div id="enemy">
-    <img id="enemyImage" alt="Enemy">
+    <img
+        id="enemyImage"
+        alt="Enemy"
+    >
 </div>
 
 <script>
 
 const FORCE_DEMO_MODE = false;
 
+
+/*
+    BALL SETTINGS
+*/
+
 const BALL_SIZE = 125;
 
 const AVATAR_SIZE = BALL_SIZE;
 const ENEMY_SIZE = BALL_SIZE;
 
+
+/*
+    PLAYER SPEED
+*/
+
 const MIN_SPEED = 1.5;
 const MAX_SPEED = 5.5;
 
+
+/*
+    ENEMY SPEED
+*/
+
 const ENEMY_MIN_SPEED = 1.7;
 const ENEMY_MAX_SPEED = 5.0;
+
+
+/*
+    COLLISION PARTICLES
+*/
 
 const EXPLOSION_PARTICLES = 28;
 
 
 /*
-    RANDOM ENEMY IMAGES
+    ENEMY IMAGES
 */
 
 const ENEMY_IMAGES = [
@@ -350,6 +376,7 @@ const ENEMY_IMAGES = [
 
 ];
 
+
 const randomEnemyImage =
     ENEMY_IMAGES[
         Math.floor(
@@ -359,12 +386,20 @@ const randomEnemyImage =
     ];
 
 
+/*
+    STATE
+*/
+
 let gotGameDetails = false;
 
 let progress = 0;
 
 let playerSteamID = null;
 
+
+/*
+    PLAYER POSITION
+*/
 
 let posX =
     window.innerWidth / 2 -
@@ -374,6 +409,10 @@ let posY =
     window.innerHeight / 2 -
     AVATAR_SIZE / 2;
 
+
+/*
+    PLAYER VELOCITY
+*/
 
 let vx =
     randomDirection() *
@@ -390,12 +429,20 @@ let vy =
     );
 
 
+/*
+    ENEMY POSITION
+*/
+
 let enemyX =
     window.innerWidth * 0.72;
 
 let enemyY =
     window.innerHeight * 0.30;
 
+
+/*
+    ENEMY VELOCITY
+*/
 
 let enemyVX =
     randomDirection() *
@@ -414,6 +461,10 @@ let enemyVY =
 
 let collisionCooldown = 0;
 
+
+/*
+    ELEMENTS
+*/
 
 const avatar =
     document.getElementById(
@@ -472,7 +523,7 @@ const demoBadge =
 
 
 /*
-    RANDOM ENEMY
+    ENEMY IMAGE
 */
 
 enemyImage.src =
@@ -568,99 +619,14 @@ function setDummyAvatar() {
 
 
 /*
-    REAL STEAM AVATAR
-*/
+    GET STEAM ID FROM URL
 
-function setRealSteamAvatar(
-    steamID
-) {
+    Your server.cfg should be:
 
-    if (
-        !steamID ||
-        steamID === "BOT"
-    ) {
+    sv_loadingurl "https://swib.by/ttt?steamid=%s"
 
-        setDummyAvatar();
-
-        return;
-    }
-
-
-    playerSteamID =
-        String(steamID);
-
-
-    /*
-        Steam Community avatar URL.
-
-        This is an image request rather
-        than fetch(), so browser CORS
-        restrictions do not prevent the
-        image from loading.
-    */
-
-    const avatarURL =
-        "https://steamcommunity.com/profiles/" +
-        encodeURIComponent(
-            playerSteamID
-        ) +
-        "/avatarfull.jpg";
-
-
-    avatarImage.onload =
-        function() {
-
-            avatarImage.style.display =
-                "block";
-
-        };
-
-
-    avatarImage.onerror =
-        function() {
-
-            /*
-                Second fallback.
-            */
-
-            const fallbackURL =
-                "https://steamcommunity.com/profiles/" +
-                encodeURIComponent(
-                    playerSteamID
-                ) +
-                "/avatar.jpg";
-
-
-            avatarImage.onerror =
-                function() {
-
-                    setDummyAvatar();
-
-                };
-
-
-            avatarImage.src =
-                fallbackURL;
-
-        };
-
-
-    avatarImage.src =
-        avatarURL;
-
-}
-
-
-/*
-    PLAYER NAME
-
-    The loading-screen GameDetails
-    callback does NOT provide Nick().
-
-    We first try the URL parameter,
-    but if no external name service
-    is available, GMod Player remains
-    the safe fallback.
+    GMod replaces %s with the
+    joining player's SteamID64.
 */
 
 function getSteamIDFromURL() {
@@ -671,6 +637,7 @@ function getSteamIDFromURL() {
             new URLSearchParams(
                 window.location.search
             );
+
 
         return (
             params.get("steamid") ||
@@ -690,40 +657,59 @@ function getSteamIDFromURL() {
 
 
 /*
-    Try Steam XML only as a best-effort
-    fallback.
-
-    Steam may block browser-side
-    cross-origin requests, so failure
-    is intentionally ignored.
+    LOAD STEAM PROFILE
 */
 
-async function tryGetSteamName(
+async function loadSteamProfile(
     steamID
 ) {
 
     if (
         !steamID ||
-        steamID === "BOT"
+        steamID === "BOT" ||
+        steamID === "0"
     ) {
+
+        setDummyAvatar();
+
+        steamName.textContent =
+            "GMod Player";
 
         return;
 
     }
 
 
+    playerSteamID =
+        String(steamID);
+
+
     try {
+
+        statusElement.textContent =
+            "Loading Steam profile...";
+
+
+        /*
+            Public profile API.
+
+            No Steam API key is placed
+            in the HTML.
+        */
+
+        const apiURL =
+            "https://steamgpt.net/profile/" +
+            encodeURIComponent(
+                playerSteamID
+            ) +
+            ".json";
+
 
         const response =
             await fetch(
-                "https://steamcommunity.com/profiles/" +
-                encodeURIComponent(
-                    steamID
-                ) +
-                "/?xml=1",
+                apiURL,
                 {
                     method: "GET",
-                    mode: "cors",
                     cache: "no-store"
                 }
             );
@@ -733,44 +719,125 @@ async function tryGetSteamName(
             !response.ok
         ) {
 
-            return;
+            throw new Error(
+                "Profile request failed"
+            );
 
         }
 
 
-        const text =
-            await response.text();
-
-
-        const match =
-            text.match(
-                /<steamID><!\[CDATA\[([\s\S]*?)\]\]><\/steamID>/
-            );
+        const result =
+            await response.json();
 
 
         if (
-            match &&
-            match[1] &&
-            match[1].trim()
+            !result ||
+            result.result !== "success" ||
+            !result.data
+        ) {
+
+            throw new Error(
+                "Invalid profile response"
+            );
+
+        }
+
+
+        const profile =
+            result.data.steam;
+
+
+        if (
+            !profile
+        ) {
+
+            throw new Error(
+                "No Steam profile"
+            );
+
+        }
+
+
+        /*
+            REAL STEAM NAME
+        */
+
+        const name =
+            profile.personaname ||
+            profile.player_name;
+
+
+        if (
+            name &&
+            name.trim()
         ) {
 
             steamName.textContent =
-                match[1].trim();
+                name.trim();
 
         }
+
+
+        /*
+            REAL STEAM AVATAR
+        */
+
+        const avatarURL =
+            profile.avatarfull ||
+            profile.avatarmedium ||
+            profile.avatar;
+
+
+        if (
+            avatarURL
+        ) {
+
+            avatarImage.onerror =
+                function() {
+
+                    setDummyAvatar();
+
+                };
+
+
+            avatarImage.src =
+                avatarURL;
+
+        } else {
+
+            setDummyAvatar();
+
+        }
+
 
     } catch (
         error
     ) {
 
-        /*
-            Expected to fail on some
-            browsers because Steam does
-            not necessarily allow the
-            cross-origin request.
+        console.error(
+            "Steam profile error:",
+            error
+        );
 
-            Leave "GMod Player".
+
+        /*
+            Keep the loading screen
+            working if the external
+            profile service fails.
         */
+
+        if (
+            steamName.textContent ===
+            "Loading Steam profile..."
+        ) {
+
+            steamName.textContent =
+                "GMod Player";
+
+        }
+
+
+        setDummyAvatar();
 
     }
 
@@ -824,15 +891,11 @@ function startDemoMode() {
 /*
     GARRY'S MOD CALLBACK
 
-    GMod supplies:
-    servername
-    serverurl
-    mapname
-    maxplayers
-    steamid
-    gamemode
-    volume
-    language
+    GMod calls this when the
+    loading screen starts.
+
+    The fifth argument is the
+    local player's SteamID64.
 */
 
 window.GameDetails =
@@ -856,40 +919,13 @@ function(
 
 
     /*
-        Store the actual
-        connecting player's SteamID64.
+        Store SteamID64.
     */
 
     playerSteamID =
         steamid ?
         String(steamid) :
         null;
-
-
-    /*
-        Start with a fallback name.
-    */
-
-    steamName.textContent =
-        "GMod Player";
-
-
-    /*
-        Load the actual Steam avatar.
-    */
-
-    setRealSteamAvatar(
-        playerSteamID
-    );
-
-
-    /*
-        Best-effort Steam name lookup.
-    */
-
-    tryGetSteamName(
-        playerSteamID
-    );
 
 
     /*
@@ -914,6 +950,15 @@ function(
 
 
     setProgress(5);
+
+
+    /*
+        Load actual player.
+    */
+
+    loadSteamProfile(
+        playerSteamID
+    );
 
 };
 
@@ -947,7 +992,7 @@ function(
 
 
 /*
-    FILE DOWNLOAD CALLBACK
+    DOWNLOADING CALLBACK
 */
 
 window.DownloadingFile =
@@ -1079,866 +1124,4 @@ function createExplosion(
         "explosionFlash";
 
 
-    flash.style.left =
-        centerX + "px";
-
-
-    flash.style.top =
-        centerY + "px";
-
-
-    document.body.appendChild(
-        flash
-    );
-
-
-    setTimeout(
-        () => {
-
-            if (
-                flash.parentNode
-            ) {
-
-                flash.parentNode
-                    .removeChild(
-                        flash
-                    );
-
-            }
-
-        },
-        300
-    );
-
-
-    for (
-        let i = 0;
-        i < EXPLOSION_PARTICLES;
-        i++
-    ) {
-
-        const particle =
-            document.createElement(
-                "div"
-            );
-
-
-        particle.className =
-            "explosionParticle";
-
-
-        const angle =
-            Math.random() *
-            Math.PI *
-            2;
-
-
-        const velocity =
-            randomRange(
-                3,
-                10
-            );
-
-
-        let velocityX =
-            Math.cos(angle) *
-            velocity;
-
-
-        let velocityY =
-            Math.sin(angle) *
-            velocity;
-
-
-        const size =
-            randomRange(
-                3,
-                8
-            );
-
-
-        particle.style.width =
-            size + "px";
-
-
-        particle.style.height =
-            size + "px";
-
-
-        particle.style.left =
-            centerX + "px";
-
-
-        particle.style.top =
-            centerY + "px";
-
-
-        document.body.appendChild(
-            particle
-        );
-
-
-        let x =
-            centerX;
-
-        let y =
-            centerY;
-
-
-        let life =
-            randomRange(
-                35,
-                65
-            );
-
-
-        const gravity =
-            0.16;
-
-
-        function animateParticle() {
-
-            x +=
-                velocityX;
-
-
-            y +=
-                velocityY;
-
-
-            velocityY +=
-                gravity;
-
-
-            velocityX *=
-                0.985;
-
-
-            velocityY *=
-                0.985;
-
-
-            life--;
-
-
-            particle.style.left =
-                x + "px";
-
-
-            particle.style.top =
-                y + "px";
-
-
-            particle.style.opacity =
-                Math.max(
-                    0,
-                    life / 65
-                );
-
-
-            if (
-                life > 0
-            ) {
-
-                requestAnimationFrame(
-                    animateParticle
-                );
-
-            } else {
-
-                if (
-                    particle.parentNode
-                ) {
-
-                    particle.parentNode
-                        .removeChild(
-                            particle
-                        );
-
-                }
-
-            }
-
-        }
-
-
-        requestAnimationFrame(
-            animateParticle
-        );
-
-    }
-
-}
-
-
-/*
-    PLAYER DIRECTION
-*/
-
-function changeDirection(
-    horizontal,
-    direction
-) {
-
-    const speed =
-        randomRange(
-            MIN_SPEED,
-            MAX_SPEED
-        );
-
-
-    const variation =
-        randomRange(
-            -0.4,
-            0.4
-        );
-
-
-    if (
-        horizontal
-    ) {
-
-        vx =
-            direction *
-            speed;
-
-
-        vy +=
-            variation;
-
-    } else {
-
-        vy =
-            direction *
-            speed;
-
-
-        vx +=
-            variation;
-
-    }
-
-}
-
-
-/*
-    ENEMY DIRECTION
-*/
-
-function changeEnemyDirection(
-    horizontal,
-    direction
-) {
-
-    const speed =
-        randomRange(
-            ENEMY_MIN_SPEED,
-            ENEMY_MAX_SPEED
-        );
-
-
-    const variation =
-        randomRange(
-            -0.4,
-            0.4
-        );
-
-
-    if (
-        horizontal
-    ) {
-
-        enemyVX =
-            direction *
-            speed;
-
-
-        enemyVY +=
-            variation;
-
-    } else {
-
-        enemyVY =
-            direction *
-            speed;
-
-
-        enemyVX +=
-            variation;
-
-    }
-
-}
-
-
-/*
-    PLAYER / ENEMY COLLISION
-*/
-
-function checkPlayerEnemyCollision() {
-
-    if (
-        collisionCooldown > 0
-    ) {
-
-        return;
-
-    }
-
-
-    const playerCenterX =
-        posX +
-        AVATAR_SIZE / 2;
-
-
-    const playerCenterY =
-        posY +
-        AVATAR_SIZE / 2;
-
-
-    const enemyCenterX =
-        enemyX +
-        ENEMY_SIZE / 2;
-
-
-    const enemyCenterY =
-        enemyY +
-        ENEMY_SIZE / 2;
-
-
-    const dx =
-        playerCenterX -
-        enemyCenterX;
-
-
-    const dy =
-        playerCenterY -
-        enemyCenterY;
-
-
-    const distance =
-        Math.sqrt(
-            dx * dx +
-            dy * dy
-        );
-
-
-    const collisionDistance =
-        BALL_SIZE;
-
-
-    if (
-        distance <=
-        collisionDistance
-    ) {
-
-        const explosionX =
-            (
-                playerCenterX +
-                enemyCenterX
-            ) / 2;
-
-
-        const explosionY =
-            (
-                playerCenterY +
-                enemyCenterY
-            ) / 2;
-
-
-        createExplosion(
-            explosionX,
-            explosionY
-        );
-
-
-        let normalX =
-            dx;
-
-
-        let normalY =
-            dy;
-
-
-        const length =
-            Math.sqrt(
-                normalX * normalX +
-                normalY * normalY
-            );
-
-
-        if (
-            length > 0
-        ) {
-
-            normalX /=
-                length;
-
-
-            normalY /=
-                length;
-
-        } else {
-
-            normalX =
-                1;
-
-
-            normalY =
-                0;
-
-        }
-
-
-        const push =
-            8;
-
-
-        posX +=
-            normalX *
-            push;
-
-
-        posY +=
-            normalY *
-            push;
-
-
-        enemyX -=
-            normalX *
-            push;
-
-
-        enemyY -=
-            normalY *
-            push;
-
-
-        vx =
-            -vx *
-            randomRange(
-                0.9,
-                1.1
-            );
-
-
-        vy =
-            -vy *
-            randomRange(
-                0.9,
-                1.1
-            );
-
-
-        enemyVX =
-            -enemyVX *
-            randomRange(
-                0.9,
-                1.1
-            );
-
-
-        enemyVY =
-            -enemyVY *
-            randomRange(
-                0.9,
-                1.1
-            );
-
-
-        collisionCooldown =
-            35;
-
-    }
-
-}
-
-
-/*
-    PLAYER MOVEMENT
-*/
-
-function updatePlayer() {
-
-    const width =
-        window.innerWidth;
-
-
-    const height =
-        window.innerHeight;
-
-
-    posX +=
-        vx;
-
-
-    posY +=
-        vy;
-
-
-    /*
-        Wall bouncing.
-        No particles.
-        No impact effect.
-    */
-
-    if (
-        posX <= 0
-    ) {
-
-        posX =
-            0;
-
-
-        vx =
-            Math.abs(vx);
-
-
-        changeDirection(
-            true,
-            1
-        );
-
-    }
-
-
-    if (
-        posX +
-        AVATAR_SIZE >=
-        width
-    ) {
-
-        posX =
-            width -
-            AVATAR_SIZE;
-
-
-        vx =
-            -Math.abs(vx);
-
-
-        changeDirection(
-            true,
-            -1
-        );
-
-    }
-
-
-    if (
-        posY <= 0
-    ) {
-
-        posY =
-            0;
-
-
-        vy =
-            Math.abs(vy);
-
-
-        changeDirection(
-            false,
-            1
-        );
-
-    }
-
-
-    if (
-        posY +
-        AVATAR_SIZE >=
-        height
-    ) {
-
-        posY =
-            height -
-            AVATAR_SIZE;
-
-
-        vy =
-            -Math.abs(vy);
-
-
-        changeDirection(
-            false,
-            -1
-        );
-
-    }
-
-
-    avatar.style.left =
-        posX + "px";
-
-
-    avatar.style.top =
-        posY + "px";
-
-}
-
-
-/*
-    ENEMY MOVEMENT
-*/
-
-function updateEnemy() {
-
-    const width =
-        window.innerWidth;
-
-
-    const height =
-        window.innerHeight;
-
-
-    enemyX +=
-        enemyVX;
-
-
-    enemyY +=
-        enemyVY;
-
-
-    /*
-        Wall bouncing.
-        No particles.
-        No impact effect.
-    */
-
-    if (
-        enemyX <= 0
-    ) {
-
-        enemyX =
-            0;
-
-
-        enemyVX =
-            Math.abs(enemyVX);
-
-
-        changeEnemyDirection(
-            true,
-            1
-        );
-
-    }
-
-
-    if (
-        enemyX +
-        ENEMY_SIZE >=
-        width
-    ) {
-
-        enemyX =
-            width -
-            ENEMY_SIZE;
-
-
-        enemyVX =
-            -Math.abs(enemyVX);
-
-
-        changeEnemyDirection(
-            true,
-            -1
-        );
-
-    }
-
-
-    if (
-        enemyY <= 0
-    ) {
-
-        enemyY =
-            0;
-
-
-        enemyVY =
-            Math.abs(enemyVY);
-
-
-        changeEnemyDirection(
-            false,
-            1
-        );
-
-    }
-
-
-    if (
-        enemyY +
-        ENEMY_SIZE >=
-        height
-    ) {
-
-        enemyY =
-            height -
-            ENEMY_SIZE;
-
-
-        enemyVY =
-            -Math.abs(enemyVY);
-
-
-        changeEnemyDirection(
-            false,
-            -1
-        );
-
-    }
-
-
-    enemy.style.left =
-        enemyX + "px";
-
-
-    enemy.style.top =
-        enemyY + "px";
-
-}
-
-
-/*
-    ANIMATION
-*/
-
-function animate() {
-
-    updatePlayer();
-
-    updateEnemy();
-
-    checkPlayerEnemyCollision();
-
-
-    if (
-        collisionCooldown > 0
-    ) {
-
-        collisionCooldown--;
-
-    }
-
-
-    requestAnimationFrame(
-        animate
-    );
-
-}
-
-
-/*
-    RESIZE
-*/
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        posX =
-            clamp(
-                posX,
-                0,
-                window.innerWidth -
-                AVATAR_SIZE
-            );
-
-
-        posY =
-            clamp(
-                posY,
-                0,
-                window.innerHeight -
-                AVATAR_SIZE
-            );
-
-
-        enemyX =
-            clamp(
-                enemyX,
-                0,
-                window.innerWidth -
-                ENEMY_SIZE
-            );
-
-
-        enemyY =
-            clamp(
-                enemyY,
-                0,
-                window.innerHeight -
-                ENEMY_SIZE
-            );
-
-    }
-);
-
-
-/*
-    START
-*/
-
-setDummyAvatar();
-
-setProgress(0);
-
-animate();
-
-
-/*
-    If sv_loadingurl uses:
-
-    https://your-site.com/?steamid=%s
-
-    this also makes the SteamID available
-    immediately from the URL.
-*/
-
-const urlSteamID =
-    getSteamIDFromURL();
-
-
-if (
-    urlSteamID
-) {
-
-    playerSteamID =
-        urlSteamID;
-
-
-    setRealSteamAvatar(
-        urlSteamID
-    );
-
-
-    tryGetSteamName(
-        urlSteamID
-    );
-
-}
-
-
-setTimeout(
-    () => {
-
-        if (
-            !gotGameDetails ||
-            FORCE_DEMO_MODE
-        ) {
-
-            startDemoMode();
-
-        }
-
-    },
-    1000
-);
-
-</script>
-
-</body>
-</html>
+    flas
