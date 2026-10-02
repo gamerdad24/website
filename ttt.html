@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Garry's Mod Loading Screen</title>
 
 <style>
@@ -11,256 +12,350 @@
         user-select: none;
     }
 
-    html, body {
+    html,
+    body {
         margin: 0;
         width: 100%;
         height: 100%;
         overflow: hidden;
-        font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
         background: #111;
+        color: #fff;
     }
 
     body {
         position: relative;
-        color: white;
+
         background-image:
             linear-gradient(
-                rgba(0, 0, 0, 0.18),
-                rgba(0, 0, 0, 0.38)
+                rgba(0, 0, 0, 0.45),
+                rgba(0, 0, 0, 0.65)
             ),
             url("https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/images/autism.png");
+
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
 
-    /* Colorful overlay */
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-
-        background:
-            radial-gradient(
-                circle at 15% 20%,
-                rgba(255, 0, 110, 0.12),
-                transparent 25%
-            ),
-            radial-gradient(
-                circle at 85% 25%,
-                rgba(0, 245, 255, 0.12),
-                transparent 25%
-            ),
-            radial-gradient(
-                circle at 50% 90%,
-                rgba(124, 255, 0, 0.10),
-                transparent 30%
-            );
-
-        z-index: 1;
-    }
-
-    /* CRT scanlines */
-    body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 999;
-
-        background:
-            repeating-linear-gradient(
-                to bottom,
-                rgba(255,255,255,0.025) 0px,
-                rgba(255,255,255,0.025) 1px,
-                transparent 1px,
-                transparent 4px
-            );
-
-        mix-blend-mode: overlay;
-    }
-
     /* =========================================================
-       LEFT UI
+       INFORMATION
        ========================================================= */
 
     #leftSide {
         position: fixed;
-        left: 35px;
-        top: 50%;
-        transform: translateY(-50%);
 
-        width: min(
-            430px,
-            calc(100vw - 70px)
-        );
+        left: 45px;
+        top: 50%;
+
+        transform:
+            translateY(-50%);
+
+        width: 420px;
 
         z-index: 20;
     }
 
-    .card {
-        position: relative;
-
-        margin-bottom: 16px;
-        padding: 18px 22px;
-
-        border: 4px solid white;
-        border-radius: 24px;
-
-        background:
-            linear-gradient(
-                135deg,
-                rgba(255, 0, 110, 0.82),
-                rgba(168, 85, 247, 0.78),
-                rgba(0, 245, 255, 0.75)
-            );
-
-        box-shadow:
-            0 0 0 4px #111,
-            0 0 25px rgba(255,255,255,0.3),
-            8px 8px 0 rgba(0,0,0,0.35);
-
-        transform: rotate(-1deg);
+    .section {
+        margin-bottom: 24px;
     }
 
-    .card:nth-child(even) {
-        transform: rotate(1deg);
-    }
+    .label {
+        margin-bottom: 5px;
 
-    .card::before {
-        content: "★";
+        font-size: 12px;
+        font-weight: 600;
 
-        position: absolute;
-        top: -20px;
-        right: 18px;
+        color:
+            rgba(255,255,255,0.55);
 
-        color: #ffea00;
-
-        font-size: 30px;
-
-        text-shadow:
-            3px 3px 0 #111;
-
-        animation:
-            wiggle 1.4s infinite ease-in-out;
-    }
-
-    #welcome {
-        font-size: 20px;
-        font-weight: bold;
-
-        text-shadow:
-            3px 3px 0 #111;
-
-        margin-bottom: 2px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
 
     #steamName {
         font-size: 30px;
-        line-height: 1.05;
-        font-weight: bold;
+        font-weight: 600;
 
-        color: #fff;
-
-        text-shadow:
-            3px 3px 0 #ff006e,
-            5px 5px 0 #111;
-
-        overflow-wrap: anywhere;
+        color: white;
     }
 
     #serverName {
-        font-size: 27px;
-        line-height: 1.05;
-        font-weight: bold;
+        font-size: 26px;
+        font-weight: 600;
 
-        color: #fff;
-
-        text-shadow:
-            3px 3px 0 #00f5ff,
-            5px 5px 0 #111;
+        color: white;
     }
 
     #mapName {
-        margin-top: 7px;
+        margin-top: 6px;
 
-        font-size: 16px;
-        font-weight: bold;
+        font-size: 15px;
 
-        color: white;
-
-        text-shadow:
-            2px 2px 0 #111;
+        color:
+            rgba(255,255,255,0.65);
     }
 
     #status {
-        font-size: 21px;
-        font-weight: bold;
+        min-height: 22px;
 
-        min-height: 28px;
+        font-size: 15px;
 
-        text-shadow:
-            2px 2px 0 #111;
+        color:
+            rgba(255,255,255,0.75);
     }
 
-    #loadingBar {
-        position: relative;
+    /* =========================================================
+       PROGRESS BAR
+       ========================================================= */
 
+    #loadingBar {
         width: 100%;
-        height: 18px;
+        height: 4px;
 
         margin-top: 12px;
 
-        border: 3px solid white;
-        border-radius: 20px;
-
-        background: rgba(0,0,0,0.55);
-
         overflow: hidden;
 
-        box-shadow:
-            3px 3px 0 #111;
+        background:
+            rgba(255,255,255,0.18);
+
+        border-radius: 4px;
     }
 
     #loadingProgress {
         width: 0%;
         height: 100%;
 
-        border-radius: 20px;
+        background: white;
 
-        background:
-            linear-gradient(
-                90deg,
-                #ff006e,
-                #ffea00,
-                #7cff00,
-                #00f5ff,
-                #a855f7
-            );
-
-        background-size: 300% 100%;
-
-        animation:
-            rainbowBar 1.5s linear infinite;
+        border-radius: 4px;
 
         transition:
             width 0.25s ease;
     }
 
+    /* =========================================================
+       EASTER EGG TEXT
+       ========================================================= */
+
     #eggMessage {
-        min-height: 28px;
+        min-height: 20px;
 
-        font-size: 18px;
-        font-weight: bold;
+        font-size: 13px;
 
-        color: #fff;
-
-        text-shadow:
-            2px 2px 0 #111;
+        color:
+            rgba(255,255,255,0.45);
 
         transition:
-            opacity 0.25s ease;
+            opacity 0.3s ease;
+    }
+
+    /* =========================================================
+       PLAYER AVATAR
+       ========================================================= */
+
+    #avatar {
+        position: fixed;
+
+        width: 128px;
+        height: 128px;
+
+        z-index: 10;
+
+        pointer-events: none;
+
+        transform-origin:
+            center center;
+    }
+
+    #avatarImage {
+        width: 128px;
+        height: 128px;
+
+        display: block;
+
+        object-fit: cover;
+
+        border-radius: 50%;
+
+        border: 3px solid
+            rgba(255,255,255,0.9);
+
+        box-shadow:
+            0 8px 30px
+            rgba(0,0,0,0.55);
+
+        animation:
+            subtlePulse 2s
+            ease-in-out
+            infinite;
+    }
+
+    /* =========================================================
+       ENEMY
+       ========================================================= */
+
+    #enemy {
+        position: fixed;
+
+        width: 110px;
+        height: 110px;
+
+        z-index: 9;
+
+        pointer-events: none;
+
+        transform-origin:
+            center center;
+    }
+
+    #enemyImage {
+        width: 110px;
+        height: 110px;
+
+        display: block;
+
+        object-fit: cover;
+
+        border-radius: 50%;
+
+        border: 3px solid
+            rgba(255,255,255,0.9);
+
+        box-shadow:
+            0 8px 30px
+            rgba(0,0,0,0.65);
+    }
+
+    /* =========================================================
+       COLLISION PARTICLES
+       ========================================================= */
+
+    .explosionParticle {
+        position: fixed;
+
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+
+        pointer-events: none;
+
+        z-index: 30;
+
+        background: #fff;
+
+        box-shadow:
+            0 0 8px
+            rgba(255,255,255,0.9);
+
+        transform:
+            translate(-50%, -50%);
+
+        will-change:
+            transform,
+            opacity;
+    }
+
+    .explosionFlash {
+        position: fixed;
+
+        width: 18px;
+        height: 18px;
+
+        border-radius: 50%;
+
+        pointer-events: none;
+
+        z-index: 29;
+
+        background:
+            rgba(255,255,255,0.9);
+
+        box-shadow:
+            0 0 25px
+            rgba(255,255,255,0.8);
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.5);
+
+        animation:
+            flashAnimation
+            0.25s
+            ease-out
+            forwards;
+    }
+
+    @keyframes flashAnimation {
+
+        0% {
+            opacity: 1;
+
+            transform:
+                translate(-50%, -50%)
+                scale(0.5);
+        }
+
+        100% {
+            opacity: 0;
+
+            transform:
+                translate(-50%, -50%)
+                scale(4);
+        }
+    }
+
+    /* =========================================================
+       SIMPLE EDGE IMPACT
+       ========================================================= */
+
+    .impact {
+        position: fixed;
+
+        width: 8px;
+        height: 8px;
+
+        border-radius: 50%;
+
+        pointer-events: none;
+
+        z-index: 4;
+
+        background:
+            rgba(255,255,255,0.8);
+
+        transform:
+            translate(-50%, -50%);
+
+        animation:
+            impactAnim
+            0.35s
+            ease-out
+            forwards;
+    }
+
+    @keyframes impactAnim {
+
+        0% {
+            opacity: 0.8;
+
+            width: 8px;
+            height: 8px;
+        }
+
+        100% {
+            opacity: 0;
+
+            width: 45px;
+            height: 45px;
+        }
     }
 
     /* =========================================================
@@ -271,264 +366,46 @@
         display: none;
 
         position: fixed;
+
         right: 25px;
         top: 25px;
 
-        z-index: 30;
+        z-index: 40;
 
-        padding: 9px 14px;
+        padding: 7px 11px;
 
-        border: 3px solid white;
-        border-radius: 15px;
+        border: 1px solid
+            rgba(255,255,255,0.3);
 
-        background: #7cff00;
-        color: #111;
-
-        font-size: 14px;
-        font-weight: bold;
-
-        box-shadow:
-            4px 4px 0 #111;
-    }
-
-    /* =========================================================
-       BOUNCING AVATAR
-       ========================================================= */
-
-    #avatar {
-        position: fixed;
-
-        left: 50%;
-        top: 50%;
-
-        width: 128px;
-        height: 128px;
-
-        z-index: 15;
-
-        pointer-events: none;
-
-        transform-origin:
-            center center;
-    }
-
-    #avatarImage {
-        position: absolute;
-
-        inset: 0;
-
-        width: 128px;
-        height: 128px;
-
-        border-radius: 50%;
-
-        object-fit: cover;
-
-        border: 5px solid white;
-
-        box-shadow:
-            0 0 10px #ff006e,
-            0 0 20px #00f5ff,
-            0 0 30px #7cff00,
-            0 0 45px rgba(168,85,247,0.8);
-
-        animation:
-            avatarPulse 1.2s infinite ease-in-out;
-    }
-
-    /* =========================================================
-       RGB TRAIL
-       ========================================================= */
-
-    .trail {
-        position: fixed;
-
-        width: 105px;
-        height: 105px;
-
-        border-radius: 50%;
-
-        pointer-events: none;
-
-        z-index: 8;
-
-        opacity: 0;
-
-        transform:
-            translate(-50%, -50%);
-
-        mix-blend-mode: screen;
-
-        filter: blur(2px);
-    }
-
-    .trail.red {
-        background:
-            rgba(255,0,70,0.45);
-
-        box-shadow:
-            0 0 25px rgba(255,0,70,0.8);
-    }
-
-    .trail.green {
-        background:
-            rgba(80,255,0,0.35);
-
-        box-shadow:
-            0 0 25px rgba(80,255,0,0.8);
-    }
-
-    .trail.blue {
-        background:
-            rgba(0,180,255,0.4);
-
-        box-shadow:
-            0 0 25px rgba(0,180,255,0.8);
-    }
-
-    .trail.yellow {
-        background:
-            rgba(255,230,0,0.3);
-
-        box-shadow:
-            0 0 25px rgba(255,230,0,0.8);
-    }
-
-    /* =========================================================
-       EDGE IMPACTS
-       ========================================================= */
-
-    .impact {
-        position: fixed;
-
-        width: 20px;
-        height: 20px;
-
-        border-radius: 50%;
-
-        pointer-events: none;
-
-        z-index: 12;
-
-        border: 4px solid white;
-
-        transform:
-            translate(-50%, -50%);
-
-        animation:
-            impactAnim 0.45s ease-out forwards;
-    }
-
-    /* =========================================================
-       CORNER STARS
-       ========================================================= */
-
-    .star {
-        position: fixed;
-
-        pointer-events: none;
-
-        z-index: 25;
-
-        font-weight: bold;
-
-        line-height: 1;
-
-        text-shadow:
-            0 0 5px currentColor,
-            2px 2px 0 #111;
-
-        transform-origin:
-            center;
-    }
-
-    /* =========================================================
-       GLITCH
-       ========================================================= */
-
-    #glitch {
-        position: fixed;
-
-        inset: 0;
-
-        z-index: 50;
-
-        pointer-events: none;
-
-        opacity: 0;
+        border-radius: 4px;
 
         background:
-            repeating-linear-gradient(
-                0deg,
-                transparent 0px,
-                transparent 4px,
-                rgba(255,0,110,0.07) 4px,
-                rgba(255,0,110,0.07) 7px
-            );
+            rgba(0,0,0,0.45);
+
+        color:
+            rgba(255,255,255,0.65);
+
+        font-size: 11px;
+
+        letter-spacing: 1px;
+        text-transform: uppercase;
     }
 
     /* =========================================================
        ANIMATIONS
        ========================================================= */
 
-    @keyframes rainbowBar {
-        from {
-            background-position:
-                0% 0%;
-        }
+    @keyframes subtlePulse {
 
-        to {
-            background-position:
-                300% 0%;
-        }
-    }
-
-    @keyframes avatarPulse {
-        0%, 100% {
-            transform:
-                scale(1);
-        }
-
-        50% {
-            transform:
-                scale(1.035);
-        }
-    }
-
-    @keyframes wiggle {
-        0%, 100% {
-            transform:
-                rotate(-10deg)
-                scale(1);
-        }
-
-        50% {
-            transform:
-                rotate(12deg)
-                scale(1.15);
-        }
-    }
-
-    @keyframes impactAnim {
-        0% {
-            opacity: 1;
-
-            width: 15px;
-            height: 15px;
-
-            box-shadow:
-                0 0 5px white;
-        }
-
+        0%,
         100% {
-            opacity: 0;
+            transform:
+                scale(1);
+        }
 
-            width: 100px;
-            height: 100px;
-
-            box-shadow:
-                0 0 30px #ff006e,
-                0 0 50px #00f5ff;
+        50% {
+            transform:
+                scale(1.015);
         }
     }
 
@@ -539,42 +416,42 @@
     @media (max-width: 700px) {
 
         #leftSide {
-            left: 15px;
+            left: 25px;
+            right: 25px;
+            bottom: 25px;
             top: auto;
-            bottom: 15px;
+
+            width: auto;
 
             transform: none;
-
-            width:
-                calc(100vw - 30px);
-        }
-
-        .card {
-            padding: 12px 16px;
-            margin-bottom: 10px;
         }
 
         #steamName {
-            font-size: 23px;
+            font-size: 24px;
         }
 
         #serverName {
-            font-size: 21px;
+            font-size: 22px;
         }
 
-        #eggMessage {
-            font-size: 15px;
+        #avatar {
+            width: 96px;
+            height: 96px;
         }
 
-        #avatar,
         #avatarImage {
-            width: 95px;
-            height: 95px;
+            width: 96px;
+            height: 96px;
         }
 
-        #demoBadge {
-            right: 15px;
-            top: 15px;
+        #enemy {
+            width: 84px;
+            height: 84px;
+        }
+
+        #enemyImage {
+            width: 84px;
+            height: 84px;
         }
     }
 </style>
@@ -582,21 +459,30 @@
 
 <body>
 
+<!-- =========================================================
+     INFORMATION
+     ========================================================= -->
+
 <div id="leftSide">
 
-    <div class="card" id="playerCard">
+    <div class="section">
 
-        <div id="welcome">
-            WELCOME TO THE SERVER!
+        <div class="label">
+            Player
         </div>
 
         <div id="steamName">
-            GMod Player :D
+            GMod Player
         </div>
 
     </div>
 
-    <div class="card" id="serverCard">
+
+    <div class="section">
+
+        <div class="label">
+            Server
+        </div>
 
         <div id="serverName">
             Garry's Mod Server
@@ -608,7 +494,8 @@
 
     </div>
 
-    <div class="card" id="statusCard">
+
+    <div class="section">
 
         <div id="status">
             Waiting for the server...
@@ -620,19 +507,26 @@
 
     </div>
 
-    <div class="card" id="easterEgg">
 
-        <div id="eggMessage">
-            Loading questionable Lua code...
-        </div>
-
+    <div id="eggMessage">
+        Loading...
     </div>
 
 </div>
 
+
+<!-- =========================================================
+     DEMO MODE
+     ========================================================= -->
+
 <div id="demoBadge">
-    DEMO MODE :D
+    Demo Mode
 </div>
+
+
+<!-- =========================================================
+     PLAYER AVATAR
+     ========================================================= -->
 
 <div id="avatar">
 
@@ -643,7 +537,21 @@
 
 </div>
 
-<div id="glitch"></div>
+
+<!-- =========================================================
+     ENEMY
+     ========================================================= -->
+
+<div id="enemy">
+
+    <img
+        id="enemyImage"
+        alt="Enemy"
+        src="https://i.pinimg.com/736x/9a/2d/fc/9a2dfce91444f5777adf91953ba36ed7.jpg"
+    >
+
+</div>
+
 
 <script>
 
@@ -653,23 +561,38 @@
 
 const FORCE_DEMO_MODE = false;
 
+
+/* Player */
+
 const AVATAR_SIZE = 128;
 
 const MIN_SPEED = 1.5;
 const MAX_SPEED = 5.5;
 
-const TRAIL_INTERVAL = 12;
-const MAX_TRAILS = 24;
 
-const MAX_ANGLE_CHANGE = 0.45;
+/* Enemy */
+
+const ENEMY_SIZE = 110;
+
+const ENEMY_MIN_SPEED = 1.7;
+const ENEMY_MAX_SPEED = 5.0;
+
+
+/* Particle explosion */
+
+const EXPLOSION_PARTICLES = 28;
 
 
 /* ============================================================
    STATE
    ============================================================ */
 
-let demoMode = false;
 let gotGameDetails = false;
+
+let progress = 0;
+
+
+/* Player position */
 
 let posX =
     window.innerWidth / 2 -
@@ -678,6 +601,9 @@ let posX =
 let posY =
     window.innerHeight / 2 -
     AVATAR_SIZE / 2;
+
+
+/* Player velocity */
 
 let vx =
     randomDirection() *
@@ -693,16 +619,39 @@ let vy =
         MAX_SPEED
     );
 
-let rotation = 0;
 
-let rotationVelocity =
-    randomRange(-2, 2);
+/* Enemy position */
 
-let trailCounter = 0;
+let enemyX =
+    window.innerWidth * 0.72;
 
-let trails = [];
+let enemyY =
+    window.innerHeight * 0.30;
 
-let progress = 0;
+
+/* Enemy velocity */
+
+let enemyVX =
+    randomDirection() *
+    randomRange(
+        ENEMY_MIN_SPEED,
+        ENEMY_MAX_SPEED
+    );
+
+let enemyVY =
+    randomDirection() *
+    randomRange(
+        ENEMY_MIN_SPEED,
+        ENEMY_MAX_SPEED
+    );
+
+
+/*
+    Prevent repeated collision explosions
+    while the objects are overlapping.
+*/
+
+let collisionCooldown = 0;
 
 
 /* ============================================================
@@ -710,22 +659,39 @@ let progress = 0;
    ============================================================ */
 
 const avatar =
-    document.getElementById("avatar");
+    document.getElementById(
+        "avatar"
+    );
 
 const avatarImage =
-    document.getElementById("avatarImage");
+    document.getElementById(
+        "avatarImage"
+    );
+
+const enemy =
+    document.getElementById(
+        "enemy"
+    );
 
 const steamName =
-    document.getElementById("steamName");
+    document.getElementById(
+        "steamName"
+    );
 
 const serverName =
-    document.getElementById("serverName");
+    document.getElementById(
+        "serverName"
+    );
 
 const mapName =
-    document.getElementById("mapName");
+    document.getElementById(
+        "mapName"
+    );
 
 const statusElement =
-    document.getElementById("status");
+    document.getElementById(
+        "status"
+    );
 
 const progressElement =
     document.getElementById(
@@ -747,26 +713,37 @@ const demoBadge =
    HELPERS
    ============================================================ */
 
-function randomRange(min, max) {
+function randomRange(
+    min,
+    max
+) {
+
     return Math.random() *
         (max - min) +
         min;
 }
 
+
 function randomDirection() {
+
     return Math.random() < 0.5
         ? -1
         : 1;
 }
+
 
 function clamp(
     value,
     min,
     max
 ) {
+
     return Math.max(
         min,
-        Math.min(max, value)
+        Math.min(
+            max,
+            value
+        )
     );
 }
 
@@ -777,31 +754,6 @@ function clamp(
 
 function createDummyAvatar() {
 
-    const colors = [
-        "#ff006e",
-        "#ffea00",
-        "#00f5ff",
-        "#7cff00",
-        "#a855f7",
-        "#ff7b00"
-    ];
-
-    const color1 =
-        colors[
-            Math.floor(
-                Math.random() *
-                colors.length
-            )
-        ];
-
-    const color2 =
-        colors[
-            Math.floor(
-                Math.random() *
-                colors.length
-            )
-        ];
-
     const svg = `
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -809,82 +761,40 @@ function createDummyAvatar() {
             height="256"
         >
 
-            <defs>
-
-                <linearGradient
-                    id="g"
-                    x1="0"
-                    y1="0"
-                    x2="1"
-                    y2="1"
-                >
-
-                    <stop
-                        offset="0%"
-                        stop-color="${color1}"
-                    />
-
-                    <stop
-                        offset="100%"
-                        stop-color="${color2}"
-                    />
-
-                </linearGradient>
-
-            </defs>
-
             <rect
                 width="256"
                 height="256"
-                fill="url(#g)"
+                fill="#555"
             />
 
             <circle
                 cx="128"
                 cy="104"
                 r="58"
-                fill="#ffe0bd"
+                fill="#ddd"
             />
 
             <circle
                 cx="102"
                 cy="100"
                 r="9"
-                fill="#111"
+                fill="#222"
             />
 
             <circle
                 cx="154"
                 cy="100"
                 r="9"
-                fill="#111"
+                fill="#222"
             />
 
             <path
-                d="M85 135 Q128 175 171 135"
-                stroke="#111"
-                stroke-width="12"
+                d="M85 135 Q128 170 171 135"
+                stroke="#222"
+                stroke-width="10"
                 fill="none"
                 stroke-linecap="round"
             />
-
-            <path
-                d="M70 65 Q128 15 186 65"
-                stroke="#111"
-                stroke-width="25"
-                fill="none"
-                stroke-linecap="round"
-            />
-
-            <text
-                x="128"
-                y="225"
-                text-anchor="middle"
-                font-family="Comic Sans MS, Comic Sans, cursive"
-                font-size="25"
-                font-weight="bold"
-                fill="white"
-            >:D</text>
 
         </svg>
     `;
@@ -895,7 +805,7 @@ function createDummyAvatar() {
 
 
 /* ============================================================
-   STEAM AVATAR
+   PLAYER AVATAR
    ============================================================ */
 
 function setDummyAvatar() {
@@ -903,6 +813,7 @@ function setDummyAvatar() {
     avatarImage.src =
         createDummyAvatar();
 }
+
 
 function setRealSteamAvatar(
     steamID
@@ -933,7 +844,8 @@ function setRealSteamAvatar(
             setDummyAvatar();
         };
 
-    avatarImage.src = url;
+    avatarImage.src =
+        url;
 }
 
 
@@ -948,7 +860,7 @@ async function getSteamName(
     if (!steamID) {
 
         steamName.textContent =
-            "GMod Player :D";
+            "GMod Player";
 
         return;
     }
@@ -963,6 +875,7 @@ async function getSteamName(
             );
 
         if (!response.ok) {
+
             throw new Error(
                 "Steam request failed"
             );
@@ -987,13 +900,13 @@ async function getSteamName(
         } else {
 
             steamName.textContent =
-                "GMod Player :D";
+                "GMod Player";
         }
 
     } catch (error) {
 
         steamName.textContent =
-            "GMod Player :D";
+            "GMod Player";
     }
 }
 
@@ -1008,25 +921,24 @@ function startDemoMode() {
         gotGameDetails &&
         !FORCE_DEMO_MODE
     ) {
+
         return;
     }
-
-    demoMode = true;
 
     demoBadge.style.display =
         "block";
 
     steamName.textContent =
-        "GMod Player :D";
+        "GMod Player";
 
     serverName.textContent =
-        "★ Example GMod Server ★";
+        "Example GMod Server";
 
     mapName.textContent =
         "MAP: gm_construct";
 
     statusElement.textContent =
-        "Demo mode!!! Pretending to load...";
+        "Demo mode — pretending to load...";
 
     setDummyAvatar();
 
@@ -1052,13 +964,11 @@ function(
 
     gotGameDetails = true;
 
-    demoMode = false;
-
     demoBadge.style.display =
         "none";
 
     steamName.textContent =
-        "GMod Player :D";
+        "GMod Player";
 
     serverName.textContent =
         servername ||
@@ -1080,7 +990,7 @@ function(
     );
 
     statusElement.textContent =
-        "Welcome! Getting things ready...";
+        "Getting things ready...";
 
     setProgress(5);
 };
@@ -1095,12 +1005,17 @@ function(statusText) {
 
     statusElement.textContent =
         statusText ||
-        "Doing something...";
+        "Loading...";
 
     progress +=
-        randomRange(3, 10);
+        randomRange(
+            3,
+            10
+        );
 
-    setProgress(progress);
+    setProgress(
+        progress
+    );
 };
 
 
@@ -1111,18 +1026,22 @@ function(statusText) {
 window.DownloadingFile =
 function(file) {
 
-    const cleanFile =
-        file ||
-        "something suspicious";
-
     statusElement.textContent =
         "Downloading: " +
-        cleanFile;
+        (
+            file ||
+            "file"
+        );
 
     progress +=
-        randomRange(0.5, 3);
+        randomRange(
+            0.5,
+            3
+        );
 
-    setProgress(progress);
+    setProgress(
+        progress
+    );
 };
 
 
@@ -1141,65 +1060,37 @@ function setProgress(value) {
 
 
 /* ============================================================
-   EASTER EGGS
+   SIMPLE EASTER-EGG TEXT
    ============================================================ */
 
-const easterEggMessages = [
+const messages = [
 
-    "Loading questionable Lua code...",
+    "Loading...",
 
-    "Definitely not downloading 400 addons...",
+    "Getting things ready...",
 
-    "Asking the server nicely to start...",
+    "Loading game files...",
 
-    "Calibrating player stupidity...",
+    "Checking server connection...",
 
-    "Finding where the errors came from...",
+    "Preparing the map...",
 
-    "Reticulating splines...",
+    "Loading addons...",
 
-    "Loading important stuff!!!",
+    "Almost there...",
 
-    "Removing unnecessary errors...",
+    "Please wait...",
 
-    "Checking if the server is still alive...",
+    "Connecting...",
 
-    "Downloading more RAM...",
+    "Starting server session..."
 
-    "Preparing questionable decisions...",
-
-    "Summoning the server administrator...",
-
-    "Counting pixels...",
-
-    "Teaching the NPCs how to aim...",
-
-    "Compiling absolutely nothing...",
-
-    "Blaming the ping...",
-
-    "Making everything unnecessarily colorful...",
-
-    "Throwing stars at the problem...",
-
-    "Polishing the loading screen...",
-
-    "PLEASE WAIT :D",
-
-    "Almost there... probably.",
-
-    "WHY IS IT STILL LOADING?!",
-
-    "Loading loading loading loading...",
-
-    "The loading screen is loading.",
-
-    "Have you tried turning the server off and on again?"
 ];
 
-let eggIndex = 0;
+let messageIndex = 0;
 
-function nextEasterEgg() {
+
+function nextMessage() {
 
     eggMessage.style.opacity =
         "0";
@@ -1208,153 +1099,33 @@ function nextEasterEgg() {
         () => {
 
             eggMessage.textContent =
-                easterEggMessages[
-                    eggIndex
+                messages[
+                    messageIndex
                 ];
 
-            eggIndex =
+            messageIndex =
                 (
-                    eggIndex + 1
+                    messageIndex + 1
                 ) %
-                easterEggMessages.length;
+                messages.length;
 
             eggMessage.style.opacity =
                 "1";
 
         },
-        250
+        300
     );
 }
 
+
 setInterval(
-    nextEasterEgg,
-    3500
+    nextMessage,
+    4000
 );
 
 
 /* ============================================================
-   RGB TRAIL
-   ============================================================ */
-
-function createTrail(
-    x,
-    y
-) {
-
-    const colors = [
-        "red",
-        "green",
-        "blue",
-        "yellow"
-    ];
-
-    const trail =
-        document.createElement(
-            "div"
-        );
-
-    trail.className =
-        "trail " +
-        colors[
-            Math.floor(
-                Math.random() *
-                colors.length
-            )
-        ];
-
-    trail.style.left =
-        x + "px";
-
-    trail.style.top =
-        y + "px";
-
-    document.body.appendChild(
-        trail
-    );
-
-    trails.push({
-        element: trail,
-        life: 1
-    });
-
-    if (
-        trails.length >
-        MAX_TRAILS
-    ) {
-
-        const old =
-            trails.shift();
-
-        if (
-            old.element.parentNode
-        ) {
-
-            old.element.parentNode
-                .removeChild(
-                    old.element
-                );
-        }
-    }
-}
-
-
-function updateTrails() {
-
-    for (
-        let i = trails.length - 1;
-        i >= 0;
-        i--
-    ) {
-
-        const trail =
-            trails[i];
-
-        trail.life -=
-            0.035;
-
-        trail.element.style.opacity =
-            Math.max(
-                0,
-                trail.life * 0.55
-            );
-
-        trail.element.style.transform =
-            "translate(-50%, -50%) scale(" +
-            (
-                0.65 +
-                (
-                    1 -
-                    trail.life
-                ) *
-                0.35
-            ) +
-            ")";
-
-        if (
-            trail.life <= 0
-        ) {
-
-            if (
-                trail.element.parentNode
-            ) {
-
-                trail.element.parentNode
-                    .removeChild(
-                        trail.element
-                    );
-            }
-
-            trails.splice(
-                i,
-                1
-            );
-        }
-    }
-}
-
-
-/* ============================================================
-   IMPACT
+   SIMPLE EDGE IMPACT
    ============================================================ */
 
 function createImpact(
@@ -1376,20 +1147,6 @@ function createImpact(
     impact.style.top =
         y + "px";
 
-    impact.style.borderColor =
-        [
-            "#ff006e",
-            "#ffea00",
-            "#00f5ff",
-            "#7cff00",
-            "#a855f7",
-            "#ffffff"
-        ][
-            Math.floor(
-                Math.random() * 6
-            )
-        ];
-
     document.body.appendChild(
         impact
     );
@@ -1408,282 +1165,217 @@ function createImpact(
             }
 
         },
-        500
+        400
     );
 }
 
 
 /* ============================================================
-   CORNER STARS
+   PARTICLE EXPLOSION
    ============================================================ */
 
-function createCornerStars(
-    startX,
-    startY
+function createExplosion(
+    centerX,
+    centerY
 ) {
 
-    const starCharacters = [
-        "★",
-        "✦",
-        "✧",
-        "✹",
-        "✷",
-        "✸"
-    ];
+    /*
+        Small central flash.
+    */
 
-    const colors = [
-        "#ff006e",
-        "#ffea00",
-        "#00f5ff",
-        "#7cff00",
-        "#a855f7",
-        "#ff7b00",
-        "#ffffff"
-    ];
+    const flash =
+        document.createElement(
+            "div"
+        );
+
+    flash.className =
+        "explosionFlash";
+
+    flash.style.left =
+        centerX + "px";
+
+    flash.style.top =
+        centerY + "px";
+
+    document.body.appendChild(
+        flash
+    );
+
+    setTimeout(
+        () => {
+
+            if (
+                flash.parentNode
+            ) {
+
+                flash.parentNode
+                    .removeChild(
+                        flash
+                    );
+            }
+
+        },
+        300
+    );
+
+
+    /*
+        Create individual particles.
+    */
 
     for (
         let i = 0;
-        i < 14;
+        i < EXPLOSION_PARTICLES;
         i++
     ) {
 
-        const star =
+        const particle =
             document.createElement(
                 "div"
             );
 
-        star.className =
-            "star";
+        particle.className =
+            "explosionParticle";
 
-        star.textContent =
-            starCharacters[
-                Math.floor(
-                    Math.random() *
-                    starCharacters.length
-                )
-            ];
 
-        star.style.color =
-            colors[
-                Math.floor(
-                    Math.random() *
-                    colors.length
-                )
-            ];
-
-        star.style.fontSize =
-            randomRange(
-                10,
-                22
-            ) + "px";
-
-        star.style.left =
-            startX + "px";
-
-        star.style.top =
-            startY + "px";
-
-        document.body.appendChild(
-            star
-        );
+        /*
+            Random direction.
+        */
 
         const angle =
+            Math.random() *
+            Math.PI *
+            2;
+
+
+        /*
+            Random initial speed.
+        */
+
+        let velocity =
             randomRange(
-                0,
-                Math.PI * 2
+                3,
+                10
             );
 
-        const speed =
+        let velocityX =
+            Math.cos(angle) *
+            velocity;
+
+        let velocityY =
+            Math.sin(angle) *
+            velocity;
+
+
+        /*
+            Slightly different particle
+            sizes.
+        */
+
+        const size =
             randomRange(
                 3,
                 8
             );
 
-        animateStar(
-            star,
-            Math.cos(angle) *
-                speed,
-            Math.sin(angle) *
-                speed
-        );
-    }
-}
+        particle.style.width =
+            size + "px";
+
+        particle.style.height =
+            size + "px";
 
 
-function animateStar(
-    star,
-    vx,
-    vy
-) {
+        particle.style.left =
+            centerX + "px";
 
-    let x =
-        parseFloat(
-            star.style.left
+        particle.style.top =
+            centerY + "px";
+
+
+        document.body.appendChild(
+            particle
         );
 
-    let y =
-        parseFloat(
-            star.style.top
-        );
 
-    let rotation =
-        randomRange(
-            0,
-            360
-        );
+        let x = centerX;
+        let y = centerY;
 
-    let rotationSpeed =
-        randomRange(
-            -8,
-            8
-        );
+        let life =
+            randomRange(
+                35,
+                65
+            );
 
-    let life =
-        randomRange(
-            300,
-            500
-        );
-
-    const gravity =
-        0.18;
-
-    const bounce =
-        0.48;
+        let gravity =
+            0.16;
 
 
-    function frame() {
+        function animateParticle() {
 
-        x += vx;
-        y += vy;
+            x += velocityX;
+            y += velocityY;
 
-        vy += gravity;
+            velocityY += gravity;
 
-        rotation +=
-            rotationSpeed;
+            velocityX *= 0.985;
+            velocityY *= 0.985;
 
-
-        if (
-            x <= 0
-        ) {
-
-            x = 0;
-
-            vx =
-                Math.abs(vx) *
-                0.75;
-        }
+            life--;
 
 
-        if (
-            x >=
-            window.innerWidth
-        ) {
+            particle.style.left =
+                x + "px";
 
-            x =
-                window.innerWidth;
-
-            vx =
-                -Math.abs(vx) *
-                0.75;
-        }
+            particle.style.top =
+                y + "px";
 
 
-        if (
-            y <= 0
-        ) {
+            const opacity =
+                Math.max(
+                    0,
+                    life / 65
+                );
 
-            y = 0;
-
-            vy =
-                Math.abs(vy) *
-                0.65;
-        }
+            particle.style.opacity =
+                opacity;
 
 
-        if (
-            y >=
-            window.innerHeight - 10
-        ) {
+            particle.style.transform =
+                "translate(-50%, -50%)";
 
-            y =
-                window.innerHeight - 10;
 
             if (
-                Math.abs(vy) > 1
+                life > 0
             ) {
 
-                vy =
-                    -Math.abs(vy) *
-                    bounce;
+                requestAnimationFrame(
+                    animateParticle
+                );
 
             } else {
 
-                vy = 0;
-            }
+                if (
+                    particle.parentNode
+                ) {
 
-            vx *= 0.88;
-
-            rotationSpeed *= 0.9;
-        }
-
-
-        star.style.left =
-            x + "px";
-
-        star.style.top =
-            y + "px";
-
-        star.style.transform =
-            "translate(-50%, -50%) rotate(" +
-            rotation +
-            "deg)";
-
-
-        life--;
-
-
-        if (
-            life < 100
-        ) {
-
-            star.style.opacity =
-                Math.max(
-                    0,
-                    life / 100
-                );
-        }
-
-
-        if (
-            life > 0
-        ) {
-
-            requestAnimationFrame(
-                frame
-            );
-
-        } else {
-
-            if (
-                star.parentNode
-            ) {
-
-                star.parentNode
-                    .removeChild(
-                        star
-                    );
+                    particle.parentNode
+                        .removeChild(
+                            particle
+                        );
+                }
             }
         }
+
+
+        requestAnimationFrame(
+            animateParticle
+        );
     }
-
-    requestAnimationFrame(
-        frame
-    );
 }
 
 
 /* ============================================================
-   RANDOM DIRECTION
+   PLAYER DIRECTION
    ============================================================ */
 
 function changeDirection(
@@ -1691,18 +1383,17 @@ function changeDirection(
     direction
 ) {
 
-    const newSpeed =
+    const speed =
         randomRange(
             MIN_SPEED,
             MAX_SPEED
         );
 
-    const angleChange =
+    const variation =
         randomRange(
-            -MAX_ANGLE_CHANGE,
-            MAX_ANGLE_CHANGE
+            -0.4,
+            0.4
         );
-
 
     if (
         horizontal
@@ -1710,65 +1401,252 @@ function changeDirection(
 
         vx =
             direction *
-            newSpeed;
+            speed;
 
         vy +=
-            Math.sin(
-                angleChange
-            ) *
-            newSpeed;
+            variation;
 
     } else {
 
         vy =
             direction *
-            newSpeed;
+            speed;
 
         vx +=
-            Math.sin(
-                angleChange
-            ) *
-            newSpeed;
+            variation;
     }
-
-
-    vx =
-        clamp(
-            vx,
-            -MAX_SPEED * 1.25,
-            MAX_SPEED * 1.25
-        );
-
-    vy =
-        clamp(
-            vy,
-            -MAX_SPEED * 1.25,
-            MAX_SPEED * 1.25
-        );
-
-
-    rotationVelocity =
-        randomRange(
-            -3.5,
-            3.5
-        );
 }
 
 
 /* ============================================================
-   AVATAR MOVEMENT
+   ENEMY DIRECTION
    ============================================================ */
 
-function animateAvatar() {
+function changeEnemyDirection(
+    horizontal,
+    direction
+) {
+
+    const speed =
+        randomRange(
+            ENEMY_MIN_SPEED,
+            ENEMY_MAX_SPEED
+        );
+
+    const variation =
+        randomRange(
+            -0.4,
+            0.4
+        );
+
+    if (
+        horizontal
+    ) {
+
+        enemyVX =
+            direction *
+            speed;
+
+        enemyVY +=
+            variation;
+
+    } else {
+
+        enemyVY =
+            direction *
+            speed;
+
+        enemyVX +=
+            variation;
+    }
+}
+
+
+/* ============================================================
+   COLLISION CHECK
+   ============================================================ */
+
+function checkPlayerEnemyCollision() {
+
+    if (
+        collisionCooldown > 0
+    ) {
+
+        return;
+    }
+
+
+    const playerCenterX =
+        posX +
+        AVATAR_SIZE / 2;
+
+    const playerCenterY =
+        posY +
+        AVATAR_SIZE / 2;
+
+
+    const enemyCenterX =
+        enemyX +
+        ENEMY_SIZE / 2;
+
+    const enemyCenterY =
+        enemyY +
+        ENEMY_SIZE / 2;
+
+
+    const dx =
+        playerCenterX -
+        enemyCenterX;
+
+    const dy =
+        playerCenterY -
+        enemyCenterY;
+
+
+    const distance =
+        Math.sqrt(
+            dx * dx +
+            dy * dy
+        );
+
+
+    const collisionDistance =
+        AVATAR_SIZE / 2 +
+        ENEMY_SIZE / 2;
+
+
+    if (
+        distance <=
+        collisionDistance
+    ) {
+
+        /*
+            Explosion occurs exactly
+            between the two objects.
+        */
+
+        const explosionX =
+            (
+                playerCenterX +
+                enemyCenterX
+            ) / 2;
+
+        const explosionY =
+            (
+                playerCenterY +
+                enemyCenterY
+            ) / 2;
+
+
+        createExplosion(
+            explosionX,
+            explosionY
+        );
+
+
+        /*
+            Push the objects apart.
+        */
+
+        let normalX = dx;
+        let normalY = dy;
+
+
+        const length =
+            Math.sqrt(
+                normalX * normalX +
+                normalY * normalY
+            );
+
+
+        if (
+            length > 0
+        ) {
+
+            normalX /= length;
+            normalY /= length;
+
+        } else {
+
+            normalX = 1;
+            normalY = 0;
+        }
+
+
+        const push = 8;
+
+
+        posX +=
+            normalX * push;
+
+        posY +=
+            normalY * push;
+
+
+        enemyX -=
+            normalX * push;
+
+        enemyY -=
+            normalY * push;
+
+
+        /*
+            Bounce both objects away
+            from each other.
+        */
+
+        vx =
+            -vx *
+            randomRange(
+                0.9,
+                1.1
+            );
+
+        vy =
+            -vy *
+            randomRange(
+                0.9,
+                1.1
+            );
+
+
+        enemyVX =
+            -enemyVX *
+            randomRange(
+                0.9,
+                1.1
+            );
+
+        enemyVY =
+            -enemyVY *
+            randomRange(
+                0.9,
+                1.1
+            );
+
+
+        /*
+            Brief cooldown prevents the
+            same collision from generating
+            dozens of explosions.
+        */
+
+        collisionCooldown = 35;
+    }
+}
+
+
+/* ============================================================
+   PLAYER MOVEMENT
+   ============================================================ */
+
+function updatePlayer() {
 
     const width =
         window.innerWidth;
 
     const height =
         window.innerHeight;
-
-    let hitX = false;
-    let hitY = false;
 
 
     posX += vx;
@@ -1792,12 +1670,10 @@ function animateAvatar() {
         );
 
         createImpact(
-            AVATAR_SIZE / 2,
+            0,
             posY +
             AVATAR_SIZE / 2
         );
-
-        hitX = true;
     }
 
 
@@ -1822,13 +1698,10 @@ function animateAvatar() {
         );
 
         createImpact(
-            width -
-            AVATAR_SIZE / 2,
+            width,
             posY +
             AVATAR_SIZE / 2
         );
-
-        hitX = true;
     }
 
 
@@ -1851,10 +1724,8 @@ function animateAvatar() {
         createImpact(
             posX +
             AVATAR_SIZE / 2,
-            AVATAR_SIZE / 2
+            0
         );
-
-        hitY = true;
     }
 
 
@@ -1881,44 +1752,9 @@ function animateAvatar() {
         createImpact(
             posX +
             AVATAR_SIZE / 2,
-            height -
-            AVATAR_SIZE / 2
+            height
         );
-
-        hitY = true;
     }
-
-
-    /* Corner */
-
-    if (
-        hitX &&
-        hitY
-    ) {
-
-        createCornerStars(
-            posX +
-            AVATAR_SIZE / 2,
-            posY +
-            AVATAR_SIZE / 2
-        );
-
-        vx +=
-            randomRange(
-                -0.8,
-                0.8
-            );
-
-        vy +=
-            randomRange(
-                -0.8,
-                0.8
-            );
-    }
-
-
-    rotation +=
-        rotationVelocity;
 
 
     avatar.style.left =
@@ -1926,79 +1762,163 @@ function animateAvatar() {
 
     avatar.style.top =
         posY + "px";
-
-    avatar.style.transform =
-        "rotate(" +
-        rotation +
-        "deg)";
-
-
-    trailCounter++;
-
-
-    if (
-        trailCounter >=
-        TRAIL_INTERVAL
-    ) {
-
-        createTrail(
-            posX +
-            AVATAR_SIZE / 2,
-            posY +
-            AVATAR_SIZE / 2
-        );
-
-        trailCounter = 0;
-    }
-
-
-    updateTrails();
-
-
-    requestAnimationFrame(
-        animateAvatar
-    );
 }
 
 
 /* ============================================================
-   GLITCH
+   ENEMY MOVEMENT
    ============================================================ */
 
-function randomGlitch() {
+function updateEnemy() {
 
-    const glitch =
-        document.getElementById(
-            "glitch"
+    const width =
+        window.innerWidth;
+
+    const height =
+        window.innerHeight;
+
+
+    enemyX += enemyVX;
+    enemyY += enemyVY;
+
+
+    /* Left */
+
+    if (
+        enemyX <= 0
+    ) {
+
+        enemyX = 0;
+
+        enemyVX =
+            Math.abs(enemyVX);
+
+        changeEnemyDirection(
+            true,
+            1
         );
 
-    glitch.style.opacity =
-        randomRange(
-            0.05,
-            0.25
+        createImpact(
+            0,
+            enemyY +
+            ENEMY_SIZE / 2
+        );
+    }
+
+
+    /* Right */
+
+    if (
+        enemyX +
+        ENEMY_SIZE >=
+        width
+    ) {
+
+        enemyX =
+            width -
+            ENEMY_SIZE;
+
+        enemyVX =
+            -Math.abs(enemyVX);
+
+        changeEnemyDirection(
+            true,
+            -1
         );
 
-    setTimeout(
-        () => {
+        createImpact(
+            width,
+            enemyY +
+            ENEMY_SIZE / 2
+        );
+    }
 
-            glitch.style.opacity =
-                "0";
 
-        },
-        randomRange(
-            40,
-            130
-        )
-    );
+    /* Top */
+
+    if (
+        enemyY <= 0
+    ) {
+
+        enemyY = 0;
+
+        enemyVY =
+            Math.abs(enemyVY);
+
+        changeEnemyDirection(
+            false,
+            1
+        );
+
+        createImpact(
+            enemyX +
+            ENEMY_SIZE / 2,
+            0
+        );
+    }
+
+
+    /* Bottom */
+
+    if (
+        enemyY +
+        ENEMY_SIZE >=
+        height
+    ) {
+
+        enemyY =
+            height -
+            ENEMY_SIZE;
+
+        enemyVY =
+            -Math.abs(enemyVY);
+
+        changeEnemyDirection(
+            false,
+            -1
+        );
+
+        createImpact(
+            enemyX +
+            ENEMY_SIZE / 2,
+            height
+        );
+    }
+
+
+    enemy.style.left =
+        enemyX + "px";
+
+    enemy.style.top =
+        enemyY + "px";
 }
 
-setInterval(
-    randomGlitch,
-    randomRange(
-        3500,
-        7000
-    )
-);
+
+/* ============================================================
+   MAIN ANIMATION
+   ============================================================ */
+
+function animate() {
+
+    updatePlayer();
+
+    updateEnemy();
+
+    checkPlayerEnemyCollision();
+
+
+    if (
+        collisionCooldown > 0
+    ) {
+
+        collisionCooldown--;
+    }
+
+
+    requestAnimationFrame(
+        animate
+    );
+}
 
 
 /* ============================================================
@@ -2024,6 +1944,23 @@ window.addEventListener(
                 window.innerHeight -
                 AVATAR_SIZE
             );
+
+
+        enemyX =
+            clamp(
+                enemyX,
+                0,
+                window.innerWidth -
+                ENEMY_SIZE
+            );
+
+        enemyY =
+            clamp(
+                enemyY,
+                0,
+                window.innerHeight -
+                ENEMY_SIZE
+            );
     }
 );
 
@@ -2036,12 +1973,12 @@ setDummyAvatar();
 
 setProgress(0);
 
-animateAvatar();
+animate();
 
 
 /*
-    Automatically enable demo mode when opened
-    directly in a normal browser.
+    Automatically use demo mode when
+    opened directly in a browser.
 */
 
 setTimeout(
