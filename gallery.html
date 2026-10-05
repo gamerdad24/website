@@ -497,6 +497,30 @@
         <div class="gallery-space"></div>
       </article>
 
+      <!-- AZRIEL -->
+      <article class="gallery-item">
+        <section class="info">
+          <div class="info-content">
+            <div class="subtitle">2026</div>
+
+            <div class="artist-block">
+              <span class="artist-label">Artist</span>
+              <span class="artist-name">Azriel</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="artwork">
+          <img
+            crossorigin="anonymous"
+            src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/Gallery/Azriel.png"
+            alt="Azriel commission artwork"
+          >
+        </section>
+
+        <div class="gallery-space"></div>
+      </article>
+
       <!-- ABS33NCE -->
       <article class="gallery-item">
         <section class="info">
@@ -1490,6 +1514,7 @@
   </main>
 
 
+  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <img id="lightbox-image" src="" alt="">
   </div>
@@ -1647,12 +1672,15 @@
                 candidate.dataset.pair === pairName
             );
 
-            pair.forEach((candidate) => handled.add(candidate));
+            pair.forEach((candidate) => {
+              handled.add(candidate);
+            });
 
             let pairIsTransparent = false;
 
             for (const pairItem of pair) {
-              const pairImage = pairItem.querySelector(".artwork img");
+              const pairImage =
+                pairItem.querySelector(".artwork img");
 
               if (
                 pairImage &&
@@ -1673,7 +1701,9 @@
 
           handled.add(item);
 
-          const image = item.querySelector(".artwork img");
+          const image =
+            item.querySelector(".artwork img");
+
           const isTransparent =
             image &&
             await imageHasTransparency(image);
@@ -1685,15 +1715,21 @@
           }
         }
 
-        [...opaque, ...transparent].forEach((item) => {
+        [
+          ...opaque,
+          ...transparent
+        ].forEach((item) => {
           group.appendChild(item);
         });
       }
 
-      const notice = document.getElementById("gallery-note");
-      const firstInfo = document.querySelector(
-        ".gallery .gallery-item .info"
-      );
+      const notice =
+        document.getElementById("gallery-note");
+
+      const firstInfo =
+        document.querySelector(
+          ".gallery .gallery-item .info"
+        );
 
       if (
         notice &&
@@ -1723,6 +1759,7 @@
     var ox = 400;
     var y = 300;
     var oy = 300;
+
     var swide = 800;
     var shigh = 600;
     var sleft = 0;
@@ -1744,7 +1781,11 @@
         for (var i = 0; i < sparkles; i++) {
           rats = createDiv(3, 3);
           rats.style.visibility = "hidden";
-          document.body.appendChild(tiny[i] = rats);
+
+          document.body.appendChild(
+            tiny[i] = rats
+          );
+
           starv[i] = 0;
           tinyv[i] = 0;
 
@@ -1760,16 +1801,20 @@
 
           rlef.style.top = "2px";
           rlef.style.left = "0px";
+
           rdow.style.top = "0px";
           rdow.style.left = "2px";
 
-          document.body.appendChild(star[i] = rats);
+          document.body.appendChild(
+            star[i] = rats
+          );
         }
 
         set_width();
         sparkle();
       }
     });
+
 
     function sparkle() {
       var c;
@@ -1786,10 +1831,18 @@
             var offsetX = Math.random() * 30 - 15;
             var offsetY = Math.random() * 30 - 15;
 
-            star[c].style.left = (starx[c] = x + offsetX) + "px";
-            star[c].style.top = (stary[c] = y + offsetY) + "px";
-            star[c].style.clip = "rect(0px, 5px, 5px, 0px)";
-            star[c].style.visibility = "visible";
+            star[c].style.left =
+              (starx[c] = x + offsetX) + "px";
+
+            star[c].style.top =
+              (stary[c] = y + offsetY) + "px";
+
+            star[c].style.clip =
+              "rect(0px, 5px, 5px, 0px)";
+
+            star[c].style.visibility =
+              "visible";
+
             starv[c] = 15;
             break;
           }
@@ -1804,66 +1857,110 @@
       setTimeout(sparkle, 20);
     }
 
+
     function update_star(i) {
       if (--starv[i] == 7) {
-        star[i].style.clip = "rect(1px, 4px, 4px, 1px)";
+        star[i].style.clip =
+          "rect(1px, 4px, 4px, 1px)";
       }
 
       if (starv[i]) {
-        stary[i] += 1 + Math.random() * 3;
+        stary[i] +=
+          1 + Math.random() * 3;
 
         if (stary[i] < shigh + sdown) {
-          star[i].style.top = stary[i] + "px";
-          starx[i] += (i % 7 - 3) / 3.5;
-          star[i].style.left = starx[i] + "px";
+          star[i].style.top =
+            stary[i] + "px";
+
+          starx[i] +=
+            (i % 7 - 3) / 3.5;
+
+          star[i].style.left =
+            starx[i] + "px";
         } else {
-          star[i].style.visibility = "hidden";
+          star[i].style.visibility =
+            "hidden";
+
           starv[i] = 0;
           return;
         }
       } else {
         tinyv[i] = 15;
-        tiny[i].style.top = (tinyy[i] = stary[i]) + "px";
-        tiny[i].style.left = (tinyx[i] = starx[i]) + "px";
-        tiny[i].style.width = "2px";
-        tiny[i].style.height = "2px";
-        star[i].style.visibility = "hidden";
-        tiny[i].style.visibility = "visible";
+
+        tiny[i].style.top =
+          (tinyy[i] = stary[i]) + "px";
+
+        tiny[i].style.left =
+          (tinyx[i] = starx[i]) + "px";
+
+        tiny[i].style.width =
+          "2px";
+
+        tiny[i].style.height =
+          "2px";
+
+        star[i].style.visibility =
+          "hidden";
+
+        tiny[i].style.visibility =
+          "visible";
       }
     }
 
+
     function update_tiny(i) {
       if (--tinyv[i] == 7) {
-        tiny[i].style.width = "1px";
-        tiny[i].style.height = "1px";
+        tiny[i].style.width =
+          "1px";
+
+        tiny[i].style.height =
+          "1px";
       }
 
       if (tinyv[i]) {
-        tinyy[i] += 1 + Math.random() * 3;
+        tinyy[i] +=
+          1 + Math.random() * 3;
 
         if (tinyy[i] < shigh + sdown) {
-          tiny[i].style.top = tinyy[i] + "px";
-          tinyx[i] += (i % 7 - 3) / 3.5;
-          tiny[i].style.left = tinyx[i] + "px";
+          tiny[i].style.top =
+            tinyy[i] + "px";
+
+          tinyx[i] +=
+            (i % 7 - 3) / 3.5;
+
+          tiny[i].style.left =
+            tinyx[i] + "px";
         } else {
-          tiny[i].style.visibility = "hidden";
+          tiny[i].style.visibility =
+            "hidden";
+
           tinyv[i] = 0;
           return;
         }
       } else {
-        tiny[i].style.visibility = "hidden";
+        tiny[i].style.visibility =
+          "hidden";
       }
     }
 
-    document.addEventListener("mousemove", mouse);
+
+    document.addEventListener(
+      "mousemove",
+      mouse
+    );
+
 
     function mouse(e) {
       set_scroll();
 
       var newY = e.pageY;
       var newX = e.pageX;
-      var deltaX = newX - lastMouseX;
-      var deltaY = newY - lastMouseY;
+
+      var deltaX =
+        newX - lastMouseX;
+
+      var deltaY =
+        newY - lastMouseY;
 
       mouseSpeed = Math.sqrt(
         deltaX * deltaX +
@@ -1876,6 +1973,7 @@
       x = newX;
       y = newY;
     }
+
 
     function set_scroll() {
       if (typeof self.pageYOffset == "number") {
@@ -1896,8 +1994,11 @@
           document.documentElement.scrollLeft
         )
       ) {
-        sleft = document.documentElement.scrollLeft;
-        sdown = document.documentElement.scrollTop;
+        sleft =
+          document.documentElement.scrollLeft;
+
+        sdown =
+          document.documentElement.scrollTop;
 
       } else {
         sdown = 0;
@@ -1905,7 +2006,12 @@
       }
     }
 
-    window.addEventListener("resize", set_width);
+
+    window.addEventListener(
+      "resize",
+      set_width
+    );
+
 
     function set_width() {
       if (typeof self.innerWidth == "number") {
@@ -1916,25 +2022,48 @@
         document.documentElement &&
         document.documentElement.clientWidth
       ) {
-        swide = document.documentElement.clientWidth;
-        shigh = document.documentElement.clientHeight;
+        swide =
+          document.documentElement.clientWidth;
 
-      } else if (document.body.clientWidth) {
-        swide = document.body.clientWidth;
-        shigh = document.body.clientHeight;
+        shigh =
+          document.documentElement.clientHeight;
+
+      } else if (
+        document.body.clientWidth
+      ) {
+        swide =
+          document.body.clientWidth;
+
+        shigh =
+          document.body.clientHeight;
       }
     }
 
-    function createDiv(height, width) {
-      var div = document.createElement("div");
 
-      div.style.position = "absolute";
-      div.style.height = height + "px";
-      div.style.width = width + "px";
-      div.style.overflow = "hidden";
-      div.style.backgroundColor = colour;
-      div.style.pointerEvents = "none";
-      div.style.zIndex = "9999";
+    function createDiv(height, width) {
+      var div =
+        document.createElement("div");
+
+      div.style.position =
+        "absolute";
+
+      div.style.height =
+        height + "px";
+
+      div.style.width =
+        width + "px";
+
+      div.style.overflow =
+        "hidden";
+
+      div.style.backgroundColor =
+        colour;
+
+      div.style.pointerEvents =
+        "none";
+
+      div.style.zIndex =
+        "9999";
 
       return div;
     }
