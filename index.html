@@ -37,6 +37,13 @@
       z-index: -3;
     }
 
+    .video-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.025);
+      z-index: -2;
+    }
+
     .page {
       width: 100%;
       height: 100vh;
@@ -389,6 +396,8 @@
     >
   </video>
 
+  <div class="video-overlay"></div>
+
   <main class="page">
     <div class="content">
       <img
@@ -413,9 +422,7 @@
 
       <nav class="nav">
         <div class="dropdown">
-          <span class="dropdown-button">
-            Steam
-          </span>
+          <span class="dropdown-button">Steam</span>
 
           <div class="dropdown-menu">
             <a
@@ -471,137 +478,101 @@
         </div>
 
         <div class="dropdown">
-          <span class="dropdown-button">
-            Telegram
-          </span>
+          <span class="dropdown-button">Telegram</span>
 
           <div class="dropdown-menu">
             <a
               href="https://t.me/swibby"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              t.me/swibby
-            </a>
+            >t.me/swibby</a>
           </div>
         </div>
 
         <div class="dropdown">
-          <span class="dropdown-button">
-            Discord
-          </span>
+          <span class="dropdown-button">Discord</span>
 
           <div class="dropdown-menu">
             <a
               href="https://discordapp.com/users/190497345509523456"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              @swibby
-            </a>
+            >@swibby</a>
           </div>
         </div>
 
         <div class="dropdown">
-          <span class="dropdown-button">
-            VRChat
-          </span>
+          <span class="dropdown-button">VRChat</span>
 
           <div class="dropdown-menu">
             <a
               href="https://vrchat.com/home/user/usr_da0651cd-965e-41aa-abf4-5fbb28cbdb94"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              Profile
-            </a>
+            >Profile</a>
 
             <a
               href="https://swib.by/dopecat"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              Dope Cat
-            </a>
+            >Dope Cat</a>
 
             <a
               href="https://vrc.group/111.1111"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              vrc.group/111.1111
-            </a>
+            >vrc.group/111.1111</a>
           </div>
         </div>
 
         <div class="dropdown">
-          <span class="dropdown-button">
-            APB Info
-          </span>
+          <span class="dropdown-button">APB Info</span>
 
           <div class="dropdown-menu info-menu">
-            <div class="apb-retired">
-              (Retired)
-            </div>
+            <div class="apb-retired">(Retired)</div>
 
             <div class="specs-section">
-              <div class="specs-title">
-                Main characters
+              <div class="specs-title">Main characters</div>
+
+              <div class="specs-line">
+                <strong>Name:</strong> Swibbiz (R255)
               </div>
 
               <div class="specs-line">
-                <strong>Name:</strong>
-                Swibbiz (R255)
+                <strong>Faction:</strong> Enforcer
               </div>
 
               <div class="specs-line">
-                <strong>Faction:</strong>
-                Enforcer
-              </div>
-
-              <div class="specs-line">
-                <strong>Clan:</strong>
-                1337
+                <strong>Clan:</strong> 1337
               </div>
 
               <div class="specs-line apb-character-gap">
-                <strong>Name:</strong>
-                Lie (R255)
+                <strong>Name:</strong> Lie (R255)
               </div>
 
               <div class="specs-line">
-                <strong>Faction:</strong>
-                Criminal
+                <strong>Faction:</strong> Criminal
               </div>
 
               <div class="specs-line">
-                <strong>Clan:</strong>
-                (no clan)
+                <strong>Clan:</strong> (no clan)
               </div>
             </div>
 
             <div class="specs-section">
-              <div class="specs-title">
-                Other characters
+              <div class="specs-title">Other characters</div>
+
+              <div class="specs-line">
+                Swibbex R255, rate R255, Swibby R255
               </div>
 
               <div class="specs-line">
-                Swibbex R255,
-                rate R255,
-                Swibby R255
-              </div>
-
-              <div class="specs-line">
-                suffer R255,
-                slurs R100+,
-                OwO R100+
+                suffer R255, slurs R100+, OwO R100+
               </div>
             </div>
 
             <div class="specs-section">
-              <div class="specs-title">
-                Other
-              </div>
+              <div class="specs-title">Other</div>
 
               <div class="specs-line">
                 Clothing, Car &amp; Symbol Designer
@@ -623,146 +594,114 @@
         </div>
 
         <div class="dropdown">
-          <span class="dropdown-button">
-            Specs
-          </span>
+          <span class="dropdown-button">Specs</span>
 
           <div class="dropdown-menu specs-menu">
             <div class="specs-columns">
               <div class="specs-column">
                 <div class="specs-section">
-                  <div class="specs-title">
-                    PC
+                  <div class="specs-title">PC</div>
+
+                  <div class="specs-line">
+                    <strong>GPU:</strong> GeForce RTX 4080 SUPER OC
                   </div>
 
                   <div class="specs-line">
-                    <strong>GPU:</strong>
-                    GeForce RTX 4080 SUPER OC
+                    <strong>CPU:</strong> Intel Core i7-14700K - 3.40GHz
                   </div>
 
                   <div class="specs-line">
-                    <strong>CPU:</strong>
-                    Intel Core i7-14700K - 3.40GHz
+                    <strong>RAM:</strong> Corsair Vengeance RGB - 32GB (DDR5@6000MHz)
                   </div>
 
                   <div class="specs-line">
-                    <strong>RAM:</strong>
-                    Corsair Vengeance RGB - 32GB (DDR5@6000MHz)
+                    <strong>Motherboard:</strong> ASUS ROG STRIX Z790-F GAMING WIFI II
                   </div>
 
                   <div class="specs-line">
-                    <strong>Motherboard:</strong>
-                    ASUS ROG STRIX Z790-F GAMING WIFI II
+                    <strong>CPU Cooler:</strong> NZXT Kraken Elite
                   </div>
 
                   <div class="specs-line">
-                    <strong>CPU Cooler:</strong>
-                    NZXT Kraken Elite
+                    <strong>PSU:</strong> Corsair RM850x - 850W
                   </div>
 
                   <div class="specs-line">
-                    <strong>PSU:</strong>
-                    Corsair RM850x - 850W
+                    <strong>Case:</strong> HYTE Y70 - Black
                   </div>
 
                   <div class="specs-line">
-                    <strong>Case:</strong>
-                    HYTE Y70 - Black
+                    <strong>Storage 1:</strong> Samsung 990 PRO w/ Heatsink - 2TB
                   </div>
 
                   <div class="specs-line">
-                    <strong>Storage 1:</strong>
-                    Samsung 990 PRO w/ Heatsink - 2TB
-                  </div>
-
-                  <div class="specs-line">
-                    <strong>Storage 2:</strong>
-                    Kingston FURY Renegade M.2 NVMe - 2TB
+                    <strong>Storage 2:</strong> Kingston FURY Renegade M.2 NVMe - 2TB
                   </div>
                 </div>
 
                 <div class="specs-section">
-                  <div class="specs-title">
-                    Peripherals
+                  <div class="specs-title">Peripherals</div>
+
+                  <div class="specs-line">
+                    <strong>Keyboard:</strong> Corsair K55
                   </div>
 
                   <div class="specs-line">
-                    <strong>Keyboard:</strong>
-                    Corsair K55
+                    <strong>Mouse:</strong> Logitech G PRO Wireless
                   </div>
 
                   <div class="specs-line">
-                    <strong>Mouse:</strong>
-                    Logitech G PRO Wireless
+                    <strong>Headset:</strong> SteelSeries Arctis Nova Pro Wireless
                   </div>
 
                   <div class="specs-line">
-                    <strong>Headset:</strong>
-                    SteelSeries Arctis Nova Pro Wireless
+                    <strong>Mouse Pad:</strong> SteelSeries QcK+
                   </div>
 
                   <div class="specs-line">
-                    <strong>Mouse Pad:</strong>
-                    SteelSeries QcK+
-                  </div>
-
-                  <div class="specs-line">
-                    <strong>Chair:</strong>
-                    Herman Miller Aeron Remastered Onyx
+                    <strong>Chair:</strong> Herman Miller Aeron Remastered Onyx
                   </div>
                 </div>
               </div>
 
               <div class="specs-column">
                 <div class="specs-section">
-                  <div class="specs-title">
-                    Monitors
+                  <div class="specs-title">Monitors</div>
+
+                  <div class="specs-line">
+                    <strong>Main Monitor:</strong> OMEN 27i - 27" IPS, 1440p, 165Hz
                   </div>
 
                   <div class="specs-line">
-                    <strong>Main Monitor:</strong>
-                    OMEN 27i - 27" IPS, 1440p, 165Hz
-                  </div>
-
-                  <div class="specs-line">
-                    <strong>2nd Monitor:</strong>
-                    AOC C24G1 - 24", 1080p, 144Hz
+                    <strong>2nd Monitor:</strong> AOC C24G1 - 24", 1080p, 144Hz
                   </div>
                 </div>
 
                 <div class="specs-section">
-                  <div class="specs-title">
-                    VR Equipment
+                  <div class="specs-title">VR Equipment</div>
+
+                  <div class="specs-line">
+                    <strong>Primary Headset:</strong> HTC VIVE Pro Eye
                   </div>
 
                   <div class="specs-line">
-                    <strong>Primary Headset:</strong>
-                    HTC VIVE Pro Eye
+                    <strong>Secondary Headset:</strong> Valve Index
                   </div>
 
                   <div class="specs-line">
-                    <strong>Secondary Headset:</strong>
-                    Valve Index
+                    <strong>Controllers:</strong> Valve Index Controllers
                   </div>
 
                   <div class="specs-line">
-                    <strong>Controllers:</strong>
-                    Valve Index Controllers
+                    <strong>Base Stations:</strong> SteamVR Base Station 2.0 x2
                   </div>
 
                   <div class="specs-line">
-                    <strong>Base Stations:</strong>
-                    SteamVR Base Station 2.0 x2
+                    <strong>Trackers:</strong> HTC VIVE Tracker (3rd Generation) x3
                   </div>
 
                   <div class="specs-line">
-                    <strong>Trackers:</strong>
-                    HTC VIVE Tracker (3rd Generation) x3
-                  </div>
-
-                  <div class="specs-line">
-                    <strong>Straps:</strong>
-                    EOZ Premium Straps
+                    <strong>Straps:</strong> EOZ Premium Straps
                   </div>
                 </div>
               </div>
@@ -774,9 +713,7 @@
           <a
             href="https://swib.by/gallery"
             class="dropdown-button"
-          >
-            Gallery
-          </a>
+          >Gallery</a>
         </div>
       </nav>
     </div>
