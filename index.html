@@ -7,7 +7,6 @@
   <title>Swibby</title>
 
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -32,34 +31,26 @@
       position: fixed;
       top: 0;
       left: 0;
-
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
       z-index: -3;
     }
 
     .video-overlay {
       position: fixed;
       inset: 0;
-
-      background: rgba(0, 0, 0, 0.80);
-
+      background: rgba(0, 0, 0, 0.20);
       z-index: -2;
     }
 
     .page {
       width: 100%;
       height: 100vh;
-
       display: flex;
       justify-content: center;
       align-items: center;
-
       padding: 30px;
-
       overflow: hidden;
     }
 
@@ -67,38 +58,27 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-
       width: 100%;
       max-width: 900px;
-
       position: relative;
       top: -20vh;
-
       animation: pageEnter 0.9s ease forwards;
     }
 
     .logo {
       display: block;
-
       width: min(520px, 80vw);
       height: auto;
-
       margin-bottom: 22px;
-
-      filter: drop-shadow(
-        0 4px 18px rgba(0, 0, 0, 0.35)
-      );
+      filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.35));
     }
 
     .short-info {
       margin-bottom: 22px;
-
       color: #888888;
-
       font-family: Verdana, Geneva, sans-serif;
       font-size: 10px;
       line-height: 1.7;
-
       text-align: center;
     }
 
@@ -111,26 +91,23 @@
       display: flex;
       align-items: flex-start;
       justify-content: center;
-
       gap: 42px;
-
       font-family: Verdana, Geneva, sans-serif;
       font-size: 18px;
+    }
+
+    .dropdown {
+      position: relative;
     }
 
     .dropdown-button {
       position: relative;
       z-index: 2;
-
       display: block;
-
       color: #ffffff;
-
       text-decoration: none;
       text-align: center;
-
       cursor: pointer;
-
       transition:
         color 0.2s ease,
         text-shadow 0.2s ease;
@@ -138,43 +115,27 @@
 
     .nav .dropdown .dropdown-button:hover {
       color: #ffffff !important;
-
       text-shadow:
         0 0 5px rgba(255, 255, 255, 0.75),
         0 0 10px rgba(255, 255, 255, 0.40),
         0 0 16px rgba(255, 255, 255, 0.20) !important;
     }
 
-    .dropdown {
-      position: relative;
-    }
-
     .dropdown-menu {
       position: absolute;
       z-index: 1;
-
       top: 100%;
       left: 50%;
-
       width: max-content;
       min-width: 0;
-
       padding: 9px 10px;
-
       border-radius: 6px;
-
       -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
-
       opacity: 0;
       visibility: hidden;
-
-      transform:
-        translate(-50%, -6px)
-        scale(0.98);
-
+      transform: translate(-50%, -6px) scale(0.98);
       transform-origin: top center;
-
       transition:
         opacity 0.22s ease,
         transform 0.22s ease,
@@ -184,29 +145,19 @@
     .dropdown:hover .dropdown-menu {
       opacity: 1;
       visibility: visible;
-
-      transform:
-        translate(-50%, 0)
-        scale(1);
+      transform: translate(-50%, 0) scale(1);
     }
 
     .dropdown-menu a {
       position: relative;
       z-index: 2;
-
       display: block;
-
       padding: 7px 12px;
-
       color: #aaaaaa;
-
       text-decoration: none;
       text-align: center;
-
       font-size: 12px;
-
       white-space: nowrap;
-
       transition:
         color 0.2s ease,
         text-shadow 0.2s ease;
@@ -214,7 +165,6 @@
 
     .nav .dropdown .dropdown-menu a:hover {
       color: #ffffff !important;
-
       text-shadow:
         0 0 4px rgba(255, 255, 255, 0.75),
         0 0 8px rgba(255, 255, 255, 0.40),
@@ -223,14 +173,10 @@
 
     .steam-account small {
       display: block;
-
       margin-top: 1px;
-
       font-size: 8px;
       font-weight: normal;
-
       color: #666666;
-
       transition:
         color 0.2s ease,
         text-shadow 0.2s ease;
@@ -238,7 +184,6 @@
 
     .steam-account:hover small {
       color: #ffffff;
-
       text-shadow:
         0 0 4px rgba(255, 255, 255, 0.75),
         0 0 8px rgba(255, 255, 255, 0.40),
@@ -248,30 +193,20 @@
     .info-menu {
       width: max-content;
       min-width: 0;
-
       top: calc(100% - 3px);
       left: 50%;
-
       padding: 9px 14px 10px;
-
       text-align: center;
-
-      transform:
-        translate(-50%, -6px)
-        scale(0.98);
-
+      transform: translate(-50%, -6px) scale(0.98);
       transform-origin: top center;
     }
 
     .dropdown:hover .info-menu {
-      transform:
-        translate(-50%, 0)
-        scale(1);
+      transform: translate(-50%, 0) scale(1);
     }
 
     .info-menu .specs-section {
       width: 100%;
-
       margin-left: 0;
       margin-right: 0;
     }
@@ -280,24 +215,17 @@
     .info-menu .specs-line {
       padding-left: 0;
       padding-right: 0;
-
       text-align: center;
     }
 
     .apb-retired {
       width: 100%;
-
       margin: 0;
-
       padding: 0 0 10px;
-
       color: #888888;
-
       font-size: 9px;
       line-height: 1.5;
-
       text-align: center;
-
       white-space: nowrap;
     }
 
@@ -316,25 +244,18 @@
     .specs-title {
       margin-bottom: 5px;
       padding: 0 10px;
-
       color: #ffffff;
-
       font-size: 11px;
       font-weight: bold;
-
       text-align: center;
     }
 
     .specs-line {
       padding: 2px 10px;
-
       color: #888888;
-
       font-size: 9px;
       line-height: 1.5;
-
       white-space: nowrap;
-
       text-align: center;
     }
 
@@ -345,51 +266,39 @@
     .specs-menu {
       width: auto;
       min-width: 760px;
-
       padding-top: 14px;
-
       text-align: center;
     }
 
     .specs-columns {
       display: grid;
-
       grid-template-columns: 1fr 1fr;
-
       gap: 32px;
     }
 
     .specs-column {
       min-width: 0;
-
       text-align: center;
     }
 
     .footer {
       position: fixed;
-
       bottom: 24px;
       left: 0;
-
       width: 100%;
-
       text-align: center;
-
       font-size: 8.5px;
       color: #777777;
-
       user-select: none;
     }
 
     .artist-credit {
       margin-top: 4px;
-
       font-size: 9px;
       color: #555555;
     }
 
     @keyframes pageEnter {
-
       from {
         opacity: 0;
         transform: translateY(15px);
@@ -399,11 +308,9 @@
         opacity: 1;
         transform: translateY(0);
       }
-
     }
 
     @media (prefers-reduced-motion: reduce) {
-
       .content {
         animation: none;
       }
@@ -411,11 +318,9 @@
       * {
         transition: none !important;
       }
-
     }
 
     @media (max-width: 650px) {
-
       .page {
         padding: 20px;
       }
@@ -426,13 +331,11 @@
 
       .logo {
         width: min(320px, 85vw);
-
         margin-bottom: 25px;
       }
 
       .short-info {
         margin-bottom: 20px;
-
         font-size: 9px;
       }
 
@@ -442,9 +345,7 @@
 
       .nav {
         flex-wrap: wrap;
-
         gap: 18px 28px;
-
         font-size: 16px;
       }
 
@@ -465,29 +366,23 @@
 
       .specs-columns {
         grid-template-columns: 1fr;
-
         gap: 0;
       }
 
       .specs-line {
         font-size: 8px;
-
         white-space: normal;
       }
 
       .apb-retired {
         font-size: 8px;
-
         white-space: normal;
       }
-
     }
-
   </style>
 </head>
 
 <body>
-
   <video
     class="background-video"
     autoplay
@@ -495,20 +390,16 @@
     loop
     playsinline
   >
-
     <source
       src="https://github.com/gamerdad24/website/raw/refs/heads/main/swib.by_files/background.mp4"
       type="video/mp4"
     >
-
   </video>
 
   <div class="video-overlay"></div>
 
   <main class="page">
-
     <div class="content">
-
       <img
         src="https://raw.githubusercontent.com/gamerdad24/website/refs/heads/main/swib.by_files/logo.png"
         alt="Website Logo"
@@ -516,7 +407,6 @@
       >
 
       <div class="short-info">
-
         <div class="short-info-name">
           hi I'm swib
         </div>
@@ -528,19 +418,15 @@
         <div>
           Art, music &amp; fashion enjoyer
         </div>
-
       </div>
 
       <nav class="nav">
-
         <div class="dropdown">
-
           <span class="dropdown-button">
             Steam
           </span>
 
           <div class="dropdown-menu">
-
             <a
               href="https://steamcommunity.com/id/Swibby/"
               target="_blank"
@@ -590,19 +476,15 @@
               <span>/groups/bonjour</span>
               <small>Matching</small>
             </a>
-
           </div>
-
         </div>
 
         <div class="dropdown">
-
           <span class="dropdown-button">
             Telegram
           </span>
 
           <div class="dropdown-menu">
-
             <a
               href="https://t.me/swibby"
               target="_blank"
@@ -610,19 +492,15 @@
             >
               t.me/swibby
             </a>
-
           </div>
-
         </div>
 
         <div class="dropdown">
-
           <span class="dropdown-button">
             Discord
           </span>
 
           <div class="dropdown-menu">
-
             <a
               href="https://discordapp.com/users/190497345509523456"
               target="_blank"
@@ -630,19 +508,15 @@
             >
               @swibby
             </a>
-
           </div>
-
         </div>
 
         <div class="dropdown">
-
           <span class="dropdown-button">
             VRChat
           </span>
 
           <div class="dropdown-menu">
-
             <a
               href="https://vrchat.com/home/user/usr_da0651cd-965e-41aa-abf4-5fbb28cbdb94"
               target="_blank"
@@ -666,25 +540,20 @@
             >
               vrc.group/111.1111
             </a>
-
           </div>
-
         </div>
 
         <div class="dropdown">
-
           <span class="dropdown-button">
             APB Info
           </span>
 
           <div class="dropdown-menu info-menu">
-
             <div class="apb-retired">
               (Retired)
             </div>
 
             <div class="specs-section">
-
               <div class="specs-title">
                 Main characters
               </div>
@@ -718,11 +587,9 @@
                 <strong>Clan:</strong>
                 (no clan)
               </div>
-
             </div>
 
             <div class="specs-section">
-
               <div class="specs-title">
                 Other characters
               </div>
@@ -738,11 +605,9 @@
                 slurs R100+,
                 OwO R100+
               </div>
-
             </div>
 
             <div class="specs-section">
-
               <div class="specs-title">
                 Other
               </div>
@@ -762,27 +627,19 @@
               <div class="specs-line">
                 Leader of &lt;1337&gt; on EU &amp; NA
               </div>
-
             </div>
-
           </div>
-
         </div>
 
         <div class="dropdown">
-
           <span class="dropdown-button">
             Specs
           </span>
 
           <div class="dropdown-menu specs-menu">
-
             <div class="specs-columns">
-
               <div class="specs-column">
-
                 <div class="specs-section">
-
                   <div class="specs-title">
                     PC
                   </div>
@@ -831,11 +688,9 @@
                     <strong>Storage 2:</strong>
                     Kingston FURY Renegade M.2 NVMe - 2TB
                   </div>
-
                 </div>
 
                 <div class="specs-section">
-
                   <div class="specs-title">
                     Peripherals
                   </div>
@@ -864,15 +719,11 @@
                     <strong>Chair:</strong>
                     Herman Miller Aeron Remastered Onyx
                   </div>
-
                 </div>
-
               </div>
 
               <div class="specs-column">
-
                 <div class="specs-section">
-
                   <div class="specs-title">
                     Monitors
                   </div>
@@ -886,11 +737,9 @@
                     <strong>2nd Monitor:</strong>
                     AOC C24G1 - 24", 1080p, 144Hz
                   </div>
-
                 </div>
 
                 <div class="specs-section">
-
                   <div class="specs-title">
                     VR Equipment
                   </div>
@@ -924,355 +773,259 @@
                     <strong>Straps:</strong>
                     EOZ Premium Straps
                   </div>
-
                 </div>
-
               </div>
-
             </div>
-
           </div>
-
         </div>
 
         <div class="dropdown">
-
           <a
             href="https://swib.by/gallery"
             class="dropdown-button"
           >
             Gallery
           </a>
-
         </div>
-
       </nav>
-
     </div>
-
   </main>
 
   <footer class="footer">
-
     Copyright © <strong>swib.by</strong> <em>All Rights Reserved</em>
 
     <div class="artist-credit">
       Banner by Kratzy ©
     </div>
-
   </footer>
 
   <script type="text/javascript">
+    document.addEventListener("contextmenu", function(e) {
+      e.preventDefault();
+    });
 
-  document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-  });
+    var colour="#AAAAAA";
+    var sparkles=20;
 
-  var colour="#AAAAAA";
-  var sparkles=20;
+    var mouseSpeed=0;
+    var lastMouseX=400;
+    var lastMouseY=300;
+    var sparkleSpeedThreshold=4;
 
-  var mouseSpeed=0;
-  var lastMouseX=400;
-  var lastMouseY=300;
-  var sparkleSpeedThreshold=4;
+    var x=ox=400;
+    var y=oy=300;
+    var swide=800;
+    var shigh=600;
+    var sleft=sdown=0;
+    var tiny=new Array();
+    var star=new Array();
+    var starv=new Array();
+    var starx=new Array();
+    var stary=new Array();
+    var tinyx=new Array();
+    var tinyy=new Array();
+    var tinyv=new Array();
 
-  var x=ox=400;
-  var y=oy=300;
-  var swide=800;
-  var shigh=600;
-  var sleft=sdown=0;
-  var tiny=new Array();
-  var star=new Array();
-  var starv=new Array();
-  var starx=new Array();
-  var stary=new Array();
-  var tinyx=new Array();
-  var tinyy=new Array();
-  var tinyv=new Array();
+    window.onload=function() {
+      if (document.getElementById) {
+        var i, rats, rlef, rdow;
 
-  window.onload=function() { if (document.getElementById) {
+        for (var i=0; i<sparkles; i++) {
+          var rats=createDiv(3, 3);
 
-    var i, rats, rlef, rdow;
+          rats.style.visibility="hidden";
+          document.body.appendChild(tiny[i]=rats);
 
-    for (var i=0; i<sparkles; i++) {
+          starv[i]=0;
+          tinyv[i]=0;
 
-      var rats=createDiv(3, 3);
+          var rats=createDiv(5, 5);
 
-      rats.style.visibility="hidden";
+          rats.style.backgroundColor="transparent";
+          rats.style.visibility="hidden";
 
-      document.body.appendChild(tiny[i]=rats);
+          var rlef=createDiv(1, 5);
+          var rdow=createDiv(5, 1);
 
-      starv[i]=0;
-      tinyv[i]=0;
+          rats.appendChild(rlef);
+          rats.appendChild(rdow);
 
-      var rats=createDiv(5, 5);
+          rlef.style.top="2px";
+          rlef.style.left="0px";
 
-      rats.style.backgroundColor="transparent";
-      rats.style.visibility="hidden";
+          rdow.style.top="0px";
+          rdow.style.left="2px";
 
-      var rlef=createDiv(1, 5);
-      var rdow=createDiv(5, 1);
+          document.body.appendChild(star[i]=rats);
+        }
 
-      rats.appendChild(rlef);
-      rats.appendChild(rdow);
+        set_width();
+        sparkle();
+      }
+    };
 
-      rlef.style.top="2px";
-      rlef.style.left="0px";
+    function sparkle() {
+      var c;
 
-      rdow.style.top="0px";
-      rdow.style.left="2px";
+      if ((x!=ox || y!=oy) && mouseSpeed>=sparkleSpeedThreshold) {
+        ox=x;
+        oy=y;
 
-      document.body.appendChild(star[i]=rats);
+        for (c=0; c<sparkles; c++) {
+          if (!starv[c]) {
+            var offsetX=Math.random()*30-15;
+            var offsetY=Math.random()*30-15;
 
-    }
+            star[c].style.left=(starx[c]=x+offsetX)+"px";
+            star[c].style.top=(stary[c]=y+offsetY)+"px";
 
-    set_width();
-    sparkle();
+            star[c].style.clip="rect(0px, 5px, 5px, 0px)";
+            star[c].style.visibility="visible";
 
-  }}
-
-  function sparkle() {
-
-    var c;
-
-    if ((x!=ox || y!=oy) && mouseSpeed>=sparkleSpeedThreshold) {
-
-      ox=x;
-      oy=y;
-
-      for (c=0; c<sparkles; c++) if (!starv[c]) {
-
-        var offsetX=Math.random()*30-15;
-        var offsetY=Math.random()*30-15;
-
-        star[c].style.left=(starx[c]=x+offsetX)+"px";
-        star[c].style.top=(stary[c]=y+offsetY)+"px";
-
-        star[c].style.clip="rect(0px, 5px, 5px, 0px)";
-        star[c].style.visibility="visible";
-
-        starv[c]=15;
-
-        break;
-
+            starv[c]=15;
+            break;
+          }
+        }
       }
 
-    }
-
-    for (c=0; c<sparkles; c++) {
-
-      if (starv[c]) update_star(c);
-      if (tinyv[c]) update_tiny(c);
-
-    }
-
-    setTimeout("sparkle()", 20);
-
-  }
-
-  function update_star(i) {
-
-    if (--starv[i]==7) {
-
-      star[i].style.clip="rect(1px, 4px, 4px, 1px)";
-
-    }
-
-    if (starv[i]) {
-
-      stary[i]+=1+Math.random()*3;
-
-      if (stary[i]<shigh+sdown) {
-
-        star[i].style.top=stary[i]+"px";
-
-        starx[i]+=(i%7-3)/3.5;
-
-        star[i].style.left=starx[i]+"px";
-
+      for (c=0; c<sparkles; c++) {
+        if (starv[c]) update_star(c);
+        if (tinyv[c]) update_tiny(c);
       }
 
-      else {
+      setTimeout("sparkle()", 20);
+    }
+
+    function update_star(i) {
+      if (--starv[i]==7) {
+        star[i].style.clip="rect(1px, 4px, 4px, 1px)";
+      }
+
+      if (starv[i]) {
+        stary[i]+=1+Math.random()*3;
+
+        if (stary[i]<shigh+sdown) {
+          star[i].style.top=stary[i]+"px";
+          starx[i]+=(i%7-3)/3.5;
+          star[i].style.left=starx[i]+"px";
+        } else {
+          star[i].style.visibility="hidden";
+          starv[i]=0;
+          return;
+        }
+      } else {
+        tinyv[i]=15;
+
+        tiny[i].style.top=(tinyy[i]=stary[i])+"px";
+        tiny[i].style.left=(tinyx[i]=starx[i])+"px";
+
+        tiny[i].style.width="2px";
+        tiny[i].style.height="2px";
 
         star[i].style.visibility="hidden";
-        starv[i]=0;
+        tiny[i].style.visibility="visible";
+      }
+    }
 
-        return;
-
+    function update_tiny(i) {
+      if (--tinyv[i]==7) {
+        tiny[i].style.width="1px";
+        tiny[i].style.height="1px";
       }
 
-    }
+      if (tinyv[i]) {
+        tinyy[i]+=1+Math.random()*3;
 
-    else {
-
-      tinyv[i]=15;
-
-      tiny[i].style.top=(tinyy[i]=stary[i])+"px";
-      tiny[i].style.left=(tinyx[i]=starx[i])+"px";
-
-      tiny[i].style.width="2px";
-      tiny[i].style.height="2px";
-
-      star[i].style.visibility="hidden";
-      tiny[i].style.visibility="visible";
-
-    }
-
-  }
-
-  function update_tiny(i) {
-
-    if (--tinyv[i]==7) {
-
-      tiny[i].style.width="1px";
-      tiny[i].style.height="1px";
-
-    }
-
-    if (tinyv[i]) {
-
-      tinyy[i]+=1+Math.random()*3;
-
-      if (tinyy[i]<shigh+sdown) {
-
-        tiny[i].style.top=tinyy[i]+"px";
-
-        tinyx[i]+=(i%7-3)/3.5;
-
-        tiny[i].style.left=tinyx[i]+"px";
-
-      }
-
-      else {
-
+        if (tinyy[i]<shigh+sdown) {
+          tiny[i].style.top=tinyy[i]+"px";
+          tinyx[i]+=(i%7-3)/3.5;
+          tiny[i].style.left=tinyx[i]+"px";
+        } else {
+          tiny[i].style.visibility="hidden";
+          tinyv[i]=0;
+          return;
+        }
+      } else {
         tiny[i].style.visibility="hidden";
-        tinyv[i]=0;
-
-        return;
-
       }
-
     }
 
-    else {
+    document.onmousemove=mouse;
 
-      tiny[i].style.visibility="hidden";
+    function mouse(e) {
+      set_scroll();
 
+      var newY=(e)?e.pageY:event.y+sdown;
+      var newX=(e)?e.pageX:event.x+sleft;
+
+      var deltaX=newX-lastMouseX;
+      var deltaY=newY-lastMouseY;
+
+      mouseSpeed=Math.sqrt(
+        deltaX*deltaX +
+        deltaY*deltaY
+      );
+
+      lastMouseX=newX;
+      lastMouseY=newY;
+
+      x=newX;
+      y=newY;
     }
 
-  }
-
-  document.onmousemove=mouse;
-
-  function mouse(e) {
-
-    set_scroll();
-
-    var newY=(e)?e.pageY:event.y+sdown;
-    var newX=(e)?e.pageX:event.x+sleft;
-
-    var deltaX=newX-lastMouseX;
-    var deltaY=newY-lastMouseY;
-
-    mouseSpeed=Math.sqrt(
-      deltaX*deltaX +
-      deltaY*deltaY
-    );
-
-    lastMouseX=newX;
-    lastMouseY=newY;
-
-    x=newX;
-    y=newY;
-
-  }
-
-  function set_scroll() {
-
-    if (typeof(self.pageYOffset)=="number") {
-
-      sdown=self.pageYOffset;
-      sleft=self.pageXOffset;
-
+    function set_scroll() {
+      if (typeof(self.pageYOffset)=="number") {
+        sdown=self.pageYOffset;
+        sleft=self.pageXOffset;
+      } else if (document.body.scrollTop || document.body.scrollLeft) {
+        sdown=document.body.scrollTop;
+        sleft=document.body.scrollLeft;
+      } else if (
+        document.documentElement &&
+        (
+          document.documentElement.scrollTop ||
+          document.documentElement.scrollLeft
+        )
+      ) {
+        sleft=document.documentElement.scrollLeft;
+        sdown=document.documentElement.scrollTop;
+      } else {
+        sdown=0;
+        sleft=0;
+      }
     }
 
-    else if (document.body.scrollTop || document.body.scrollLeft) {
+    window.onresize=set_width;
 
-      sdown=document.body.scrollTop;
-      sleft=document.body.scrollLeft;
-
+    function set_width() {
+      if (typeof(self.innerWidth)=="number") {
+        swide=self.innerWidth;
+        shigh=self.innerHeight;
+      } else if (
+        document.documentElement &&
+        document.documentElement.clientWidth
+      ) {
+        swide=document.documentElement.clientWidth;
+        shigh=document.documentElement.clientHeight;
+      } else if (document.body.clientWidth) {
+        swide=document.body.clientWidth;
+        shigh=document.body.clientHeight;
+      }
     }
 
-    else if (
-      document.documentElement &&
-      (
-        document.documentElement.scrollTop ||
-        document.documentElement.scrollLeft
-      )
-    ) {
+    function createDiv(height, width) {
+      var div=document.createElement("div");
 
-      sleft=document.documentElement.scrollLeft;
-      sdown=document.documentElement.scrollTop;
+      div.style.position="absolute";
+      div.style.height=height+"px";
+      div.style.width=width+"px";
+      div.style.overflow="hidden";
+      div.style.backgroundColor=colour;
+      div.style.pointerEvents="none";
+      div.style.zIndex="9999";
 
+      return div;
     }
-
-    else {
-
-      sdown=0;
-      sleft=0;
-
-    }
-
-  }
-
-  window.onresize=set_width;
-
-  function set_width() {
-
-    if (typeof(self.innerWidth)=="number") {
-
-      swide=self.innerWidth;
-      shigh=self.innerHeight;
-
-    }
-
-    else if (
-      document.documentElement &&
-      document.documentElement.clientWidth
-    ) {
-
-      swide=document.documentElement.clientWidth;
-      shigh=document.documentElement.clientHeight;
-
-    }
-
-    else if (document.body.clientWidth) {
-
-      swide=document.body.clientWidth;
-      shigh=document.body.clientHeight;
-
-    }
-
-  }
-
-  function createDiv(height, width) {
-
-    var div=document.createElement("div");
-
-    div.style.position="absolute";
-    div.style.height=height+"px";
-    div.style.width=width+"px";
-    div.style.overflow="hidden";
-    div.style.backgroundColor=colour;
-
-    div.style.pointerEvents="none";
-    div.style.zIndex="9999";
-
-    return div;
-
-  }
-
   </script>
-
 </body>
 </html>
